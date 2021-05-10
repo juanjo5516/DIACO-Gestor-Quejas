@@ -1,11 +1,47 @@
 
 /* BASIC */
 
+nav.navbar{
+	background-color: #00284d !important;
+	padding-top:3px !important; 
+	padding-bottom:3px !important;
+	min-height:20px !important
+}
+.navbar-nav > li > .dropdown-menu { 
+	background-color: #00284d !important;
+}
+.navbar-nav > li > .dropdown-menu .dropdown-item { 
+	background-color: #00284d !important;
+}
+.navbar-nav > li > .dropdown-menu .dropdown-item:hover { 
+	background-color: #004f99 !important;
+	cursor: pointer !important;
+}
+
+.whitefont {
+	color: white !important;
+}
+.whitelink {
+	color: white !important;
+	padding-top:5px !important; padding-bottom:5px !important;
+}
+.whitelink:hover {
+	color: white !important;
+	text-decoration: underline;
+	padding-top:5px !important; padding-bottom:5px !important;
+}
 .headerimg{
-     content:url("css/imagen-grd2.png");
+   /* content:url("assets/img/imagen-grd2.png"); */ 
 	 width: 100%;
 	 height: auto;
 }
+
+.firefoximg{
+  content:url("css/firefox.png");
+width: 100%;
+height: auto;
+}
+
 .footerimg{
      content:url("css/diaco-grd.jpg");
 	 width: 100%;

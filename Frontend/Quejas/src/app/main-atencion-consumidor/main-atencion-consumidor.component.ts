@@ -168,7 +168,7 @@ export class MainAtencionConsumidorComponent implements OnInit {
 		this.Token();
 		this.list_filtro=LSTFILTRO_ATENCIONCONSUMIDOR;
 		//this.tablechildflag=true;
-		this.selectedFiltroCtrl.setValue(998); //POR DEFAULT ESTABA 101, CAMBIO JJ
+		this.selectedFiltroCtrl.setValue(999); //POR DEFAULT ESTABA 101, CAMBIO JJ
 		this.GetList();
   }
 
@@ -521,6 +521,21 @@ export class MainAtencionConsumidorComponent implements OnInit {
 		this.MtDialogCatDepartamento= this.dialog.open(CatDepartamentoComponent,dialogConfig);	
 	}
 
+	///AGREGADO JJ
+
+	openTablero(){
+		this.Token();
+		const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+		dialogConfig.height = '800px';
+		dialogConfig.width = '1000px';
+		dialogConfig.data = {Usuario: this._submitFormService.Get_userid(), Rol: this._submitFormService.Get_Atencion_Consumidor()};
+		
+		this.MtDialogCatDepartamento= this.dialog.open(CatDepartamentoComponent,dialogConfig);	
+	}
+	/// FIN - AGREGADO JJ
 
 	openCatArea(){
 		this.Token();

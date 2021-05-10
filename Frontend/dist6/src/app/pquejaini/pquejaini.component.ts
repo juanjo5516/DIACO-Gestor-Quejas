@@ -309,6 +309,7 @@ export class PquejainiComponent implements OnInit {
 		//queja = this.quejasService.createQueja(queja, this.uploader).susbribe;
 		this.quejasService.saveData(queja, '/noupload').subscribe(
 			(retvalue) => {
+				this.showSpinner = true;
 
 				if (retvalue) {
 					var tempstr = retvalue['value'];
@@ -385,6 +386,7 @@ export class PquejainiComponent implements OnInit {
 							this.uploader.uploadAll();
 						} else {
 							this.operation.next(retvalue.value);
+							this.onDismissClicked();
 							this.success = true;
 						}
 
@@ -426,6 +428,7 @@ export class PquejainiComponent implements OnInit {
 			this.uploader.clearQueue();
 		}
 
+		this.showSpinner=false;
 		swal.fire('Registro exitoso...', `Su número de Queja es: <h1 class="display-1">${this.vsecanio}-${this.vanio}</h1>`, 'success');
 
 
@@ -623,6 +626,7 @@ export class PquejainiComponent implements OnInit {
 			(response) => {
 				let tempstr = response.value;
 				//console.info("findByQuejaById consumidor ",tempstr);
+				console.log(tempstr);
 				if (tempstr != null || tempstr != undefined) {
 					console.info("existe", tempstr);
 					this._usuario = new Usuario();

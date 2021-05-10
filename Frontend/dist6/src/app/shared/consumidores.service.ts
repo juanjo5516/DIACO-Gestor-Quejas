@@ -6,6 +6,7 @@ import {Proveedor} from './proveedor.model';
 import {Subject, Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {map, catchError, tap} from 'rxjs/operators';
+//import { ConsoleReporter } from 'jasmine';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +29,8 @@ export class ConsumidoresService {
 
     private httpOptions = {
         headers: new HttpHeaders({
-            'content-type': 'application/json; charset=iso-8859-1'
+            'content-type': 'application/json; charset=iso-8859-1',
+            
         })
     };
 
@@ -42,8 +44,20 @@ export class ConsumidoresService {
 
     saveData(consumidor: Consumidor) {
 
-        return this.http.post<ResponseRs>(BASE_URL_REST_FILE2 + 'consumidores', consumidor);
+        //let headers = new HttpHeaders().set('Access-Control-Allow-Origin','*'); //AÑADIDO
+        return this.http.post<ResponseRs>(BASE_URL_REST_FILE2 + 'consumidores', consumidor);   //AÑADIDO tercer parámetro, {headers: headers}
+
+        /* return this.http.post<any>(BASE_URL_REST_FILE2 + 'consumidores', consumidor, this.httpOptions).pipe(
+            tap((item) => console.log('Guardando consumidor')), catchError(this.handleError<any>('error en grabar '))
+        ); */
+
     }
+
+    /* EJEMPLO::::  saveData(queja: Quejaini, id: string) { 
+        return this.http.post<any>(BASE_URL_REST_FILE2 + 'quejasini'+id, queja, this.httpOptions).pipe(
+            tap((item) => console.log('grabada la queja prueba')),catchError(this.handleError<any>('error en grabar '))
+        );
+      } */
 
     fetchDataByTokenConsumidor(id: number): Observable<any> {
         //console.log(this.ObjaJSON_usrpass(str_username, str_password));

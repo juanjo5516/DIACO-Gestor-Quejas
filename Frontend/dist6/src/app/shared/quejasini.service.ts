@@ -65,6 +65,7 @@ export class QuejasIniService {
   }
 
   saveData(queja: Quejaini, id: string) { 
+	
     return this.http.post<any>(BASE_URL_REST_FILE2 + 'quejasini'+id, queja, this.httpOptions).pipe(
 		tap((item) => console.log('grabada la queja prueba')),catchError(this.handleError<any>('error en grabar '))
 	);

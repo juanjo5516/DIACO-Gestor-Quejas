@@ -97,15 +97,15 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
     private TipoRepository tipoDao;
 
     //private static final String OOOEXEFOLDER;
-     //private final String oooExeFolder = "/opt/libreoffice6.1/program";//PRODUCCION
+    //private final String oooExeFolder = "/opt/libreoffice6.1/program";//PRODUCCION
      //private final String oooExeFolder = "/usr/lib/libreoffice/program";
-    private final String oooExeFolder="C:/Program Files/LibreOffice/program";
+    private final String oooExeFolder="C:/Program Files/LibreOffice/program"; //DESARROLLO
      
      
     /* local---*/ //private final String workingDir="/home/julio/Documents/Mineco/proyPrototipo/diacoRegistros/";
     //private final String workingDir= "/home/diaco/Documentos/FILESERVER/diacoRegistros1/"; //PRODUCCION
       
-    private final String workingDir="C:/Users/jjaguilal/Documents/FILESERVER/diacoRegistros/";
+    private final String workingDir="C:/Users/jjaguilal/Documents/FILESERVER/diacoRegistros/"; //DESARROLLO
 
     /*  static 
     { OOOEXEFOLDER = "/opt/libreoffice6.1/program";
@@ -1859,10 +1859,13 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
     @Override
     public Response getCedulaNotificacionResolucionJuridico(CedulaNotificacionDto pCedulaNotificacionDto) {
         try {
+            
+            System.out.println("REVISOR JJ: Entrando a getCedulaNotificacionResolucionJuridico con parametro pCedulaNotificacionDto EsCP: "+pCedulaNotificacionDto.getEsCP()+" idQueja: "+ pCedulaNotificacionDto.getIdQueja()+" getEsResultadoResolucion: "+ pCedulaNotificacionDto.getEsResultadoResolucion());
 
             tipoDao.TokenCheck(pCedulaNotificacionDto.getToken());
             TipoReg_CedulaNotificacionResJuridico vTipoReg_CedulaNotificacionResJuridico = tipoDao.findTipoReg_CedulaNotiResJuridicoByIdResCP(pCedulaNotificacionDto);
-
+                
+            System.out.println("REVISOR JJ: Entrando a vTipoReg_CedulaNotificacionResJuridico getId: "+vTipoReg_CedulaNotificacionResJuridico.getId());
             // Initialise
             //String oooExeFolder = "/opt/libreoffice6.1/program";
             XComponentContext xContext = BootstrapSocketConnector.bootstrap(oooExeFolder);

@@ -6,7 +6,7 @@
     <artifactId>DiacoFileQuejaIni</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>Diaco File QuejaIni</name>
+    <name>Diaco File QuejaIni (1)</name>
     <description>Proyecto backend Diaco QuejaIni</description>
     <properties>
         <java.version>8.0</java.version>

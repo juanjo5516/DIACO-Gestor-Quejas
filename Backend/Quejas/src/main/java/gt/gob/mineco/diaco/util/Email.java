@@ -32,12 +32,12 @@ public class Email {
     @Inject
     private TipoRepository tipoDao;
     
-    String host="localhost";  
+    /*String host="localhost";  
     final String user="frank@testmail.com";  
-    final String password="admin";  
-    /*String host="128.5.11.49";  
+    final String password="admin";*/
+    String host="128.5.11.49";  
     final String user="notificaciondiaco@mineco.gob.gt";  
-    final String password="@DIACO$2019!";*/
+    final String password="@DIACO$2019!";
     
     public boolean SendEmail(String from, String[] to, String subject, String body) throws Exception{
             //Get the session object  

@@ -361,7 +361,7 @@ export class ProveedorComponent implements OnInit {
 		proveedor.direccionDetalle = this.proveedorForm.value.direccionDetalle;
 	}
 	if (this.proveedorForm.value.direccionZona=="" || this.proveedorForm.value.direccionZona==undefined) {
-		this.mjsError +=  "- Ingrese Zona.  "+ this.proveedorForm.value.tipoComercio + proveedor.idTipoComercio + "\r\n";
+		this.mjsError +=  "- Ingrese Zona.  " + "\r\n";
 	} else {
 		proveedor.direccionZona = this.proveedorForm.value.direccionZona;
 	}

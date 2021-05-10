@@ -118,7 +118,7 @@ public class QuejasRs {
         } catch (Exception e) {
             // Cuando se detecta un error.
             response.setCode(Long.valueOf("1000"));
-            response.setReason(e.getMessage()+" calendarioError");
+            response.setReason(e.getMessage());
         }
         return response;
     }
