@@ -4,7 +4,10 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <span class="navbar-text whitefont">DIACO {{str_queja}}  </span>
+  <span class="navbar-text whitefont">DIACO  
+    <span class="badge badge-secondary"> {{str_queja}}</span> 
+    - Datos de consumidor 
+  </span>
   <span class="navbar-text whitefont">&nbsp;&nbsp;&nbsp;</span>
   <!---- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -106,12 +109,12 @@ Centro de Atención de Quejas: 6av. 0-35 Zona 4 centro comercial Plaza Zona 4 <b
               id="detalleQueja"
               class="form-control"
               formControlName="detalleQueja"
-			  matTooltipPosition="after"
-			  matTooltip="Ingrese detalle de la queja"
-			  matTooltipClass="custom-tooltip-blue"
-			  placeholder="Detalle de la queja"
-			  maxLength="1000"
-			  required
+              matTooltipPosition="after"
+              matTooltip="Ingrese detalle de la queja"
+              matTooltipClass="custom-tooltip-blue"
+              placeholder="Detalle de la queja"
+              maxLength="1000"
+              required
 			  ></textarea>
           </div>
         </div>

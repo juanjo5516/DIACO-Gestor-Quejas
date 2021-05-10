@@ -419,9 +419,9 @@ export class ConsumidorComponent implements OnInit {
 
 /*         if (nitConsumidor == '' || nitConsumidor == undefined) {
             this.mjsError += '- Ingrese su NIT.  ' + '\r\n';
-        } else {
+        } else {*/
             consumidor.nitConsumidor = this.consumidorForm.value.nitConsumidor;
-        } */
+        
 
         if (motivoQueja == '' || motivoQueja == null || motivoQueja == undefined) {
             this.mjsError += '- Seleccione motivo de queja.  ' + '\r\n';

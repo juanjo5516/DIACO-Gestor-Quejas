@@ -115,7 +115,7 @@ export class QuejaComponent implements OnInit {
         }
         this.quejaForm = new FormGroup({
             'facturaNumero': new FormControl(_queja ? _queja.facturaNumero : ''),
-            'fechaFactura': new FormControl(_queja ? fecha_ : '', Validators.required),
+            'fechaFactura': new FormControl(_queja ? _queja.fechaFactura : '', Validators.required),
             'detalleQueja': new FormControl(_queja ? _queja.detalleQueja : '', Validators.required),
             'solicitaQue': new FormControl(_queja ? _queja.solicitaQue : '', Validators.required),
             'documento': new FormControl('')
