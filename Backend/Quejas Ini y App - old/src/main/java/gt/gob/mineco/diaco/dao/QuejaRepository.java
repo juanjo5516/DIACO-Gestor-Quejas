@@ -126,7 +126,7 @@ public class QuejaRepository {
                 /*
                 Mantenimiento: Copia del repositorio.
                  */
-                tipoqueja.setIdEstadoQueja(101);
+                tipoqueja.setIdEstadoQueja(401);
                 em.merge(tipoqueja);
                 //SaveConfirmarAccion(tipoqueja.getIdQueja(), 130);
 //                SaveConfirmarAccion(tipoqueja.getIdQueja(), 1, "f", tipoqueja); cambio de sede

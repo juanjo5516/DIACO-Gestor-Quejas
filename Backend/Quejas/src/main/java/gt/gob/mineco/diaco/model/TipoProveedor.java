@@ -324,7 +324,9 @@ public class TipoProveedor implements Serializable {
     public String getNombre() {
         if (this.getTipo_proveedor() == 6) {
             //return this.getNombreCompletoIndividual();
-            return getNombreProveedor();
+            String cadena_completa = getNombreProveedor()+" / "+ getNombre_empresa();
+            //return getNombreProveedor();
+            return cadena_completa;
         } else {
             return getRazon_social();
         }

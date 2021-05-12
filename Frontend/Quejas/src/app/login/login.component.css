@@ -55,6 +55,14 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+  /* background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#00284d)) fixed; */
+  background-color: #00284d;
+/*   background-image: url("assets/img/login/fondo2.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-attachment: fixed;
+  background-size: 50%; */
+
 }
 
 a.underlineHover {
