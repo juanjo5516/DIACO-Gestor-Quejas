@@ -1,7 +1,7 @@
 <mat-dialog-content>
  <form [formGroup]="proveedorForm" >
 <div class="form-group row">
-          <label for="" class="col-lg-12 col-form-label">Ingrese parametro de busqueda, puede ser NIT o NOMBRE</label>
+          <label for="" class="col-lg-12 col-form-label">Ingrese parámetro de búsqueda, puede ser NIT o NOMBRE</label>
 		<div class="col-lg-12">
             <div class="card">
               <div class="card-body">
@@ -61,8 +61,8 @@
     </ng-container>
 
     <!-- Columna Documento -->
-    <ng-container matColumnDef="Documento">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Documento </mat-header-cell>
+    <ng-container matColumnDef="Nit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nit </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.nitProveedor}} </mat-cell>
     </ng-container>
 
@@ -71,7 +71,20 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
     </ng-container>
-	
+
+	<!-- Columna Nombre Empresa-->
+    <ng-container matColumnDef="Nombre Empresa">
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Empresa </mat-header-cell>
+		<mat-cell *matCellDef="let row"> {{row.nombreEmpresa}} </mat-cell>
+	  </ng-container>
+	  
+
+	<!-- Columna Razón Social-->
+    <ng-container matColumnDef="Razón Social">
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Razón Social </mat-header-cell>
+		<mat-cell *matCellDef="let row"> {{row.razonSocial}} </mat-cell>
+	  </ng-container>
+
 	<!-- Name Column -->
     <ng-container matColumnDef="Seleccionar">
   <mat-header-cell  *matHeaderCellDef > Seleccionar </mat-header-cell>

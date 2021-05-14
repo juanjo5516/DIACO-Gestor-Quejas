@@ -15,7 +15,7 @@ import { Proveedor } from '../shared/proveedor.model';
 })
 export class BuscaprovComponent implements OnInit {
   proveedorForm: FormGroup;	
-  displayedColumns = ['Id', 'Documento', 'Nombre', 'Seleccionar' ];
+  displayedColumns = ['Id', 'Nit', 'Nombre', 'Nombre Empresa','Razón Social', 'Seleccionar' ];
   dataSource: any;
   private proveedorToInsert: Proveedor;
   @ViewChild(MatPaginator) paginator: MatPaginator;

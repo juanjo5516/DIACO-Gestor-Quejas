@@ -226,14 +226,14 @@ export class PrimeraAudienciaComponent implements OnInit {
 	}
 
 	Save_ReProgramarAudiencia() {
-		if (confirm("�Est� seguro que desea reprogramar esta audiencia?, ya existe otra cita previamente creada.")) {
+		if (confirm("¿Está seguro que desea reprogramar esta audiencia?, ya existe otra cita previamente creada.")) {
 			this.SaveProgramarAudiencia();
 		}
 	}
 
 	Save_Audiencia() {
 		if (this.flag_Resultado) {
-			if (confirm("�Est� seguro que desea actualizar el resultado de esta audiencia?")) {
+			if (confirm("¿Está seguro que desea actualizar el resultado de esta audiencia?")) {
 				this.SaveAudiencia();
 			}
 		} else {

@@ -150,10 +150,10 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		this.ReadOnlyVia='';
 		this.flagReportDisponible=false;
 	}else{
-		this.estatusCtrl.setValue(this.LocalForm["0"].estatus);
+		/* this.estatusCtrl.setValue(this.LocalForm["0"].estatus);
 		this.observacionesCtrl.setValue(this.LocalForm["0"].observaciones);
 		this.viaCtrl.setValue(this.LocalForm["0"].via);
-		this.ReadOnlyVia= this.Getdescripcionvia(this.LocalForm["0"].via);
+		this.ReadOnlyVia= this.Getdescripcionvia(this.LocalForm["0"].via); */
 		this.flagReportDisponible=true;
 	}
 	
@@ -343,7 +343,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		if(approved){
 			this._registrosservice.add_ComCon(this.data.NoQueja).subscribe((retvalue)=>{
 				if(retvalue["reason"] == 'OK'){
-					console.log(retvalue);
+					console.log(retvalue + ' jj ');
 					//this.SetSecTimerUpdateList();
 					this.flagDBError=false;
 					this.GetRegistro(true);
@@ -361,7 +361,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	}
 	
 	  GetRegistro(click:boolean){
-		  console.log('noQueja '+this.data.NoQueja);
+		  console.log('noQueja es '+this.data.NoQueja);
 	  this._registrosservice.read_ComCon(this.data.NoQueja).subscribe((retvalue)=>{
 			if(retvalue["reason"] == 'OK'){
 				var tempstr=retvalue['value'];

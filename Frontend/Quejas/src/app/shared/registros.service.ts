@@ -44,7 +44,7 @@ export class RegistrosService {
 
 	read_ComCon(idqueja): Observable<any> {
 		var LocalURL = this.baseUrl + '/com_con/' + idqueja + '/' + this._submitFormService.Get_token();
-		console.log(LocalURL);
+		console.log(LocalURL + ' aqui va');
 		return this._http.get(LocalURL, this.httpOptions).pipe(map(this.extractData));
 	}
 

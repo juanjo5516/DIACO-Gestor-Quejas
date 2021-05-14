@@ -1,9 +1,16 @@
 body {
-	background-image: url(css/diacofade3.jpg), url(css/imagen-grdfade2.jpg) ;
+/* 	background-image: url(css/diacofade3.jpg), url(css/imagen-grdfade2.jpg) ;
 	background-repeat: no-repeat, no-repeat;
 	background-attachment: fixed, fixed;
 	background-size: auto auto, auto auto;
 	background-position: bottom right, bottom left;
+	min-height:100vh;  */
+	background-image: url(assets/img/diaco-grd-body.jpg);
+	/* background-image: url(diacofade3.jpg), url(imagen-grdfade2.jpg) ; ORIGINAL*/
+	background-repeat: no-repeat, no-repeat;
+	background-attachment: fixed, fixed;
+	background-size: auto auto, auto auto;
+	background-position: top left, bottom left;
 	min-height:100vh; 
 }
 
