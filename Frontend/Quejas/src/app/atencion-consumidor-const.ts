@@ -18,7 +18,7 @@
 * local_JJ
 */
 
-export const BASE_URL_REST = 'http://localhost:8080/Quejas/rs/';
+/* export const BASE_URL_REST = 'http://localhost:8080/Quejas/rs/';
 //export const BASE_URL_REST_CALENDARIO = 'http://localhost:8080/web-quejaini/rs/quejas/calendario';
 export const BASE_URL_REST_CALENDARIO = 'http://localhost:8080/web-quejaini/rs/quejas/calendario';
 export const BASE_VERIFICACION_DATOS_LINK = 'http://localhost:8080/dist6/#/consumidor/interno/';
@@ -26,7 +26,7 @@ export const BASE_PRESENCIAL_LINK = 'http://localhost:8080/dist6/#/pquejaini/pre
 export const BASE_CALLCENTER_LINK = 'http://localhost:8080/dist6/#/pquejaini/callcenter/';
 //export const BASE_VERIFICACION_DATOS_LINK = 'http://localhost:4300/quejas_ini_6/#/consumidor/interno/';
 //export const BASE_PRESENCIAL_LINK = 'http://localhost:4300/quejas_ini_6/#/pquejaini/presencial/';
-//export const BASE_CALLCENTER_LINK = 'http://localhost:4300/quejas_ini_6/#/pquejaini/callcenter/';
+//export const BASE_CALLCENTER_LINK = 'http://localhost:4300/quejas_ini_6/#/pquejaini/callcenter/'; */
 
 /*
 * local_old
@@ -64,11 +64,11 @@ export const BASE_CALLCENTER_LINK = 'http://localhost:8080/quejas_ini_6/#/pqueja
 * Production
 
  */
- /* export const BASE_URL_REST = 'http://gestorquejas.diaco.gob.gt/Quejas/rs/';
+ export const BASE_URL_REST = 'http://gestorquejas.diaco.gob.gt/Quejas/rs/';
  export const BASE_URL_REST_CALENDARIO = 'http://gestorquejas.diaco.gob.gt/web-quejaini/rs/quejas/calendario';
  export const BASE_VERIFICACION_DATOS_LINK = 'http://gestorquejas.diaco.gob.gt/dist6/#/consumidor/interno/';
  export const BASE_PRESENCIAL_LINK = 'http://gestorquejas.diaco.gob.gt/dist6/#/pquejaini/presencial/';
- export const BASE_CALLCENTER_LINK = 'http://gestorquejas.diaco.gob.gt/dist6/#/pquejaini/callcenter/'; */
+ export const BASE_CALLCENTER_LINK = 'http://gestorquejas.diaco.gob.gt/dist6/#/pquejaini/callcenter/';
 
 
 
