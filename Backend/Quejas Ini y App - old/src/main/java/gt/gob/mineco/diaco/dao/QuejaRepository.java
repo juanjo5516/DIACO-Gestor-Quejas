@@ -4,6 +4,7 @@ import gt.gob.mineco.diaco.dto.CalendarioDto;
 import gt.gob.mineco.diaco.dto.DetalleCalendarioDto;
 import gt.gob.mineco.diaco.exception.ErrorException;
 import gt.gob.mineco.diaco.model.DiacoConcvirtInteraccion;
+import gt.gob.mineco.diaco.model.DiacoConsumidor;
 import gt.gob.mineco.diaco.model.DiacoEstadoQueja;
 import gt.gob.mineco.diaco.model.DiacoMagicLink;
 import gt.gob.mineco.diaco.model.DiacoQueja;
@@ -67,6 +68,24 @@ public class QuejaRepository {
         query.setParameter("anio", today.getYear());
         return query.getSingleResult();
     }
+    ///////////////////////////////FACTURAS //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public Integer findFacturas() {
+        this.em.getEntityManagerFactory().getCache().evict(DiacoQueja.class);
+        TypedQuery<Integer> query = em.createNamedQuery("DiacoQueja.findFacturas", Integer.class);
+        return query.getSingleResult();
+    }
+    
+    public DiacoQueja findByProveedor(String proveedor) {
+        try {
+            this.em.getEntityManagerFactory().getCache().evict(DiacoQueja.class);
+            TypedQuery<DiacoQueja> query = em.createNamedQuery("DiacoQueja.findFacturas", DiacoQueja.class);
+            query.setParameter("proveedor", proveedor);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    //////////////////////////////////////////////////FINALIZA FACTURAS///////////////////////////////////////////////////////////////////////////
 
     public Integer findValInicialSec() {
         LocalDate today = LocalDate.now();

@@ -24,6 +24,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "DiacoQueja.findByIdFuente", query = "SELECT q FROM DiacoQueja q WHERE q.idFuente = :idfuente"),
     @NamedQuery(name = "DiacoQueja.findAnioSec", query = "SELECT q FROM DiacoQueja q WHERE q.anio = :anio  and q.noQueja = :noQueja"),
     @NamedQuery(name = "DiacoQueja.findQuejasValProv", query = "SELECT COUNT(q.noQueja) FROM DiacoQueja q WHERE q.idProveedor = :id_proveedor  and q.idEstadoQueja = 501"),
+    @NamedQuery(name = "DiacoQueja.findFacturas", query = "SELECT q FROM DiacoQueja q WHERE q.idProveedor = :proveedor"),
     @NamedQuery(name = "DiacoQueja.findQuejasProv", query = "SELECT COUNT(q.noQueja) FROM DiacoQueja q WHERE q.idProveedor = :id_proveedor  and q.idEstadoQueja != 501")
 })
 public class DiacoQueja {

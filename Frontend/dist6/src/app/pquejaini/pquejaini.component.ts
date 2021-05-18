@@ -12,6 +12,7 @@ import { FileUploader, FileItem } from "ng2-file-upload";
 import { Consumidor } from '../shared/consumidor.model';
 import { Proveedor } from '../shared/proveedor.model';
 import { ConsumidoresService } from '../shared/consumidores.service';
+import { QuejaService } from '../shared/queja.service';
 import { ProveedoresService } from '../shared/proveedores.service';
 import { BASE_URL_REST_FILE2 } from '../conc-virt-const';
 import { Usuario } from '../shared/usuario.model';
@@ -164,6 +165,7 @@ export class PquejainiComponent implements OnInit {
 			'correo': new FormControl('', Validators.required),
 			'detalleQueja': new FormControl('', Validators.required),
 			'solicitaQue': new FormControl('', Validators.required),
+			'serieNumeroFactura': new FormControl('', Validators.required),
 			'nitProveedor': new FormControl(''),
 			'ubicacion': new FormControl('')
 			//,'ffactura': new FormControl('',Validators.required)
@@ -453,6 +455,7 @@ export class PquejainiComponent implements OnInit {
 				'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 				'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
 				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor),
+				'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 				'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 
 			});
@@ -470,6 +473,7 @@ export class PquejainiComponent implements OnInit {
 				'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 				'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
 				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor),
+				'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 				'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 
 			});
@@ -498,6 +502,7 @@ export class PquejainiComponent implements OnInit {
 			'nombreEmpresa': new FormControl(proveedor ? proveedor.nombreEmpresa : ''),
 			'razonSocial': new FormControl(proveedor ? proveedor.razonSocial : ''),
 			*/
+			'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 			'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 		});
 		//////console.log("inicializa consumidor");
@@ -521,6 +526,20 @@ export class PquejainiComponent implements OnInit {
 			}
 		);
 		//////console.log("ingreso al onDocumentoIdentificacionChanged");
+	}
+	public onFacturaChanged(){
+		console.log('Factura Changed');
+		this.quejasService.fetchDataFact(this.quejaForm.value.nitProveedor).subscribe(
+			(response) => {
+				if (response.value) {
+					// inicializar formulario con valores predeterminados
+					
+					//queja.dpiPasaporte = this.quejaForm.value.dpiPasaporte;
+				} else {
+					
+				}
+			}
+		);
 	}
 
 	public onProveedorChanged() {

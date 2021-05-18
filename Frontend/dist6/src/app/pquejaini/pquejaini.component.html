@@ -259,6 +259,34 @@
 						</div>
 					</div>
 
+					<div class="form-group row">
+						<!-- <label for="et8" [ngStyle]="{color: 'red'}">(*)</label> -->
+						<label for="serieNumeroFactura" class="col-lg-2 col-form-label">Datos de Factura</label>
+						<div class="col-lg-2">
+							<input
+							id="serieNumeroFactura"
+							type="text"
+							class="form-control"
+							matTooltipPosition="after"
+							matTooltip="Ingrese la Serie guión y número de Factura Ejemplo: A-25885"
+							matTooltipClass="custom-tooltip-blue"
+							(change)="onFacturaChanged()"
+							formControlName="serieNumeroFactura"
+							
+							placeholder="Serie-Número de Factura"
+							pattern="^[A-Z]{1,3}[0-9]?\-[0-9]{1,9}$"
+
+							>
+							<div *ngIf="quejaForm.get('serieNumeroFactura').errors && quejaForm.get('serieNumeroFactura').dirty">
+								<p *ngIf="quejaForm.get('serieNumeroFactura').hasError('pattern')" [ngStyle]="{color: 'red'}">Error Serie y número de Factura incorrecto. Debe ser Serie-Número Ejemplo: A-2555</p>
+							</div>
+
+							<!-- <p *ngIf="quejaForm.get('serieNumeroFactura').hasError('pattern')" [ngStyle]="{color: 'red'}">Error Serie y número de Factura incorrecto</p> -->
+							
+						</div>
+						
+					</div>
+
 
 
 					

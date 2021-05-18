@@ -49,6 +49,17 @@ public class QuejasServiceImp {
     MunicipioRepository muniDao;
     @Inject
     PaisRepository paisDao;
+    
+    
+    ///////////////////////////////////////////////////FACTURA/////////////////////////////////////////////////////////////    
+    public DiacoQueja getFacturaByProveedor(String proveedor) {
+        try {
+            return quejaDao.findByProveedor(proveedor);
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+    //////////////////////////////////////////////////////FINALIZA FACTURA/////////////////////////////////////////////////
 
     //procedimiento que se llama cuando se llena los 40 datos
     public DiacoQueja saveQuejadq(DiacoQueja queja) {

@@ -1,5 +1,6 @@
 package gt.gob.mineco.diaco.rs;
 
+import gt.gob.mineco.diaco.dao.QuejaRepository;
 import java.io.InputStream;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,8 +17,11 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import gt.gob.mineco.diaco.dto.DiacoQuejaIniDto;
 import gt.gob.mineco.diaco.dto.QuejaConDto;
+import gt.gob.mineco.diaco.model.DiacoConsumidor;
 import gt.gob.mineco.diaco.model.DiacoQueja;
+import gt.gob.mineco.diaco.model.TipoEmail;
 import gt.gob.mineco.diaco.model.TipoImagenesQueja;
+import gt.gob.mineco.diaco.model.TipoTelefono;
 import gt.gob.mineco.diaco.model.TipoUsuario;
 import gt.gob.mineco.diaco.service.QuejasServiceImp;
 import gt.gob.mineco.diaco.service.SecurityManagerServiceImpl;
@@ -38,6 +42,8 @@ public class QuejasRsIni {
 
     @Inject
     QuejasServiceImp quejasService;
+    @Inject
+    QuejaRepository quejaDao;
     @Inject
     TipoImagenesQuejaServiceImp tipoImgQuejaService;
     @Inject
@@ -74,7 +80,45 @@ public class QuejasRsIni {
         response.setValue(queja);
         return response;
     }
+    ////////////////////////////////////////FACTURA////////////////////////
+    @GET
+    @Path("/factura")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseRs getFacturas() {
+        ResponseRs response = new ResponseRs();
+        Integer facturas = 0;
+        facturas = quejaDao.findMaxFromYear();
+        try {
 
+
+        } catch (Exception e) {
+            System.out.println("Error en fecha: " );
+        }
+        //response.setValue();
+        return response;
+    }
+    
+    
+    @GET
+    public ResponseRs getFacturaProveedor(@QueryParam(value = "proveedor") String proveedor) {
+        ResponseRs response = new ResponseRs();
+        DiacoQueja queja = quejasService.getFacturaByProveedor(proveedor);
+        /*if (queja != null) {
+            TipoTelefono tel = consumidoresService.findTelefonoById(consumidor.getIdConsumidor());
+            TipoEmail correo = consumidoresService.findCorreoById(consumidor.getIdConsumidor());
+            if (tel != null) {
+                consumidor.setTelefono(tel.getTelefono());
+            }
+            if (correo != null) {
+                consumidor.setCorreoElectronico1(correo.getCorreo_electronico());
+            }
+        }*/
+        response.setValue(queja);
+        return response;
+    }
+
+    //////////////////////////////////////FINALIZA FACTURA/////////////////////////////////////////////
+    
     @GET
     @Path("/noqueja/{anio}/{correlativo}")
     @Produces(MediaType.APPLICATION_JSON)

@@ -84,6 +84,9 @@ export class QuejasIniService {
     return this.http.get<ResponseRs>(BASE_URL_REST_FILE2_ + 'quejasini/quejacon/'+dato+'/'+id);
   }
 */
+	fetchDataFact(proveedor: string) {
+		return this.http.get<ResponseRs>(BASE_URL_REST_FILE2 + 'quejasini?proveedor='+ proveedor);
+	}
 
 
 
