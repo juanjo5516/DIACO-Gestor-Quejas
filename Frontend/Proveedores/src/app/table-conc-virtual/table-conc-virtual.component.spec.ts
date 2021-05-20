@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TableConcVirtualComponent } from './table-conc-virtual.component';
 
@@ -6,7 +6,7 @@ describe('TableConcVirtualComponent', () => {
   let component: TableConcVirtualComponent;
   let fixture: ComponentFixture<TableConcVirtualComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TableConcVirtualComponent ]
     })

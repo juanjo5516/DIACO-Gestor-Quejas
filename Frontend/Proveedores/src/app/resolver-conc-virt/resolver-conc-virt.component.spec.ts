@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ResolverConcVirtComponent } from './resolver-conc-virt.component';
 
@@ -6,7 +6,7 @@ describe('ResolverConcVirtComponent', () => {
   let component: ResolverConcVirtComponent;
   let fixture: ComponentFixture<ResolverConcVirtComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ResolverConcVirtComponent ]
     })

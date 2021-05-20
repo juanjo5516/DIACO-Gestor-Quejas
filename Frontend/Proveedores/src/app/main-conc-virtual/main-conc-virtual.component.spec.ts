@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MainConcVirtualComponent } from './main-conc-virtual.component';
 
@@ -6,7 +6,7 @@ describe('MainConcVirtualComponent', () => {
   let component: MainConcVirtualComponent;
   let fixture: ComponentFixture<MainConcVirtualComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MainConcVirtualComponent ]
     })
