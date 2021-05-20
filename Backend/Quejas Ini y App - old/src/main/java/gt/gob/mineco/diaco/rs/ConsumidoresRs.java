@@ -63,6 +63,7 @@ public class ConsumidoresRs {
     public ResponseRs getConsumidores(@QueryParam(value = "docid") String documentoIdentificacion) {
         ResponseRs response = new ResponseRs();
         DiacoConsumidor consumidor = consumidoresService.getConsumidorByDocumentoIdentificacion(documentoIdentificacion);
+        System.out.println("consumidor: "+consumidor);
         if (consumidor != null) {
             TipoTelefono tel = consumidoresService.findTelefonoById(consumidor.getIdConsumidor());
             TipoEmail correo = consumidoresService.findCorreoById(consumidor.getIdConsumidor());

@@ -101,8 +101,10 @@ public class QuejasRsIni {
     
     @GET
     public ResponseRs getFacturaProveedor(@QueryParam(value = "proveedor") String proveedor) {
+        System.out.println("Ingresando a getFacturaProveedor jj");
         ResponseRs response = new ResponseRs();
         DiacoQueja queja = quejasService.getFacturaByProveedor(proveedor);
+        System.out.println("queja: "+queja);
         /*if (queja != null) {
             TipoTelefono tel = consumidoresService.findTelefonoById(consumidor.getIdConsumidor());
             TipoEmail correo = consumidoresService.findCorreoById(consumidor.getIdConsumidor());
