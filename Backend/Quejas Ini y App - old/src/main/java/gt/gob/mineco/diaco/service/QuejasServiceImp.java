@@ -52,13 +52,15 @@ public class QuejasServiceImp {
     
     
     ///////////////////////////////////////////////////FACTURA/////////////////////////////////////////////////////////////    
-    public DiacoQueja getFacturaByProveedor(String proveedor) {
+    /*public DiacoQueja getFacturaByProveedor(String proveedor) {
         try {
             return quejaDao.findByProveedor(proveedor);
         } catch (NoResultException ex) {
             return null;
         }
-    }
+    }*/
+    
+    
     //////////////////////////////////////////////////////FINALIZA FACTURA/////////////////////////////////////////////////
 
     //procedimiento que se llama cuando se llena los 40 datos
@@ -221,6 +223,7 @@ public class QuejasServiceImp {
                 queja.setIdDepartamentoProveedor(pt.getCodigoDepartamento() != null ? pt.getCodigoDepartamento() : (pt.getDepartamento() != null ? pt.getDepartamento().getCodigoDepartamento() : 9));
                 queja.setIdMunicipioProveedor(pt.getCodigoMunicipio() != null ? pt.getCodigoMunicipio() : (pt.getMunicipio() != null ? pt.getMunicipio().getCodigoMunicipio() : 1));
                 queja.setZonaProveedor(pt.getDireccionZona() != null ? Integer.parseInt(pt.getDireccionZona()) : 0);
+                queja.setIdDiacoSede(1);
                 conciliacion = "1";
             }
         } else {

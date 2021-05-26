@@ -75,7 +75,22 @@ public class QuejaRepository {
         return query.getSingleResult();
     }
     
-    public DiacoQueja findByProveedor(String proveedor) {
+    public List<DiacoQueja> findByProveedor(Integer proveedor) {
+        try {
+            System.out.println("Ingresando a findByProveedor "+proveedor);
+            /*this.em.getEntityManagerFactory().getCache().evict(DiacoQueja.class);
+            return em.createNamedQuery("DiacoQueja.findFacturas").setParameter("proveedor", proveedor).getResultList();*/
+            
+            TypedQuery<DiacoQueja> query = em.createNamedQuery("DiacoQueja.findFacturas", DiacoQueja.class);
+            query.setParameter("proveedor", proveedor);
+            System.out.println("Imprimiendo resultado de query: "+query.getResultList());
+            return query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    /*public DiacoQueja findByProveedor(String proveedor) {
         try {
             this.em.getEntityManagerFactory().getCache().evict(DiacoQueja.class);
             TypedQuery<DiacoQueja> query = em.createNamedQuery("DiacoQueja.findFacturas", DiacoQueja.class);
@@ -84,7 +99,9 @@ public class QuejaRepository {
         } catch (Exception e) {
             return null;
         }
-    }
+    }*/   
+    
+
     //////////////////////////////////////////////////FINALIZA FACTURAS///////////////////////////////////////////////////////////////////////////
 
     public Integer findValInicialSec() {

@@ -1,6 +1,7 @@
 //export const BASE_URL_REST='http://localhost:8080/diaco-int-web/rs/';
-export const BASE_URL_REST='http://localhost:8080/Quejas/rs/';
+//export const BASE_URL_REST='http://localhost:8080/Quejas/rs/';
 //export const BASE_URL_REST='http://desagestorquejas.minfin.gob.gt/diaco-int-web/rs/';
+export const BASE_URL_REST='http://gestorquejas.diaco.gob.gt/Quejas/rs/';
 export const BASE_URL_REST_FILE=BASE_URL_REST;
 
 export class BaseCmbClass {

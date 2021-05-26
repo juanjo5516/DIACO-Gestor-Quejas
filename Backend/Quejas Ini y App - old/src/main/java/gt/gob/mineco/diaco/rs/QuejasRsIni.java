@@ -100,11 +100,21 @@ public class QuejasRsIni {
     
     
     @GET
-    public ResponseRs getFacturaProveedor(@QueryParam(value = "proveedor") String proveedor) {
-        System.out.println("Ingresando a getFacturaProveedor jj");
+    public ResponseRs getFacturaProveedor(@QueryParam(value = "proveedor") Integer proveedor) {
+        System.out.println("Ingresando a getFacturaProveedor jj"+ proveedor);
         ResponseRs response = new ResponseRs();
-        DiacoQueja queja = quejasService.getFacturaByProveedor(proveedor);
-        System.out.println("queja: "+queja);
+        
+        try {
+            response.setCode(0L);
+            response.setReason("OK");
+            response.setValue(quejaDao.findByProveedor(proveedor));
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(1L);
+            response.setReason("ERROR getFacturaProveedor");
+        }
+        return response;
+
         /*if (queja != null) {
             TipoTelefono tel = consumidoresService.findTelefonoById(consumidor.getIdConsumidor());
             TipoEmail correo = consumidoresService.findCorreoById(consumidor.getIdConsumidor());
@@ -115,8 +125,7 @@ public class QuejasRsIni {
                 consumidor.setCorreoElectronico1(correo.getCorreo_electronico());
             }
         }*/
-        response.setValue(queja);
-        return response;
+        
     }
 
     //////////////////////////////////////FINALIZA FACTURA/////////////////////////////////////////////

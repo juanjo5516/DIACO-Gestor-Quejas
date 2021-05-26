@@ -212,6 +212,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
     @Override
     public ResponseRs getTipoQueja(Integer idqueja, String token) {
         ResponseRs response = new ResponseRs();
+        System.out.println("Entrando a getTipoQueja (idqueja): "+idqueja);
+        System.out.println("Entrando a getTipoQueja (token): "+token);
 
         try {
             tipoDao.TokenCheck(token);
