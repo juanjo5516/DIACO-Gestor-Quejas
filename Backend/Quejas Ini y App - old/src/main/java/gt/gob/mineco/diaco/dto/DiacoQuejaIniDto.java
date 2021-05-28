@@ -29,6 +29,7 @@ public class DiacoQuejaIniDto {
     private String idFuente;
     private String conciliacion;
     private String presencial;
+    private String facturaNumero;
 
     public Integer getIdQueja() {
         return idQueja;
@@ -172,6 +173,20 @@ public class DiacoQuejaIniDto {
 
     public void setPresencial(String presencial) {
         this.presencial = presencial;
+    }
+
+    /**
+     * @return the facturaNumero
+     */
+    public String getFacturaNumero() {
+        return facturaNumero;
+    }
+
+    /**
+     * @param facturaNumero the facturaNumero to set
+     */
+    public void setFacturaNumero(String facturaNumero) {
+        this.facturaNumero = facturaNumero;
     }
     
     

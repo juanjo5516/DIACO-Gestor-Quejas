@@ -269,6 +269,7 @@
 							class="form-control"
 							matTooltipPosition="after"
 							matTooltip="Ingrese la Serie guión y número de Factura Ejemplo: A-25885"
+							[(ngModel)]="serieNumeroFactura"
 							matTooltipClass="custom-tooltip-blue"
 							(change)="onFacturaChanged()"
 							formControlName="serieNumeroFactura"
@@ -279,6 +280,16 @@
 							>
 							<div *ngIf="quejaForm.get('serieNumeroFactura').errors && quejaForm.get('serieNumeroFactura').dirty">
 								<p *ngIf="quejaForm.get('serieNumeroFactura').hasError('pattern')" [ngStyle]="{color: 'red'}">Error Serie y número de Factura incorrecto. Debe ser Serie-Número Ejemplo: A-2555</p>
+							</div>
+
+							<div *ngIf="factRepetida">
+								<p [ngStyle]="{color: 'red'}">El número de factura ya existe por lo que no se puede ingresar la queja.</p>
+
+							</div>
+
+							<div *ngIf="factNoRepetida">
+								<p [ngStyle]="{color: 'green'}">Factura correcta</p>
+
 							</div>
 
 							<!-- <p *ngIf="quejaForm.get('serieNumeroFactura').hasError('pattern')" [ngStyle]="{color: 'red'}">Error Serie y número de Factura incorrecto</p> -->

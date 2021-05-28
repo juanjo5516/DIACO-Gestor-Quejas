@@ -398,6 +398,7 @@ public class QuejasServiceImp {
         queja.setUbicacion(quejaIni.getUbicacion());
         queja.setIdDepartamento(9);
         queja.setIdMunicipio(1);
+        queja.setFacturaNumero(quejaIni.getFacturaNumero());
         //queja.setIdFuente(Integer.parseInt(quejaIni.getIdFuente()));
         //graba la queja
         quejaDao.save(queja);

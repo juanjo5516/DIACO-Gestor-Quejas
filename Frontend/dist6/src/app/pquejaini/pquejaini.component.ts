@@ -26,7 +26,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ResponseRs } from '../shared/response-rs.model';
 import { isUndefined } from 'util';
 
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -51,6 +51,7 @@ export class PquejainiComponent implements OnInit {
 	}
 
 	public nproveedor: string = "";
+	public idproveedor: string = "";
 	public conciliacion: string = "";
 	public vanio: number = 0
 	public vsecanio: number = 0;
@@ -97,6 +98,11 @@ export class PquejainiComponent implements OnInit {
 	successFile: boolean = true;
 	showSpinner: boolean = false;
 	operation = new Subject<Quejaini>();
+
+	factRepetida: boolean = false;
+	factNoRepetida: boolean =false;
+	conteoRepetido: number =0;
+	serieNumeroFactura: string = "";
 
 
 
@@ -267,6 +273,7 @@ export class PquejainiComponent implements OnInit {
 		queja.ubicacion = this.quejaForm.value.ubicacion;
 		queja.anio = 0;
 		queja.secuencia = 0;
+		queja.facturaNumero = this.quejaForm.value.serieNumeroFactura;
 
 
 		//existingModeConsumidor es true si el consumidor ya está en base de datos. existingConsumidor trae el objeto del registro.
@@ -431,7 +438,7 @@ export class PquejainiComponent implements OnInit {
 		}
 
 		this.showSpinner=false;
-		swal.fire('Registro exitoso...', `Su número de Queja es: <h1 class="display-1">${this.vsecanio}-${this.vanio}</h1>`, 'success');
+		Swal.fire('Registro exitoso...', `Su número de Queja es: <h1 class="display-1">${this.vsecanio}-${this.vanio}</h1>`, 'success');
 
 
 		this.quejaForm.reset();
@@ -529,15 +536,61 @@ export class PquejainiComponent implements OnInit {
 	}
 	public onFacturaChanged(){
 		console.log('Factura Changed');
-		this.quejasService.fetchDataFact(this.quejaForm.value.nitProveedor).subscribe(
+		this.conteoRepetido=0;
+		this.factRepetida=false;
+		this.quejasService.fetchDataFact(this.idproveedor).subscribe(
 			(response) => {
-				if (response.value) {
-					// inicializar formulario con valores predeterminados
-					
-					//queja.dpiPasaporte = this.quejaForm.value.dpiPasaporte;
-				} else {
-					
-				}
+				if(response["reason"] == 'OK'){
+					var tempstr=response['value'];
+					if(tempstr != null && tempstr != '')	{
+						
+						console.log('Cantidad de Objetos en Array: '+ tempstr.length);
+
+						for (let i=0; i < tempstr.length; i++){
+							console.log('Valor de respuesta: '+ tempstr[i].idQueja);
+							console.log('Valor de serieNumeroFactura: '+ this.quejaForm.value.serieNumeroFactura);
+							
+							if (tempstr[i].facturaNumero == this.quejaForm.value.serieNumeroFactura) {
+								console.log('Es igual');
+								this.conteoRepetido++;
+							} else {
+								console.log('No es igual');
+							}
+
+							if (this.conteoRepetido>0) {
+								/* this.factRepetida=true; */
+								this.factNoRepetida=false;
+								Swal.fire({
+									title: 'Factura duplicada', 
+									text: `La serie y número de Factura: ${this.quejaForm.value.serieNumeroFactura} ya se encuentra en la base de datos.`, 
+									icon: 'error',
+									confirmButtonText: `Ok`,
+									showConfirmButton: true,
+									
+								})
+								
+								this.serieNumeroFactura=""
+
+								
+							}else{
+								this.factNoRepetida=true;
+							}
+						}
+
+						/* this.confacc_list=JSON.parse('['+retvalue["value"].slice(0, -1) +']');
+						this.addCheckboxes();
+						console.log(this.confacc_list);
+						this.btnvisible=true; */
+					}else{
+						/* this.confacc_list='';
+						this.tabledata=false; */
+					}
+					/* this.flagformvisible++; */
+				}else{
+					console.log('Rest service response ERROR.');
+					/* this.flagInfoError=true;
+					this.SetSecTimerInfoError(); */
+				}	
 			}
 		);
 	}
@@ -559,6 +612,7 @@ export class PquejainiComponent implements OnInit {
 					this.existingProveedor = data;
 					this.initProveedor(data.nitProveedor);
 					this.nproveedor = data.nombre;
+					this.idproveedor = data.idProveedor;
 					this.conciliacion = data.habilitadoConciliacionPrevia;
 				} else {
 					this.existingModeProveedor = false;
