@@ -561,13 +561,18 @@ export class PquejainiComponent implements OnInit {
 								/* this.factRepetida=true; */
 								this.factNoRepetida=false;
 								Swal.fire({
-									title: 'Factura duplicada', 
-									text: `La serie y número de Factura: ${this.quejaForm.value.serieNumeroFactura} ya se encuentra en la base de datos.`, 
+									title: 'Factura ó Contrato existente', 
+									text: `La serie y número de Factura ó contrato: ${this.quejaForm.value.serieNumeroFactura} ya se encuentra en base de datos.`, 
 									icon: 'error',
-									confirmButtonText: `Ok`,
+									confirmButtonText: `Regresar`,
 									showConfirmButton: true,
 									
-								})
+								})/* .then((result) => {
+									
+									if (result.isConfirmed) {
+									  Swal.fire('Saved!', '', 'success')
+									}
+								}) */
 								
 								this.serieNumeroFactura=""
 

@@ -2,25 +2,26 @@
 /* BASIC */
 
 .headerimg{
-     content:url("css/imagen-grd2.png");
-	 width: 50%;
+  
+	 width: 70%;
 	 height: auto;
 }
 .footerimg{
      content:url("css/diaco-grd.jpg");
-	 width: 50%;
+	 width: 70%;
 	 height: auto;
+   
 }
  
  
 body {
 	/* background-image: url(diacofade3.jpg), url(imagen-grdfade2.jpg) ; ORIGINAL*/
-  background-image: url(diaco-grd.jpg);
+/*   background-image: url(/assets/img/logo-diaco-ant.jpg);
 	background-repeat: no-repeat, no-repeat;
 	background-attachment: fixed, fixed;
 	background-size: auto auto, auto auto;
 	background-position: bottom right, bottom left;
-	min-height:100vh; 
+	min-height:100vh;  */
 }
 
  
