@@ -1,11 +1,21 @@
-body {
+/* body {
 	background-image: url(/diaco-grd.jpg);
-	/* background-image: url(diacofade3.jpg), url(imagen-grdfade2.jpg) ; ORIGINAL*/
 	background-repeat: no-repeat, no-repeat;
 	background-attachment: fixed, fixed;
 	background-size: auto auto, auto auto;
 	background-position: bottom right, bottom left;
 	min-height:100vh; 
+} */
+
+.centrar {
+	display: flex;
+	align-items: center;
+ }
+
+.headerimg{
+  
+	width: 40%;
+	height: auto;
 }
 
 nav.navbar{

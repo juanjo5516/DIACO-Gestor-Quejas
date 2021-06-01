@@ -1,11 +1,32 @@
-body {
-	background-image: url(/diaco-grd.jpg);
-	/* background-image: url(diacofade3.jpg), url(imagen-grdfade2.jpg) ; ORIGINAL*/
+/* body {
+	background-image: url(/assets/img/logo-diaco-ant.jpg);
+	
 	background-repeat: no-repeat, no-repeat;
-	background-attachment: fixed, fixed;
-	background-size: auto auto, auto auto;
+	background-attachment: scroll, fixed;
+	background-size: 10% auto, auto auto;
 	background-position: bottom right, bottom left;
 	min-height:100vh; 
+} */
+
+.centrar {
+	display: flex;
+	align-items: center;
+ }
+
+.card-img {
+	background-image: url(/assets/img/logo-diaco-ant.jpg);
+	/* background-image: url(diacofade3.jpg), url(imagen-grdfade2.jpg) ; ORIGINAL*/
+	background-repeat: no-repeat, no-repeat;
+	background-attachment: scroll, fixed;
+	background-size: 10% auto, auto auto;
+	background-position: top right, bottom left;
+	
+}
+
+.headerimg{
+  
+	width: 40%;
+	height: auto;
 }
 
 nav.navbar{

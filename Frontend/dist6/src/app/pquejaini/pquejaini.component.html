@@ -208,14 +208,14 @@
 					<div class="card-body">
 
 					<div class="form-group row">
-						<span>Si desea Buscar un Proveedor registrado, por nit o nombre: </span>
+						<span>Seleccionar proveedor existente: </span>
 						<div class="col-lg-1 ml-3">
 							<button type="button" class="btn btn-primary row button" (click)="onProveedorChanged()">Buscar</button>
 						</div>
-						<span>de lo contrario ingrese los siguientes campos: </span>
+						<!-- <span>de lo contrario ingrese los siguientes campos: </span> -->
 					</div>
 					
-					<div class="form-group row">
+					<div class="form-group row" *ngIf="mostrarCamposProveedor">
 						<!-- <label for="et8" [ngStyle]="{color: 'red'}">(*)</label> -->
 						<label for="nitProveedor" class="col-lg-1 col-form-label">NIT</label>
 						<div class="col-lg-2">
@@ -259,7 +259,7 @@
 						</div>
 					</div>
 
-					<div class="form-group row">
+					<div class="form-group row" *ngIf="mostrarCamposProveedor">
 						<!-- <label for="et8" [ngStyle]="{color: 'red'}">(*)</label> -->
 						<label for="serieNumeroFactura" class="col-lg-4 col-form-label">Número de Factura o Contrato</label>
 						<div class="col-lg-4">
@@ -276,11 +276,13 @@
 							
 							placeholder="Serie-Número de Factura / Contrato"
 							
+							minlength="1"
+							
 
 							>
 							<!-- pattern="^[A-Z]{1,3}[0-9]?\-[0-9]{1,9}$"  -->
 							<div *ngIf="quejaForm.get('serieNumeroFactura').errors && quejaForm.get('serieNumeroFactura').dirty">
-								<p *ngIf="quejaForm.get('serieNumeroFactura').hasError('pattern')" [ngStyle]="{color: 'red'}">Debe ser Serie-Número en el caso de factura Ejemplo: A-2555 o contrato</p>
+								<p *ngIf="quejaForm.get('serieNumeroFactura').hasError('minlength')" [ngStyle]="{color: 'red'}">Debe ser Serie-Número en el caso de factura Ejemplo: A-2555 o contrato</p>
 							</div>
 
 							<div *ngIf="factRepetida">

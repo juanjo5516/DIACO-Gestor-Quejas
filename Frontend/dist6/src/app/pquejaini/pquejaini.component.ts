@@ -103,6 +103,7 @@ export class PquejainiComponent implements OnInit {
 	factNoRepetida: boolean =false;
 	conteoRepetido: number =0;
 	serieNumeroFactura: string = "";
+	mostrarCamposProveedor: boolean = false;
 
 
 
@@ -602,6 +603,7 @@ export class PquejainiComponent implements OnInit {
 
 	public onProveedorChanged() {
 		const dialogConfig = new MatDialogConfig();
+		this.mostrarCamposProveedor = true;
 
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
