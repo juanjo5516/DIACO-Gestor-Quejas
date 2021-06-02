@@ -206,7 +206,7 @@ export class ProveedorComponent implements OnInit {
       res => {
 		  ////console.log('existen sucursales ',res);
 		  //console.log(res);
-        //this.sucursalesNit = res.value;
+        this.sucursalesNit = res.value;
       }
     );
 	  
