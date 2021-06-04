@@ -112,8 +112,9 @@
 				Email:
 			</div>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" formControlName="email" (change)="txtTrim(5)" ng-maxlength="50" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+				<input type="text" class="form-control" formControlName="email" (change)="txtTrim(5)" ng-maxlength="50">
 			</div>
+			{{varemail}}
 			<div *ngIf="emailCtrl.invalid && (emailCtrl.dirty && emailCtrl.touched)" class="col-lg-12">
 				  <div *ngIf="emailCtrl.errors.required" class="alert alert-danger col-lg-12">
 						Debe ingresar información en la sección Email
@@ -147,7 +148,7 @@
 			</div>
 			<div class="col-lg-5">
 				<select class="form-control" formControlName="proveedor">
-					<option *ngFor="let x of cmb_prov" [value]="x.id_proveedor">{{x.nombre}}</option>
+					<option *ngFor="let x of cmb_prov" [value]="x.id_proveedor">{{x.nombre}}-{{x.nit_proveedor}}</option>
 				</select>
 			</div>
 		</div>

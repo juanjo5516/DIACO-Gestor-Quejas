@@ -12877,12 +12877,12 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             // Buscar registro de Proveedor previamente almacenado en BD en la
             // Tabla temporal.
             TipoProveedorAprobar regProveedorAprobado = tipoDao.
-                    findByIdProveedorAprobar(pProveedor.getId_usuario());
+                    findByIdProveedorAprobar(pProveedor.getId_usuario()); //Busca en tabla diaco_proveedor_aprobar
             // Registro del proveedor recien creado.
-            TipoProveedor regProveedor = tipoDao.findProveeorByNit(regProveedorAprobado.getNit());
+            TipoProveedor regProveedor = tipoDao.findProveeorByNit(regProveedorAprobado.getNit()); //Busca en tabla diaco_proveedor
             // Lista de correos electronicos del proveedor.
             List<TipoEmail> listaCorreosProveedor = tipoDao.
-                    findByCodigoProveedor(regProveedor.getId_proveedor());
+                    findByCodigoProveedor(regProveedor.getId_proveedor()); //Busca en tabla diaco_email
 
             System.out.println("Call: findByIdUsuarioConf " + regProveedor.toString());
             // Se busca al usuario previamente almacenado.

@@ -90,7 +90,7 @@ export class ConfiguracionService {
 			
   }
     saveConfUsuarioPP (nit, usuario, nombre, dpi, estado, email, telefono, id_usuario, rolPPCtrl, proveedor, resetpassword): Observable<any> {
-		console.log(this.ObjaJSON_ConfUsuarioPP(nit, usuario, nombre, dpi, estado, email, telefono, id_usuario, rolPPCtrl, proveedor, resetpassword));
+		console.log('Entrando a saveConfUsuarioPP: '+this.ObjaJSON_ConfUsuarioPP(nit, usuario, nombre, dpi, estado, email, telefono, id_usuario, rolPPCtrl, proveedor, resetpassword));
 		var localURL=this.baseUrl+'/confusuariopp';
 		return this._http.post<any>(localURL, this.ObjaJSON_ConfUsuarioPP(nit, usuario, nombre, dpi, estado, email, telefono, id_usuario, rolPPCtrl, proveedor, resetpassword), this.httpOptions).pipe(
 			/*tap((item) => console.log('Added item')),
@@ -173,7 +173,7 @@ export class ConfiguracionService {
   }
 
   ObjaJSON_ConfUsuarioPP(nit, usuario, nombre, dpi, estado, email, telefono, id_usuario, rolPPCtrl, proveedor, resetpassword){
-	  var locarray = { usuario_operacion:this._submitFormService.Get_userid(), token: this._submitFormService.Get_token(), nit: this.TrimandCut(nit, 19), usuario: this.TrimandCut(usuario, 19), nombre: this.TrimandCut(nombre, 49), dpi: this.TrimandCut(dpi, 19), estado: estado, email: this.TrimandCut(email, 29), telefono: this.TrimandCut(telefono, 29), id_usuario: id_usuario, pp_rol: rolPPCtrl, proveedor: proveedor, resetpassword: resetpassword };
+	  var locarray = { usuario_operacion:this._submitFormService.Get_userid(), token: this._submitFormService.Get_token(), nit: this.TrimandCut(nit, 19), usuario: this.TrimandCut(usuario, 19), nombre: this.TrimandCut(nombre, 49), dpi: this.TrimandCut(dpi, 19), estado: estado, email: this.TrimandCut(email, 59), telefono: this.TrimandCut(telefono, 29), id_usuario: id_usuario, pp_rol: rolPPCtrl, proveedor: proveedor, resetpassword: resetpassword };
 	  return JSON.stringify(locarray);
   }
 

@@ -228,7 +228,9 @@ export class UsuarioDetalleConcPreviaComponent implements OnInit {
 				break;
 			case 5:
 				let varemail=this.emailCtrl.value;
-				this.emailCtrl.setValue(varemail.substring(0, 29));
+				console.log('Valor de EMAIL: '+varemail);
+				this.emailCtrl.setValue(varemail);
+				console.log('Valor de emailCtrl: '+this.emailCtrl.value);
 				break;
 			case 7:
 				let vartelefono=this.telefonoCtrl.value;
@@ -253,6 +255,7 @@ export class UsuarioDetalleConcPreviaComponent implements OnInit {
 				valor_resetpassword=0;
 			}
 		}
+		console.log('Valor de emailCtrl en método GuardarUsuario: '+this.emailCtrl.value);
 		this.btnvisible=false;
 		this._configuracionService.saveConfUsuarioPP(this.nitCtrl.value, this.usuarioCtrl.value, this.nombreCtrl.value, this.dpiCtrl.value, this.estadoCtrl.value, this.emailCtrl.value, this.telefonoCtrl.value, this.data.IDUsuario, this.rolPPCtrl.value, this.proveedorCtrl.value, valor_resetpassword ).subscribe((retvalue)=>{
 			console.log(retvalue);

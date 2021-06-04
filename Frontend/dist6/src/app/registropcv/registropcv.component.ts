@@ -71,7 +71,7 @@ export class RegistropcvComponent implements OnInit {
 	vidproveedor: number;
 	$valorCaptcha: String;
 	//variable que contiene la validación del captcha
-	isValid: boolean = true;
+	isValid: boolean = false;
 	isValidTmp: boolean = false;
 	//variable que guarda el cui del representate legal o propietario
 	cui: string;
@@ -135,6 +135,18 @@ export class RegistropcvComponent implements OnInit {
 		if (proveedor) {
 			this.nombre_ = proveedor.nombre;
 			this.telefono_ = proveedor.telefono;
+			if	(proveedor.correo) {
+/* 				var caracteres = proveedor.correo.split('',2);
+				for (let index = 0; index < caracteres.length; index++) {
+					const element = caracteres[index];
+					console.log(element);
+				} */
+				if (proveedor.correo.includes('F#')) {
+					proveedor.correo = proveedor.correo.replace('F#','');
+							
+				}
+			};
+
 			this.correo_ = proveedor.correo;
 			this.cui = proveedor.cui;
 		}
@@ -248,7 +260,8 @@ export class RegistropcvComponent implements OnInit {
 		if (this.registropcvForm.value.email == "" || this.registropcvForm.value.email == undefined) {
 			this.mjsError += "- Ingrese correo.  " + "\r\n";
 		} else {
-			proveedor.correoNotif = this.correo_;
+			/* proveedor.correoNotif = this.correo_; */
+			proveedor.correoNotif = this.registropcvForm.value.email;
 		}
 
 		if (this.cui == "" || this.cui == undefined) {
@@ -340,7 +353,8 @@ export class RegistropcvComponent implements OnInit {
 		proveedor.id = this.existingProveedor.id;
 		proveedor.razonSocial = this.existingProveedor.razonSocial;
 		proveedor.telefono = this.existingProveedor.telefono;
-		proveedor.correo = this.existingProveedor.correo;
+		/* proveedor.correo = this.existingProveedor.correo; */
+		proveedor.correo = this.registropcvForm.value.email;
 		proveedor.notaRechazo = this.existingProveedor.notaRechazo;
 		proveedor.estado = (this.existingProveedor.estado ? this.existingProveedor.estado : 'P');
 		proveedor.tipo_proveedor = this.registropcvForm.value.tipoProveedor;
