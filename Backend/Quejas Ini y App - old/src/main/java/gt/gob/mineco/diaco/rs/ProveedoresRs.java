@@ -11,8 +11,10 @@ import gt.gob.mineco.diaco.service.ProveedoresServiceImp;
 import gt.gob.mineco.diaco.service.TipoImagenesQuejaServiceImp;
 import gt.gob.mineco.diaco.util.FormCalificacionUsuario;
 import gt.gob.mineco.diaco.util.ResponseRs;
+
 import java.io.InputStream;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -24,6 +26,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
+
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
@@ -250,6 +254,7 @@ public class ProveedoresRs {
             @DefaultValue("0") @QueryParam("data") String ptoken
     ) {
         //ptoken identifica para este caso grabar en tabla diaco_imagen y si es consumidor = 1 o proveedor = 2
+        System.out.println("Entrando a metodo para carga de Archivos JJ");
         Integer id_tipo_imagen = 3;
         if (ptoken.equals("0")) {
             System.out.println("idProveedor " + id_proveedor + ", tipoImange " + id_tipo_imagen + ", categoria " + id_categoria_imagen + ", flujo ");

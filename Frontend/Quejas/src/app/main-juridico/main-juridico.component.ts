@@ -142,7 +142,7 @@ list_filtro:BaseCmbClass[];
 		this.Token();
 		this.list_filtro=LSTFILTRO_JURIDICO;
 		//this.tablechildflag=true;
-		this.selectedFiltroCtrl.setValue(201);
+		this.selectedFiltroCtrl.setValue(999);
 		this.GetList();
   }
 

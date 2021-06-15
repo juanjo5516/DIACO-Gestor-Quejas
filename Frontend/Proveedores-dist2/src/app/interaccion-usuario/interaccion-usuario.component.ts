@@ -60,8 +60,11 @@ export class InteraccionUsuarioComponent implements OnInit {
   checkboxchange(i){
 	  //this.myForm.get('chkboxlist')['controls'][0].setValue(true);	
 		//this.myForm.get('chkboxlist')['controls'][1].setValue(true);		
-		if(	!this.myForm.get('chkboxlist')['controls'][0].value && !this.myForm.get('chkboxlist')['controls'][1].value )
-			this.myForm.get('chkboxlist')['controls'][i].setValue(true);
+/* 		if(	!this.myForm.get('chkboxlist')['controls'][0].value && !this.myForm.get('chkboxlist')['controls'][1].value ){
+		console.log(this.myForm.get('chkboxlist')['controls'][0].value);
+		console.log(this.myForm.get('chkboxlist')['controls'][1].value);
+			this.myForm.get('chkboxlist')['controls'][i].setValue(true);} */
+
   }
 
   ngOnInit() {	  

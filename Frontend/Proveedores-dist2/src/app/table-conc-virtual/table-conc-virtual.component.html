@@ -8,7 +8,9 @@
 <div class="container-fluid">
 <div class="row">
   <div class="col-lg-3">	
-		<input type="text" (keyup)='filterDatatable($event)'>
+		<!-- <input type="text" (keyup)='filterDatatable($event)'> -->
+		&nbsp;
+		&nbsp;
   </div>
 </div>
 </div>
@@ -38,11 +40,11 @@
 			<ngx-datatable-column name="Acciones" sortable="false" prop="id_queja" [flexGrow]="2">
 				 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>						
 						<button title="Detalle Queja" class="btn btn-primary btn-image FileN" (click)="clickStopper($event);openDetalle(value, row.quejanumero);"></button>&nbsp;
-						<button title="Bitácora" class="btn btn-primary btn-image LogN" (click)="clickStopper($event);openBitacora(value, row.quejanumero);"></button>&nbsp;
+						<button title="Bitï¿½cora" class="btn btn-primary btn-image LogN" (click)="clickStopper($event);openBitacora(value, row.quejanumero);"></button>&nbsp;
 						<ng-container *ngIf="str_rol==2">
 						<button title="Resolver Queja" class="btn btn-primary btn-image VerifyN" (click)="clickStopper($event);openResolver(value, row.quejanumero);"></button>&nbsp;
 						</ng-container>
-						<button title="Interacción con Usuario" class="btn btn-primary btn-image Phone" (click)="clickStopper($event);openInteraccion(value, row.quejanumero);"></button>&nbsp;
+						<button title="Interacciï¿½n con Usuario" class="btn btn-primary btn-image Phone" (click)="clickStopper($event);openInteraccion(value, row.quejanumero);"></button>&nbsp;
 				</ng-template>
 			</ngx-datatable-column>
 		

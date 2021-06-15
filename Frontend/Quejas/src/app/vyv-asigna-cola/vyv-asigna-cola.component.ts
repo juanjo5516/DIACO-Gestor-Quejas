@@ -214,7 +214,7 @@ export class VyvAsignaColaComponent implements OnInit {
 	  }
 	}
 
-	/*GenerarRegistro(){
+	GenerarRegistro(){
 		var approved=false;
 		if(this.linkdescription != ''){
 			if(confirm("¿Está seguro que quiere actualizar este registro con la información mas reciente?")) {
@@ -270,7 +270,7 @@ export class VyvAsignaColaComponent implements OnInit {
 			this.flagDBError=true;
 			this.SetSecTimerInfoError();
 		});
-	}*/
+	}
 
 	closeDialog(){
 		this.dialogRef.close();

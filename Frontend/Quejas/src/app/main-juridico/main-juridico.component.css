@@ -1,10 +1,10 @@
 body {
-	background-image: url(css/diacofade3.jpg), url(css/imagen-grdfade2.jpg) ;
+	background-image: url(assets/img/logo-diaco-ant-bn1.jpg);
 	background-repeat: no-repeat, no-repeat;
-	background-attachment: fixed, fixed;
-	background-size: auto auto, auto auto;
-	background-position: bottom right, bottom left;
-	min-height:100vh; 
+	background-attachment: scroll, fixed;
+	background-size: 10% auto, auto auto;
+	background-position: top right, bottom left;
+	min-height:100vh;
 }
 
 nav.navbar{

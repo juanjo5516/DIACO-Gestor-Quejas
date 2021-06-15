@@ -13,7 +13,7 @@
 				&nbsp;
 			</div>
 			<div class="col-lg-4 text-center">
-				<img class="headerimg" />
+				<img src="/assets/img/logo-diaco-ant.jpg" class="headerimg" />
 			</div>
 			<div class="col-lg-4 text-center">
 				&nbsp;
@@ -32,7 +32,8 @@
     <div class="col-lg-12">
       <form [formGroup]="quejaForm" (ngSubmit)="onSubmit()" novalidate>
 	   	<div class="form-group row">
-        <label for="" class="col-lg-2 col-form-label">Consulta</label>
+        <label for="" class="col-lg-8 col-form-label">Consulta/Solicitud de parte del <strong>Proveedor.</strong></label>
+		
 		<div class="col-lg-12">
             <div class="card">
               <div class="card-body">
@@ -46,6 +47,32 @@
 			</div>
 		</div>
 		</div>
+
+		<div class="form-group row">
+			<label for="" class="col-lg-2 col-form-label"><strong>Respuesta</strong></label>
+			<div class="col-lg-12">
+				<div class="card">
+				  <div class="card-body">
+					<div class="form-group row">
+					  <label for="respuesta"  class="col-lg-12 col-form-label" [ngStyle]="{color: 'blue'}"></label>
+					  <div class="col-lg">
+						<textarea
+						  id="respuesta"
+						  class="form-control"
+						  matTooltipPosition="after"
+								  matTooltip="Ingrese su respuesta"
+								  matTooltipClass="custom-tooltip-blue"
+						  formControlName="respuesta"
+						  maxLength="200"
+						  required
+						  placeholder="Escribe aquí tu respuesta"
+						  ></textarea>
+					  </div>
+					</div>  
+				  </div>
+				</div>
+			</div>
+			</div>
 	  
 	  
 	  
@@ -331,30 +358,7 @@
 		  <label class="col-form-label" > son obligatorios.)</label>
         </div>
 		
-		<div class="form-group row">
-        <label for="" class="col-lg-2 col-form-label">Respuesta</label>
-		<div class="col-lg-12">
-            <div class="card">
-              <div class="card-body">
-				<div class="form-group row">
-				  <label for="respuesta"  class="col-lg-12 col-form-label" [ngStyle]="{color: 'blue'}"></label>
-				  <div class="col-lg">
-					<textarea
-					  id="respuesta"
-					  class="form-control"
-					  matTooltipPosition="after"
-							  matTooltip="Ingrese su respuesta"
-							  matTooltipClass="custom-tooltip-blue"
-					  formControlName="respuesta"
-					  maxLength="200"
-					  required
-					  ></textarea>
-				  </div>
-				</div>  
-			  </div>
-			</div>
-		</div>
-		</div>
+
 		
 		
         <div class="form-group row" *ngIf="success==false">
@@ -396,7 +400,7 @@
 				&nbsp;
 			</div>
 			<div class="col-lg-4 text-center">
-				<img class="footerimg" />
+				<!-- <img class="footerimg" /> -->
 			</div>
 			<div class="col-lg-4 text-center">
 				&nbsp;

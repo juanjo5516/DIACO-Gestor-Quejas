@@ -27,6 +27,7 @@ import gt.gob.mineco.diaco.service.QuejasServiceImp;
 import gt.gob.mineco.diaco.service.SecurityManagerServiceImpl;
 import gt.gob.mineco.diaco.service.TipoImagenesQuejaServiceImp;
 import gt.gob.mineco.diaco.util.ResponseRs;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

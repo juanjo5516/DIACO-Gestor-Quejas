@@ -71,7 +71,7 @@ export class RegistropcvComponent implements OnInit {
 	vidproveedor: number;
 	$valorCaptcha: String;
 	//variable que contiene la validación del captcha
-	isValid: boolean = false;
+	isValid: boolean = true;
 	isValidTmp: boolean = false;
 	//variable que guarda el cui del representate legal o propietario
 	cui: string;
