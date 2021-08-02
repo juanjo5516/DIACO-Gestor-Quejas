@@ -98,9 +98,9 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
 
     //private static final String OOOEXEFOLDER;
     private final String oooExeFolder = "/opt/libreoffice6.1/program";//PRODUCCION
-     //private final String oooExeFolder = "/usr/lib/libreoffice/program";
+    //private final String oooExeFolder = "/usr/lib/libreoffice/program";
     //private final String oooExeFolder="C:/Program Files/LibreOffice/program"; //DESARROLLO
-     
+    
      
     /* local---*/ //private final String workingDir="/home/julio/Documents/Mineco/proyPrototipo/diacoRegistros/";
     private final String workingDir= "/home/diaco/Documentos/FILESERVER/diacoRegistros1/"; //PRODUCCION
@@ -115,12 +115,14 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
     @Override
     public Response getFormularioQueja(Integer idqueja, String pToken) {
         try {
+            System.out.println("JJ-Variable oooExeFolder: "+oooExeFolder);
             tipoDao.TokenCheck(pToken);
             TipoReg_FormularioQueja formQueja = tipoDao.findByIdFormularioQueja(idqueja);
 
             // Initialise
             //  String OOOEXEFOLDER = "/opt/libreoffice6.1/program";
             XComponentContext xContext = BootstrapSocketConnector.bootstrap(oooExeFolder);
+            System.out.println("JJ-Variable xContext: "+xContext);
             //XComponentContext xContext = Bootstrap.bootstrap();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -128,9 +130,11 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
 
             Object oDesktop = xMCF.createInstanceWithContext(
                     "com.sun.star.frame.Desktop", xContext);
+            System.out.println("JJ-Variable oDesktop: "+oDesktop);
 
             XDesktop xDesktop = (XDesktop) UnoRuntime.queryInterface(
                     XDesktop.class, oDesktop);
+            System.out.println("JJ-Variable xDesktop: "+xDesktop);
 
             // Load the Document
             //  String workingDir = "/home/julio/Documents/Mineco/proyPrototipo/diacoRegistros/";
@@ -138,14 +142,18 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
 
             if (!new File(myTemplate).canRead()) {
                 throw new RuntimeException("Cannot load template:" + new File(myTemplate));
+                
             }
+            System.out.println("Leyendo DIACO-AQ-FO-02.docx");
             
-            
+
 
             XComponentLoader xCompLoader = (XComponentLoader) UnoRuntime
                     .queryInterface(com.sun.star.frame.XComponentLoader.class, xDesktop);
+            System.out.println("JJ-Variable xCompLoader: "+xCompLoader);
 
             String sUrl = "file:///" + myTemplate;
+            System.out.println("JJ-Variable sUrl: "+sUrl);
 
             PropertyValue[] propertyValues = new PropertyValue[0];
 
@@ -153,23 +161,29 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
             propertyValues[0] = new PropertyValue();
             propertyValues[0].Name = "Hidden";
             propertyValues[0].Value = new Boolean(true);
+            System.out.println("JJ-Variable propertyValues: "+propertyValues);
 
             XComponent xComp = xCompLoader.loadComponentFromURL(
                     sUrl, "_blank", 0, propertyValues);
+            System.out.println("JJ-Variable xComp: "+xComp);
 
             // Manipulate
             XReplaceDescriptor xReplaceDescr = null;
             XReplaceable xReplaceable = null;
+            System.out.println("JJ-Variable xReplaceDescr: "+xReplaceDescr);
 
             XTextDocument xTextDocument = (XTextDocument) UnoRuntime
                     .queryInterface(XTextDocument.class, xComp);
+            System.out.println("JJ-Variable xTextDocument: "+xTextDocument);
 
             xReplaceable = (XReplaceable) UnoRuntime
                     .queryInterface(XReplaceable.class,
                             xTextDocument);
+            System.out.println("JJ-Variable xReplaceable: "+xReplaceable);
 
             xReplaceDescr = (XReplaceDescriptor) xReplaceable
                     .createReplaceDescriptor();
+            System.out.println("JJ-Variable xReplaceDescr: "+xReplaceDescr);
 
             xReplaceDescr.setSearchString("<num_queja>");
             xReplaceDescr.setReplaceString(formQueja.getQuejanumero().toString() + "-" + formQueja.getAnio_queja());
@@ -262,6 +276,7 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
             xReplaceable.replaceAll(xReplaceDescr);
 
             OOoOutputStream output = new OOoOutputStream();
+            System.out.println("Exportando a PDF");
 
             // save as a PDF 
             XStorable xStorable = (XStorable) UnoRuntime

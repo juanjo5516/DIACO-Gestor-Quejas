@@ -380,8 +380,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FrmBusqueda_Con", function() { return FrmBusqueda_Con; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FrmMoviExpReg", function() { return FrmMoviExpReg; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FrmResArchivoConciliacion", function() { return FrmResArchivoConciliacion; });
-var BASE_SERVER = 'http://gestorquejas.diaco.gob.gt/';
+//export const BASE_SERVER   = 'http://gestorquejas.diaco.gob.gt/';
 //export const BASE_SERVER   = 'http://localhost:8080/';
+var BASE_SERVER = 'https://dev.mineco.gob.gt/';
 /*
 * Dev
 */
@@ -860,9 +861,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FrmDepartamento", function() { return FrmDepartamento; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FrmMunicipio", function() { return FrmMunicipio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FrmProveedor", function() { return FrmProveedor; });
-var BASE_SERVER = 'http://gestorquejas.diaco.gob.gt/';
+//export const BASE_SERVER   = 'http://gestorquejas.diaco.gob.gt/';
 //export const BASE_SERVER   = 'http://desagestorquejas.diaco.gob.gt/';
 //export const BASE_SERVER   = 'http://localhost:8080/';
+var BASE_SERVER = 'https://dev.mineco.gob.gt/';
 //para servicios de dist
 // export const BASE_URL_REST=      BASE_SERVER + 'diaco-int-web/rs/'; 
 var BASE_URL_REST = BASE_SERVER + 'Quejas/rs/';

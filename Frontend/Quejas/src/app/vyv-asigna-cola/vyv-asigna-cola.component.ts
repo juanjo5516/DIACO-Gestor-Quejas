@@ -255,7 +255,7 @@ export class VyvAsignaColaComponent implements OnInit {
 					this.linkdescription='Ficha Queja '+this.registrodata[0]['id_queja'];
 					console.log(this.registrodata);
 					if(click)
-						this.ClickAfter3sec();
+						this.ClickAfterxsec();
 				}else{
 					this.routerlink='';
 					this.linkdescription='';

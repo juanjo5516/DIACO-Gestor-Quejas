@@ -727,7 +727,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             if (formComConsumidor.getId_queja() != null) {
                 vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formComConsumidor.getId_queja());
                 if (vTipoComConsumidor != null) {
-                    isUpdate = true;
+                    isUpdate = true; 
+                    //isUpdate = false;
                 }
             } else {
                 response.setCode(1L);

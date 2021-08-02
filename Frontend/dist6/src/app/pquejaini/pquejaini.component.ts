@@ -65,6 +65,9 @@ export class PquejainiComponent implements OnInit {
 
 	public vact: number = -1;
 
+	private contador = 0
+	private contador1 = 0
+
 	//public vid: string = "";
 
 	//customDialogForm: FormGroup;
@@ -105,7 +108,12 @@ export class PquejainiComponent implements OnInit {
 	serieNumeroFactura: string = "";
 	mostrarCamposProveedor: boolean = false;
 
-
+	onKey(event){
+		this.contador = event.target.value.length
+	}
+	onKey1(event){
+		this.contador1 = event.target.value.length
+	}
 
 	ngOnDestroy() {
 		////console.log("finaliza");

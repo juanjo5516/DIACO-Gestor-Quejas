@@ -61,7 +61,7 @@ export const BASE_CALLCENTER_LINK = 'http://localhost:8080/quejas_ini_6/#/pqueja
 
 
 /*
-* Production
+* Production GESTOR QUEJAS
 
  */
  export const BASE_URL_REST = 'http://gestorquejas.diaco.gob.gt/Quejas/rs/';
@@ -71,11 +71,39 @@ export const BASE_CALLCENTER_LINK = 'http://localhost:8080/quejas_ini_6/#/pqueja
  export const BASE_CALLCENTER_LINK = 'http://gestorquejas.diaco.gob.gt/dist6/#/pquejaini/callcenter/';
 
 
+/*
+* Production 128.5.9.82:8181
 
+ */
+/* export const BASE_URL_REST = 'https://128.5.9.82:8181/Quejas/rs/';
+export const BASE_URL_REST_CALENDARIO = 'https://128.5.9.82:8181/web-quejaini/rs/quejas/calendario';
+export const BASE_VERIFICACION_DATOS_LINK = 'https://128.5.9.82:8181/dist6/#/consumidor/interno/';
+export const BASE_PRESENCIAL_LINK = 'https://128.5.9.82:8181/dist6/#/pquejaini/presencial/';
+export const BASE_CALLCENTER_LINK = 'https://128.5.9.82:8181/dist6/#/pquejaini/callcenter/'; */
+
+
+/*Production dev.mineco.gob.gt
+
+ */
+/* export const BASE_URL_REST = 'https://dev.mineco.gob.gt/Quejas/rs/';
+export const BASE_URL_REST_CALENDARIO = 'https://dev.mineco.gob.gt/web-quejaini/rs/quejas/calendario';
+export const BASE_VERIFICACION_DATOS_LINK = 'https://dev.mineco.gob.gt/dist6/#/consumidor/interno/';
+export const BASE_PRESENCIAL_LINK = 'https://dev.mineco.gob.gt/dist6/#/pquejaini/presencial/';
+export const BASE_CALLCENTER_LINK = 'https://dev.mineco.gob.gt/dist6/#/pquejaini/callcenter/'; */
+
+/*Production https://gestorquejas.diaco.gob.gt
+
+ */
+/* export const BASE_URL_REST = 'https://gestorquejas.diaco.gob.gt/Quejas/rs/';
+export const BASE_URL_REST_CALENDARIO = 'https://gestorquejas.diaco.gob.gt/web-quejaini/rs/quejas/calendario';
+export const BASE_VERIFICACION_DATOS_LINK = 'https://gestorquejas.diaco.gob.gt/dist6/#/consumidor/interno/';
+export const BASE_PRESENCIAL_LINK = 'https://gestorquejas.diaco.gob.gt/dist6/#/pquejaini/presencial/';
+export const BASE_CALLCENTER_LINK = 'https://gestorquejas.diaco.gob.gt/dist6/#/pquejaini/callcenter/'; */
 
 
 
 /*********************************************************/
+
 
 /**********************************************************************
  * ********************************************************************

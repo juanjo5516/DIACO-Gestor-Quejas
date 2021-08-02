@@ -168,7 +168,9 @@
               formControlName="detalleQueja"
 			  maxLength="1000"
 			  required
+			  (keyup)="onKey($event)"
 			  ></textarea>
+			  <small class="text-muted">{{contador}} de 1000 caracteres.</small>
 			  <div *ngIf="quejaForm.get('detalleQueja').errors && quejaForm.get('detalleQueja').dirty">
 				<p *ngIf="quejaForm.get('detalleQueja').hasError('maxLength')" [ngStyle]="{color: 'red'}">Detalle de queda solo admite 250 caracteres</p>
 			  </div>	  
@@ -178,6 +180,7 @@
           <div class="col-lg-3">
             <textarea
               id="solicitaQue"
+
               class="form-control"
 			  matTooltipPosition="after"
 					  matTooltip="Ingrese su solicitud de la queja ingresada."
@@ -185,7 +188,9 @@
               formControlName="solicitaQue"
 			  maxLength="250"
 			  required
+			  (keyup)="onKey1($event)"
 			  ></textarea>
+			  <small class="text-muted">{{contador1}} de 250 caracteres.</small>
 			  <div *ngIf="quejaForm.get('solicitaQue').errors && quejaForm.get('solicitaQue').dirty">
 				<p *ngIf="quejaForm.get('solicitaQue').hasError('maxLength')" [ngStyle]="{color: 'red'}">Solicitud de queja solo admite 250 caracteres</p>
 			  </div>
