@@ -676,7 +676,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         return response;
     }
 
-    //Comunicacion Consumidor
+    //Comunicacion Consumidor GET
     @Override
     public ResponseRs listTiposComConsumidor(Integer idqueja, String token, Integer flujo) {
         ResponseRs response = new ResponseRs();
@@ -714,8 +714,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
     @Override
     public ResponseRs addTipoComConsumidor(FormComConsumidor formComConsumidor) {
         ResponseRs response = new ResponseRs();
-        boolean isUpdate = false;
-        Integer tipo_registro = 0;
+        boolean isUpdate = false; //VARIABLE QUE CONTIENE SI ES ACTUALIZACIÒN O REGISTRO NUEVO
+        Integer tipo_registro = 0; //diaco_cat_tipo_registro
         UserTransaction transaction = null;
         try {
             tipoDao.TokenCheck(formComConsumidor.getToken());
@@ -723,11 +723,11 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             transaction.begin();
 
             //verificar si es update o insert
-            TipoComConsumidor vTipoComConsumidor;
+            TipoComConsumidor vTipoComConsumidor; //tabla diaco_comunicacion_consumidor
             if (formComConsumidor.getId_queja() != null) {
-                vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formComConsumidor.getId_queja());
+                vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formComConsumidor.getId_queja()); //recibe no. de queja
                 if (vTipoComConsumidor != null) {
-                    isUpdate = true; 
+                    isUpdate = false; 
                     //isUpdate = false;
                 }
             } else {
@@ -747,9 +747,9 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 case 3:
                     tipo_registro = 20;
                     break;
-            }
+            }//DEVUELVE EL TIPO DE REGISTRO SEGUIN EL FLUJO EN DONDE SE ENCUENTRE
 
-            //actualizar estado de queja si es menor
+            //ENLAZA CON TABla diaco_queja, actualiza depende el flujo.
             TipoQueja vTipoQueja = tipoDao.findByIdQueja(formComConsumidor.getId_queja());
 
             switch (formComConsumidor.getId_flujo()) {
@@ -774,9 +774,9 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             newTipoPasoQueja.setId_departamento_interno(formComConsumidor.getId_departamento_interno());
             //TipoUsuario_Simple usuario=tipoDao.findByIdUsuario(formComConsumidor.getUsuario_operacion());
             if (vTipoQueja.getId_diaco_sede() != null) {
-                newTipoPasoQueja.setId_sede_diaco_operacio(vTipoQueja.getId_diaco_sede());
+                newTipoPasoQueja.setId_sede_diaco_operacio(vTipoQueja.getId_diaco_sede());// ASIGNA A NUEVO PASO_QUEJA LA SEDE A LA QUEJA CORRESPONDIENTE
             } else {
-                newTipoPasoQueja.setId_sede_diaco_operacio(Constants.REG_DIACO_SEDE_CENTRAL);
+                newTipoPasoQueja.setId_sede_diaco_operacio(Constants.REG_DIACO_SEDE_CENTRAL); //ASIGNA SEDE CENTRAL
             }
             newTipoPasoQueja.setId_estado_operado(vTipoQueja.getId_estado_queja());
             newTipoPasoQueja.setId_tipo_registro(tipo_registro);
@@ -840,8 +840,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
 
             response.setCode(0L);
             response.setReason("OK");
-            saveTiposFlujoGuia(formComConsumidor.getId_queja(), 3);
-            TipoFlujoGuia vTipoFlujoGuia = tipoDao.findByIdTipoFlujoGuia(formComConsumidor.getId_queja());
+            saveTiposFlujoGuia(formComConsumidor.getId_queja(), 3); //INDICA EL FLUJO EN EL QUE SE ENCUENTRA
+            //TipoFlujoGuia vTipoFlujoGuia = tipoDao.findByIdTipoFlujoGuia(formComConsumidor.getId_queja());
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();

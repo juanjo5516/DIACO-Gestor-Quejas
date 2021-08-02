@@ -24,7 +24,7 @@ public class TipoComConsumidorRs {
 	private TipoAreaComunService tipoComConsumidorService;
 	
         @GET
-	@Path("/{idqueja}/{token}/{flujo}")
+	@Path("/{idqueja}/{token}/{flujo}")//CUANDO SE ABRE EL BOTON DE COMUNICACION PERMANENTE DE MAIN CONSUMIDOR
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseRs getTiposComConsumidor(@PathParam("idqueja") Integer idquejapaso, @PathParam("token") String token, @PathParam("flujo") Integer flujo) {
 		return tipoComConsumidorService.listTiposComConsumidor(idquejapaso, token, flujo);
@@ -38,7 +38,7 @@ public class TipoComConsumidorRs {
 	}
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)// CUANDO SE GUARDA UNA COMUNICACION PERMANENTE
 	public ResponseRs addTipoComConsumidor(FormComConsumidor formComConsumidor) {
 		return tipoComConsumidorService.addTipoComConsumidor(formComConsumidor);
 	}
