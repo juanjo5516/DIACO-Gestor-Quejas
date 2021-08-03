@@ -9,3 +9,19 @@ textarea
 body {
   background-color: transparent;
 }
+
+.btn-image:before {
+  content: "";
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  margin-right: 0px;
+  vertical-align: text-top;
+  background-color: transparent;
+  background-position : center center;
+  background-repeat:no-repeat;
+}
+
+.imprimir:before{
+     background-image : url("assets/icons/printer-w.png");
+}

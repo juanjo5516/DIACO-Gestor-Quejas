@@ -186,17 +186,13 @@
 												<td>{{thisItem.observaciones}}</td>
 												<td>{{thisItem.via}}</td>
 												<td>
-<!-- 													<ng-container *ngIf="flagEditable">
-														<ng-container *ngIf="!flagEdit">
-															<button title="Editar" class="btn btn-primary btn-image edit"
+												<ng-container *ngIf="flagEditable">
+															<button title="Imprimir" class="btn btn-primary btn-image imprimir"
 																type="button" (click)="EnableEdit(thisItem.id_visita_campo,
 																thisItem.fecha_visita, thisItem.hecha_por,
-																thisItem.observaciones);"></button>&nbsp;
-															<button title="Borrar" class="btn btn-primary btn-image delete"
-																type="button"
-																(click)="DeleteVisitaCampo(thisItem.id_visita_campo);"></button>
-														</ng-container>
-													</ng-container> -->
+																thisItem.observaciones);"></button>
+																&nbsp;
+													</ng-container>
 												</td>
 											</tr>
 										</ng-container>
