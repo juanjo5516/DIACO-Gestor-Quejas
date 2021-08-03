@@ -97,15 +97,15 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
     private TipoRepository tipoDao;
 
     //private static final String OOOEXEFOLDER;
-    private final String oooExeFolder = "/opt/libreoffice6.1/program";//PRODUCCION
+    //private final String oooExeFolder = "/opt/libreoffice6.1/program";//PRODUCCION
     //private final String oooExeFolder = "/usr/lib/libreoffice/program";
-    //private final String oooExeFolder="C:/Program Files/LibreOffice/program"; //DESARROLLO
+    private final String oooExeFolder="C:/Program Files/LibreOffice/program"; //DESARROLLO
     
      
     /* local---*/ //private final String workingDir="/home/julio/Documents/Mineco/proyPrototipo/diacoRegistros/";
-    private final String workingDir= "/home/diaco/Documentos/FILESERVER/diacoRegistros1/"; //PRODUCCION
+    //private final String workingDir= "/home/diaco/Documentos/FILESERVER/diacoRegistros1/"; //PRODUCCION
       
-    //private final String workingDir="C:/Users/jjaguilal/Documents/FILESERVER/diacoRegistros/"; //DESARROLLO
+    private final String workingDir="C:/Users/jjaguilal/Documents/FILESERVER/diacoRegistros/"; //DESARROLLO
 
     /*  static 
     { OOOEXEFOLDER = "/opt/libreoffice6.1/program";
@@ -323,6 +323,7 @@ public class TipoRegistrosQuejaServiceImpl implements TipoRegistrosQuejaService 
             tipoDao.TokenCheck(pToken);
             //TipoReg_FormularioQueja formQueja = tipoDao.findByIdFormularioQueja(idqueja);
             TipoReg_ComPerm regComPerm = tipoDao.findByIdComunicacionPermanente(pIdRegistro);
+            System.out.println("JJ: Variables: pIdRegistro="+pIdRegistro);
 
             // Initialise
             // String oooExeFolder = "/opt/libreoffice6.1/program";

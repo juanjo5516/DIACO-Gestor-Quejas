@@ -1829,7 +1829,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             System.out.println("REVISOR JJ:  ANTES DEL IF" + "VALOR DE vTipoReg_ComPerm" + vTipoReg_ComPerm);
             if (vTipoReg_ComPerm == null) {
                 vTipoReg_ComPerm = new TipoReg_ComPerm();
-                vTipoReg_ComPerm.setCodigo(getRegistroSoloPrefijo(Constants.REG_DIACO_REGISTRO_COMUNICACION_PERMANENTE)); //registro 1-comunicacion con el consumidor
+                vTipoReg_ComPerm.setCodigo(getRegistroSoloPrefijo(Constants.REG_DIACO_REGISTRO_COMUNICACION_PERMANENTE)); //registro 1-comunicacion con el consumidor //TRAE PREFIJO: DIACO-AQ-FO-15
                 System.out.println("REVISOR JJ: el Codigo de registro es:" + vTipoReg_ComPerm.getCodigo());
             }
             vTipoReg_ComPerm.setCreado_por(formReg_ComPerm.getCreado_por());
@@ -1837,12 +1837,12 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             vTipoReg_ComPerm.setId_registro(Constants.REG_DIACO_REGISTRO_COMUNICACION_PERMANENTE); //registro 1-comunicacion con el consumidor
             vTipoReg_ComPerm.setId_tipo_registro(Constants.REG_TIPO_COMUNICACION_PERMANENTE); //Tipo Registro 3-Comunicación Permanente
             //buscar informacion de comunicación con consumidor
-            TipoComConsumidor vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formReg_ComPerm.getId_queja());
+            List<TipoComConsumidor> vTipoComConsumidor = tipoDao.findAllTiposComConsumidores(formReg_ComPerm.getId_queja());
             System.out.println("REVISOR JJ:  " + "VALOR DE vTipoComConsumidor" + vTipoComConsumidor);
             if (vTipoComConsumidor != null) {
-                vTipoReg_ComPerm.setEstatus(vTipoComConsumidor.getEstatus());
-                vTipoReg_ComPerm.setObservaciones(vTipoComConsumidor.getObservaciones());
-                TipoCatalogo vTipoCatalogo = tipoDao.findTipoCatalogo(vTipoComConsumidor.getVia());
+                vTipoReg_ComPerm.setEstatus(vTipoComConsumidor.get(0).getEstatus());
+                vTipoReg_ComPerm.setObservaciones(vTipoComConsumidor.get(0).getObservaciones());
+                TipoCatalogo vTipoCatalogo = tipoDao.findTipoCatalogo(vTipoComConsumidor.get(0).getVia());
                 System.out.println("REVISOR JJ:  " + "VALOR DE vTipoCatalogo  = " + vTipoCatalogo);
                 vTipoReg_ComPerm.setVia_comunicacion(vTipoCatalogo.getDescripcion_catalogo());
             }

@@ -1535,6 +1535,13 @@ public class TipoRepository {
         List<TipoReg_ComPerm> DataList = em.createNamedQuery("TipoReg_ComPerm.findAll").setParameter("idqueja", idqueja).setMaxResults(1).getResultList();
         return DataList.isEmpty() ? null : DataList.get(0);
     }
+    
+    @SuppressWarnings("unchecked")
+    public TipoReg_ComPerm findTiposReg_ComPermxIdCom(Integer idqueja) {
+        this.em.getEntityManagerFactory().getCache().evict(TipoReg_ComPerm.class);
+        List<TipoReg_ComPerm> DataList = em.createNamedQuery("TipoReg_ComPerm.findAll").setParameter("idqueja", idqueja).setMaxResults(1).getResultList();
+        return DataList.isEmpty() ? null : DataList.get(0);
+    }
 
     public TipoReg_ComPerm findByIdTipoReg_ComPerm(Integer id) {
         this.em.getEntityManagerFactory().getCache().evict(TipoReg_ComPerm.class);
