@@ -685,7 +685,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             tipoDao.TokenCheck(token);
             response.setCode(0L);
             response.setReason("OK");
-            response.setValue(tipoDao.findAllTiposComConsumidor(idqueja));
+            response.setValue(tipoDao.findAllTiposComConsumidores(idqueja));
         } catch (Exception e) {
             e.printStackTrace();
             response.setCode(1L);
@@ -725,11 +725,11 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             //verificar si es update o insert
             TipoComConsumidor vTipoComConsumidor; //tabla diaco_comunicacion_consumidor
             if (formComConsumidor.getId_queja() != null) {
-                vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formComConsumidor.getId_queja()); //recibe no. de queja
-                if (vTipoComConsumidor != null) {
+                //vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formComConsumidor.getId_queja()); //recibe no. de queja
+                /*if (vTipoComConsumidor != null) {
                     isUpdate = false; 
                     //isUpdate = false;
-                }
+                }*/
             } else {
                 response.setCode(1L);
                 response.setReason("ERROR");
@@ -788,22 +788,9 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             }
             tipoDao.savePasoQueja(newTipoPasoQueja);
 
-            if (isUpdate && vTipoComConsumidor != null) {
+            if (isUpdate) {
                 //validar campos y actualizar antes del update
-                if (formComConsumidor.getVia() != null) {
-                    vTipoComConsumidor.setVia(formComConsumidor.getVia());
-                }
-                if (formComConsumidor.getObservaciones() != null) {
-                    vTipoComConsumidor.setObservaciones(formComConsumidor.getObservaciones());
-                }
-                if (formComConsumidor.getEstatus() != null) {
-                    vTipoComConsumidor.setEstatus(formComConsumidor.getEstatus());
-                }
-                vTipoComConsumidor.setTipopasoqueja(newTipoPasoQueja);
-                vTipoComConsumidor.setId_flujo(formComConsumidor.getId_flujo());
-                vTipoComConsumidor.setId_tipo_registro(tipo_registro);
-                tipoDao.saveComConsumidor(vTipoComConsumidor);
-                response.setValue(vTipoComConsumidor);
+
             } else {
                 //validar campos y agregar nuevo registro
                 vTipoComConsumidor = new TipoComConsumidor();
@@ -828,8 +815,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 if (efuente.getActivo() == 1) {
                     //correo comunicacion permanente
                     String cuerpo = "Estimado Usuario, se ha comenzado el proceso de revisi&oacute;n de su queja por parte de personal interno de DIACO.<br>"
-                            + "Estatus: " + LimpiaStringTildes(vTipoComConsumidor.getEstatus()) + "<br>"
-                            + "Observaciones: " + LimpiaStringTildes(vTipoComConsumidor.getObservaciones());
+                            + "Estatus: " + LimpiaStringTildes(formComConsumidor.getEstatus()) + "<br>"
+                            + "Observaciones: " + LimpiaStringTildes(formComConsumidor.getObservaciones());
                     String[] mailstring = GetEmailStringContribuyente(vTipoQueja.getId_consumidor());
                     saveEmailEnviar(mailstring, Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE, cuerpo); // fuente de email 7 com perm
                 }

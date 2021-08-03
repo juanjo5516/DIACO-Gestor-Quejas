@@ -171,22 +171,22 @@
 								<thead>
 									<tr>
 										<th scope="col" width="5%">No.</th>
-										<th scope="col" width="15%">Fecha</th>
-										<th scope="col" width="30%">Hecho Por</th>
+										<th scope="col" width="15%">Estatus</th>
 										<th scope="col" width="30%">Observaciones</th>
+										<th scope="col" width="30%">Vìa</th>
 										<th scope="col" width="20%">Acción</th>
 									</tr>
 								</thead>
 								<tbody>
-									<ng-container *ngIf="ListVisitaCampo?.length> 0; else EmptyList">
-										<ng-container *ngFor="let thisItem of ListVisitaCampo">
-											<tr [class.activetr]="thisItem.id_visita_campo == currentEditid">
-												<td>{{thisItem.correlativo}}</td>
-												<td>{{thisItem.fecha_visita | date: "dd/MM/yyyy"}}</td>
-												<td>{{thisItem.hecha_por_nombre}}</td>
+									<ng-container *ngIf="LocalForm.length> 0; else EmptyList">
+										<ng-container *ngFor="let thisItem of LocalForm">
+											<tr [class.activetr]="thisItem.id_comunicacion_consumidor == currentEditid">
+												<td>{{thisItem.id_comunicacion_consumidor}}</td>
+												<td>{{thisItem.estatus}}</td>
 												<td>{{thisItem.observaciones}}</td>
+												<td>{{thisItem.via}}</td>
 												<td>
-													<ng-container *ngIf="flagEditable">
+<!-- 													<ng-container *ngIf="flagEditable">
 														<ng-container *ngIf="!flagEdit">
 															<button title="Editar" class="btn btn-primary btn-image edit"
 																type="button" (click)="EnableEdit(thisItem.id_visita_campo,
@@ -196,7 +196,7 @@
 																type="button"
 																(click)="DeleteVisitaCampo(thisItem.id_visita_campo);"></button>
 														</ng-container>
-													</ng-container>
+													</ng-container> -->
 												</td>
 											</tr>
 										</ng-container>

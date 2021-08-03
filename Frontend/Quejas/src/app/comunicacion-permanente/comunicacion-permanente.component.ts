@@ -161,7 +161,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		
   }
 
-  LoadCmbVia(){
+  LoadCmbVia(){//MANDA A TRAER LAS COMUNICACIONES EN TABLA DIACO_COMUNICACION_PERMANENTE
 		let tempstr='';
 		this._catalogoservice.getData('diaco_comunicacion_consumidor').subscribe((Data)=>{
 			if(Data['reason'] == 'OK'){
@@ -220,6 +220,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 				this.flagReportDisponible=true;
 				this.SetSecTimerUpdate();
 				this.flagMainUpdate=true;
+				this.GetFormData(this.data.NoQueja);
 			}else{
 				console.log('Rest service response ERROR.');
 				this.flagDBError=true;
