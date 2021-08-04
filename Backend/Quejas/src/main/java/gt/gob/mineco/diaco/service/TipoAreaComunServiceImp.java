@@ -787,12 +787,10 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 newTipoPasoQueja.setOperacion("I");
             }
             tipoDao.savePasoQueja(newTipoPasoQueja);
+            
+            System.out.println("LLEGO SIN ERROR");
 
-            if (isUpdate) {
-                //validar campos y actualizar antes del update
-
-            } else {
-                //validar campos y agregar nuevo registro
+            //validar campos y agregar nuevo registro
                 vTipoComConsumidor = new TipoComConsumidor();
                 if (formComConsumidor.getVia() != null) {
                     vTipoComConsumidor.setVia(formComConsumidor.getVia());
@@ -808,7 +806,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 vTipoComConsumidor.setId_tipo_registro(tipo_registro);
                 tipoDao.saveComConsumidor(vTipoComConsumidor);
                 response.setValue(vTipoComConsumidor);
-            }
+            
             //revisar si correo esta activo en parametros de sistema
             TipoEmailFuente efuente = tipoDao.findByIdEmailFuente(Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE);
             if (efuente != null) {
@@ -818,27 +816,31 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                             + "Estatus: " + LimpiaStringTildes(formComConsumidor.getEstatus()) + "<br>"
                             + "Observaciones: " + LimpiaStringTildes(formComConsumidor.getObservaciones());
                     String[] mailstring = GetEmailStringContribuyente(vTipoQueja.getId_consumidor());
+                    System.out.println("JJ: funcion saveEmailEnviar: parametros, mailstring:"+ mailstring +",cuerpo: "+cuerpo);
                     saveEmailEnviar(mailstring, Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE, cuerpo); // fuente de email 7 com perm
                 }
             }
             //bitacora auto log
             String txtmensaje = "Comunicación Permanente Guardada";
             BitacoraAutomatica(formComConsumidor.getId_queja(), formComConsumidor.getId_flujo(), formComConsumidor.getUsuario_operacion(), txtmensaje, txtmensaje, tipo_registro);
-
+            System.out.println("JJ: SIN ERROR, DESPUES DE BitacoraAutomatica");
             response.setCode(0L);
             response.setReason("OK");
+            System.out.println("JJ: antes DE BitacoraAutomatica, formComConsumidor.getId_queja(): "+formComConsumidor.getId_queja());
             saveTiposFlujoGuia(formComConsumidor.getId_queja(), 3); //INDICA EL FLUJO EN EL QUE SE ENCUENTRA
+            System.out.println("JJ: SIN ERROR, DESPUES DE saveTiposFlujoGuia");
             //TipoFlujoGuia vTipoFlujoGuia = tipoDao.findByIdTipoFlujoGuia(formComConsumidor.getId_queja());
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error: "+e);
+            //e.printStackTrace();
             response.setCode(1L);
             response.setReason("ERROR");
-            try {
+/*            try {
                 transaction.rollback();
             } catch (Exception ee) {
                 ee.printStackTrace();
-            }
+            }*/
         }
         return response;
     }
@@ -1566,6 +1568,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 vTipoFlujoGuia.setSp_flag(true);
                 break;
         }
+        System.out.println("Antes de tipoDao.saveFlujoGuia(vTipoFlujoGuia);");
         tipoDao.saveFlujoGuia(vTipoFlujoGuia);
         return true;
     }
@@ -5826,6 +5829,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         vTipoEmailEnviar.setSubject(vTipoEmailFuente.getSubject());
         vTipoEmailEnviar.setFecha_creado(new Date());
         vTipoEmailEnviar.setId_fuente(idfuente);
+        System.out.println("LLEGÒ SIN ERROR, saveEmailEnviar, valor de id_queja: "+vTipoEmailEnviar.getId_queja());
         if (result) {
             vTipoEmailEnviar.setEstado("I");
             vTipoEmailEnviar.setFallos(0);
@@ -5833,10 +5837,11 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         } else {
             vTipoEmailEnviar.setEstado("A");
             vTipoEmailEnviar.setFallos(1);
-            tipoDao.saveEmailEnviar(vTipoEmailEnviar);
+            //tipoDao.saveEmailEnviar(vTipoEmailEnviar);
             return false;
         }
         tipoDao.saveEmailEnviar(vTipoEmailEnviar);
+        System.out.println("LLEGÒ SIN ERROR, despues de saveEmailEnviar");
         return true;
     }
 
