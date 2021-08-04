@@ -1837,7 +1837,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             vTipoReg_ComPerm.setId_registro(Constants.REG_DIACO_REGISTRO_COMUNICACION_PERMANENTE); //registro 1-comunicacion con el consumidor
             vTipoReg_ComPerm.setId_tipo_registro(Constants.REG_TIPO_COMUNICACION_PERMANENTE); //Tipo Registro 3-Comunicación Permanente
             //buscar informacion de comunicación con consumidor
-            List<TipoComConsumidor> vTipoComConsumidor = tipoDao.findAllTiposComConsumidores(formReg_ComPerm.getId_queja());
+            List<TipoComConsumidor> vTipoComConsumidor = tipoDao.findAllComConsumidorInd(formReg_ComPerm.getId_queja(),formReg_ComPerm.getId_comunicacion_consumidor());
             System.out.println("REVISOR JJ:  " + "VALOR DE vTipoComConsumidor" + vTipoComConsumidor);
             if (vTipoComConsumidor != null) {
                 vTipoReg_ComPerm.setEstatus(vTipoComConsumidor.get(0).getEstatus());

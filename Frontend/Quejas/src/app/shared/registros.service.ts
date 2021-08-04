@@ -56,6 +56,15 @@ export class RegistrosService {
 		);
 	}
 
+	add_ComCon1(idqueja,id_comunicacion_consumidor): Observable<any> {
+		var LocalURL = this.baseUrl + '/com_con/';
+		console.log('Recibiendo valores en add_ComCon1: idequeja: '+idqueja+' y id_conmunicacion_consumidor: '+id_comunicacion_consumidor);
+		return this._http.post<any>(LocalURL, this.ObjaJSON_add_com(idqueja,id_comunicacion_consumidor), this.httpOptions).pipe(
+			tap((item) => console.log('Registro Guardado')),
+			catchError(this.handleError<any>('Registro Guardado'))
+		);
+	}
+
 	addGet_ActaConciliacion(idqueja): Observable<any> {
 		console.log('entro al service de addGet_ActaConciliacion ');
 		var LocalURL = this.baseUrl + '/acta_conciliacion-at/' + idqueja + '/' + this._submitFormService.Get_userid() + '/'+this._submitFormService.Get_token();
@@ -498,6 +507,11 @@ export class RegistrosService {
 
 	convertDate(date) {
 		return this.datePipe.transform(date, "yyyy-MM-dd");
+	}
+
+	ObjaJSON_add_com(idqueja, idconmunicacionconsumidor) {
+		var locarray = { id_queja: idqueja, id_comunicacion_consumidor: idconmunicacionconsumidor, creado_por: this._submitFormService.Get_userid(), token: this._submitFormService.Get_token()};
+		return JSON.stringify(locarray);
 	}
 
 	ObjaJSON_add(idqueja) {

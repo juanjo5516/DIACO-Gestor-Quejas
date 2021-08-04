@@ -76,7 +76,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	  via: this.viaCtrl
     });
 	this.LoadCmbVia();
-	console.log(this.data);	
+	console.log('Valor de data'+this.data.NoQueja);	
 	 this.LocalForm=[];
 	 this.routerlink='MuestraRegistro/1/1';
 	 this.GetRegistro(false);
@@ -343,6 +343,35 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		}
 		if(approved){
 			this._registrosservice.add_ComCon(this.data.NoQueja).subscribe((retvalue)=>{
+				if(retvalue["reason"] == 'OK'){
+					console.log(retvalue + ' jj ');
+					//this.SetSecTimerUpdateList();
+					this.flagDBError=false;
+					this.GetRegistro(true);
+				}else{
+					console.log('Rest service response ERROR.');
+					this.flagRegError=true;
+					this.SetSecTimerRegistro();
+				}				
+			},(error)=>{
+				console.log(error);
+				this.flagRegError=true;
+				this.SetSecTimerRegistro();
+			});  
+		}
+	}
+
+	GenerarRegistroIndividual(id_comunicacion_consumidor){
+		var approved=false;
+		if(this.linkdescription != ''){
+			if(confirm("¿Está seguro que quiere actualizar este registro con la información mas reciente?")) {
+				approved=true;
+			}
+		}else{
+			approved=true;
+		}
+		if(approved){
+			this._registrosservice.add_ComCon1(this.data.NoQueja,id_comunicacion_consumidor).subscribe((retvalue)=>{
 				if(retvalue["reason"] == 'OK'){
 					console.log(retvalue + ' jj ');
 					//this.SetSecTimerUpdateList();

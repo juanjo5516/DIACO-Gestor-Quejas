@@ -425,6 +425,12 @@ public class TipoRepository {
     }
     
     @SuppressWarnings("unchecked")
+    public List<TipoComConsumidor> findAllComConsumidorInd(Integer idqueja, Integer idcomunicacionconsumidor) {
+        this.em.getEntityManagerFactory().getCache().evict(TipoComConsumidor.class);
+        return em.createNamedQuery("TipoComConsumidor.findInd").setParameter("idcomunicacionconsumidor", idcomunicacionconsumidor).getResultList();
+    }
+    
+    @SuppressWarnings("unchecked")
     public TipoComConsumidor findAllTiposComConsumidor(Integer idqueja) {
         this.em.getEntityManagerFactory().getCache().evict(TipoComConsumidor.class);
         return getSingleResultOrNull(em.createNamedQuery("TipoComConsumidor.findAll").setParameter("idqueja", idqueja));

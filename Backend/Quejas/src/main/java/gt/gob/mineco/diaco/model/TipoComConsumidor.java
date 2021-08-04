@@ -13,6 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name="diaco_comunicacion_consumidor")
 @NamedQuery(name="TipoComConsumidor.findAll", query="SELECT t FROM TipoComConsumidor t inner join t.tipopasoqueja og where og.id_queja = :idqueja and og.id_tipo_registro in (3,20,29)")
+@NamedQuery(name="TipoComConsumidor.findInd", query="SELECT t FROM TipoComConsumidor t where t.id_comunicacion_consumidor = :idcomunicacionconsumidor")
 @NamedQuery(name="TipoComConsumidor.findAll.list", query="SELECT t FROM TipoComConsumidor t inner join t.tipopasoqueja og where og.id_queja = :idqueja and og.id_tipo_registro in (3,20,29)") //TRAE TODOS LOS REGISTROS DE COMUNICACION
 //inner join t.tipopasoqueja og where og.id_queja_paso=:usr
 public class TipoComConsumidor implements Serializable {
