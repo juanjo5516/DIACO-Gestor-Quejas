@@ -191,7 +191,7 @@ export class TablaMainAtConComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '500px';
+    dialogConfig.height = '1500px';
     dialogConfig.width = '1200px';
     dialogConfig.data = {
       NoQueja: NoQueja,

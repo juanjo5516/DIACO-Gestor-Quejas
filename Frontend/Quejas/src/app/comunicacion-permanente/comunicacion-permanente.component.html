@@ -126,12 +126,12 @@
 									<button type="submit" [disabled]="!myForm.valid" class="btn
 										btn-primary">Guardar</button>
 								</div>
-								<ng-container *ngIf="flagReportDisponible">
+<!-- 								<ng-container *ngIf="flagReportDisponible">
 									<div class="col-lg-4">
 										<button type="button" class="btn btn-info" (click)="GenerarRegistro()">Generar
 											Comunicación Permanente</button>
 									</div>
-								</ng-container>
+								</ng-container> -->
 								<ng-container *ngIf="data.Flujo == 1">
 									<div class="col-lg-3">
 										<button type="button" [disabled]="!myForm.valid"
@@ -151,7 +151,7 @@
 						</div>
 						<div class="col-lg-4">
 							<a #replink (click)="openComunicacionPerm();" [routerLink]="">
-								{{linkdescription}}</a>
+								<!-- {{linkdescription}} --></a>
 						</div>
 					</div>
 					<div class="row">
@@ -173,18 +173,26 @@
 										<th scope="col" width="5%">No.</th>
 										<th scope="col" width="15%">Estatus</th>
 										<th scope="col" width="30%">Observaciones</th>
-										<th scope="col" width="30%">Vìa</th>
+										<th scope="col" width="30%">Vía</th>
 										<th scope="col" width="20%">Acción</th>
 									</tr>
 								</thead>
 								<tbody>
 									<ng-container *ngIf="LocalForm.length> 0; else EmptyList">
-										<ng-container *ngFor="let thisItem of LocalForm">
+										<ng-container *ngFor="let thisItem of LocalForm.slice().reverse();let indice=index">
 											<tr [class.activetr]="thisItem.id_comunicacion_consumidor == currentEditid">
-												<td>{{thisItem.id_comunicacion_consumidor}}</td>
+												<td>{{indice + 1}}</td>
 												<td>{{thisItem.estatus}}</td>
 												<td>{{thisItem.observaciones}}</td>
-												<td>{{thisItem.via}}</td>
+												<td>
+													<ng-container *ngIf="thisItem.via == 1">
+														Teléfono
+													</ng-container>
+													<ng-container *ngIf="thisItem.via == 2">
+														Correo Electrónico
+													</ng-container>
+													
+												</td>
 												<td>
 												<ng-container *ngIf="flagEditable">
 															<button title="Imprimir" class="btn btn-primary btn-image imprimir"
