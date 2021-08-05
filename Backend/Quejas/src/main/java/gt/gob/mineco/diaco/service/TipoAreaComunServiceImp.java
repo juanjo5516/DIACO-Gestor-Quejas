@@ -5837,10 +5837,12 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         } else {
             vTipoEmailEnviar.setEstado("A");
             vTipoEmailEnviar.setFallos(1);
-            //tipoDao.saveEmailEnviar(vTipoEmailEnviar);
+            System.out.println("else, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
+            tipoDao.saveEmailEnviar(vTipoEmailEnviar);
             return false;
         }
-        tipoDao.saveEmailEnviar(vTipoEmailEnviar);
+        System.out.println("if, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
+        //tipoDao.saveEmailEnviar(vTipoEmailEnviar);
         System.out.println("LLEGÒ SIN ERROR, despues de saveEmailEnviar");
         return true;
     }

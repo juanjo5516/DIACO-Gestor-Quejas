@@ -2472,7 +2472,7 @@ public class TipoRepository {
     }
 
     public void saveEmailEnviar(TipoEmailEnviar tipoEmailEnviar) throws SystemException {
-        System.out.println("JJ: tipoEmailEnviar: idqueja: "+tipoEmailEnviar.getId_queja()+ ",id: "+tipoEmailEnviar.getId()+ ", getDe(): "+tipoEmailEnviar.getDe());
+        System.out.println("JJ: tipoEmailEnviar: persist: "+tipoEmailEnviar.toString());
         em.persist(tipoEmailEnviar);
     }
 

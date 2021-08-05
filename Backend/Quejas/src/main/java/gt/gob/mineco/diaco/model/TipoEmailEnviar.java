@@ -150,6 +150,18 @@ public class TipoEmailEnviar implements Serializable {
         public String toString() {
             JsonObject temp = new JsonObject();
             temp.addProperty("id",this.id);
+            temp.addProperty("id_queja",this.id_queja);
+            String fecha= fecha_creado.toString();
+            temp.addProperty("fecha_creado",fecha);
+            String fecha_env= fecha_enviado.toString();
+            temp.addProperty("fecha_enviado",fecha_env);
+            temp.addProperty("de",this.de);
+            temp.addProperty("para",this.para);
+            temp.addProperty("subject",this.subject);
+            temp.addProperty("mensaje",this.mensaje);
+            temp.addProperty("fallos",this.fallos);
+            temp.addProperty("estado",this.estado);
+            temp.addProperty("id_fuente",this.id_fuente);
             return temp.toString()+",";
         }
                 
