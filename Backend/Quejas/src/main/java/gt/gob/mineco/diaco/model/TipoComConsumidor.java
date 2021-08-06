@@ -2,6 +2,7 @@ package gt.gob.mineco.diaco.model;
 
 import com.google.gson.JsonObject;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import javax.persistence.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -36,6 +37,10 @@ public class TipoComConsumidor implements Serializable {
 	private Integer via;
         @Column(name="id_flujo")        
 	private Integer id_flujo;
+        @Temporal(TemporalType.TIMESTAMP)
+        @Column(name="fecha_ingreso")
+        private Date fecha_ingreso;
+        
 
     public Integer getId_flujo() {
         return id_flujo;
@@ -104,7 +109,27 @@ public class TipoComConsumidor implements Serializable {
             temp.addProperty("observaciones",this.observaciones);
             temp.addProperty("id_tipo_registro",this.id_tipo_registro);
             temp.addProperty("via",this.via);
+            
+            String strDateFormat = "dd/MM/yyyy";
+            SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+            String fecha = objSDF.format(this.fecha_ingreso);
+            //String fecha = fecha_ingreso.toString();
+            temp.addProperty("fecha_ingreso",fecha);
             return temp.toString()+",";
+    }
+
+    /**
+     * @return the fecha_ingreso
+     */
+    public Date getFecha_ingreso() {
+        return fecha_ingreso;
+    }
+
+    /**
+     * @param fecha_ingreso the fecha_ingreso to set
+     */
+    public void setFecha_ingreso(Date fecha_ingreso) {
+        this.fecha_ingreso = fecha_ingreso;
     }
             
 }

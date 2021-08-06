@@ -364,9 +364,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	GenerarRegistroIndividual(id_comunicacion_consumidor){
 		var approved=false;
 		if(this.linkdescription != ''){
-			if(confirm("¿Está seguro que quiere actualizar este registro con la información mas reciente?")) {
-				approved=true;
-			}
+			approved=true;
 		}else{
 			approved=true;
 		}

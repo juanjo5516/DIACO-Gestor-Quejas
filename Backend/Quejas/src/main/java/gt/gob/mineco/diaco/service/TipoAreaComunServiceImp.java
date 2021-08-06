@@ -804,6 +804,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 vTipoComConsumidor.setTipopasoqueja(newTipoPasoQueja);
                 vTipoComConsumidor.setId_flujo(formComConsumidor.getId_flujo());
                 vTipoComConsumidor.setId_tipo_registro(tipo_registro);
+                vTipoComConsumidor.setFecha_ingreso(new Date());
                 tipoDao.saveComConsumidor(vTipoComConsumidor);
                 response.setValue(vTipoComConsumidor);
             
@@ -5838,7 +5839,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             vTipoEmailEnviar.setEstado("A");
             vTipoEmailEnviar.setFallos(1);
             System.out.println("else, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
-            tipoDao.saveEmailEnviar(vTipoEmailEnviar);
+            //tipoDao.saveEmailEnviar(vTipoEmailEnviar);
             return false;
         }
         System.out.println("if, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());

@@ -171,10 +171,11 @@
 								<thead>
 									<tr>
 										<th scope="col" width="5%">No.</th>
-										<th scope="col" width="15%">Estatus</th>
-										<th scope="col" width="30%">Observaciones</th>
-										<th scope="col" width="30%">Vía</th>
-										<th scope="col" width="20%">Acción</th>
+										<th scope="col" width="25%">Estatus</th>
+										<th scope="col" width="25%">Observaciones</th>
+										<th scope="col" width="15%">Vía</th>
+										<th scope="col" width="15%">Vía</th>
+										<th scope="col" width="15%">Acción</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -193,6 +194,7 @@
 													</ng-container>
 													
 												</td>
+												<td>{{thisItem.fecha_ingreso}}</td>
 												<td>
 												<ng-container *ngIf="flagEditable">
 															<button title="Imprimir" class="btn btn-primary btn-image imprimir"
