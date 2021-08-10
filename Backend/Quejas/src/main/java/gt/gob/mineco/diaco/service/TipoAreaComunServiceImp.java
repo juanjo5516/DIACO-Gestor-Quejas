@@ -732,7 +732,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 }*/
             } else {
                 response.setCode(1L);
-                response.setReason("ERROR");
+                response.setReason("ERROR 1");
                 return response;
             }
 
@@ -818,7 +818,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                             + "Observaciones: " + LimpiaStringTildes(formComConsumidor.getObservaciones());
                     String[] mailstring = GetEmailStringContribuyente(vTipoQueja.getId_consumidor());
                     System.out.println("JJ: funcion saveEmailEnviar: parametros, mailstring:"+ mailstring +",cuerpo: "+cuerpo);
-                    saveEmailEnviar(mailstring, Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE, cuerpo); // fuente de email 7 com perm
+                    boolean resp = saveEmailEnviar(mailstring, Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE, cuerpo); // fuente de email 7 com perm
+                    System.out.println("Respuesta de saveEmailEnviar: "+resp);
                 }
             }
             //bitacora auto log
@@ -833,15 +834,16 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             //TipoFlujoGuia vTipoFlujoGuia = tipoDao.findByIdTipoFlujoGuia(formComConsumidor.getId_queja());
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Error: "+e);
-            //e.printStackTrace();
+            System.out.println("Error en addTipoComConsumidor: "+e.getMessage());
+            e.printStackTrace();
             response.setCode(1L);
-            response.setReason("ERROR");
-/*            try {
+            response.setReason("ERROR 2");
+            try {
                 transaction.rollback();
             } catch (Exception ee) {
-                ee.printStackTrace();
-            }*/
+                System.out.println("Entro a catch final.");
+                ee.getMessage();
+            }
         }
         return response;
     }
@@ -5835,14 +5837,15 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             vTipoEmailEnviar.setEstado("I");
             vTipoEmailEnviar.setFallos(0);
             vTipoEmailEnviar.setFecha_enviado(new Date());
-        } else {
+        } 
+        else {
             vTipoEmailEnviar.setEstado("A");
             vTipoEmailEnviar.setFallos(1);
-            System.out.println("else, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
+            //System.out.println("else, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
             //tipoDao.saveEmailEnviar(vTipoEmailEnviar);
             return false;
         }
-        System.out.println("if, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
+        //System.out.println("if, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
         //tipoDao.saveEmailEnviar(vTipoEmailEnviar);
         System.out.println("LLEGÒ SIN ERROR, despues de saveEmailEnviar");
         return true;

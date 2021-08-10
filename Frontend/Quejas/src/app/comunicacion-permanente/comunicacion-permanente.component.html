@@ -92,7 +92,7 @@
 								{{ReadOnlyVia}}
 							</ng-template>
 						</div>
-						<div *ngIf="viaCtrl.invalid && (viaCtrl.dirty || viaCtrl.touched)"
+						<div *ngIf="viaCtrl.invalid && (viaCtrl.dirty || viaCtrl.touched) && viaCtrl.errors.required"
 							class="alert alert-danger col-lg-12">
 
 							<div *ngIf="viaCtrl.errors.required">

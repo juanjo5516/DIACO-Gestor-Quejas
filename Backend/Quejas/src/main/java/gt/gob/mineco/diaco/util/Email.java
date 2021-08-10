@@ -51,7 +51,12 @@ public class Email {
             props.put("mail.smtp.port", mailserverparams.getPuerto());            
             props.put("mail.smtp.ehlo", "false");
             props.put("mail.smtp.auth", "false"); 
-               Session session = Session.getInstance(props); 
+               Session session = Session.getInstance(props);
+            System.out.println("JJ-> SendEmail: Usuario: "+mailserverparams.getUsuario());
+            System.out.println("JJ-> SendEmail: from: "+from);
+            System.out.println("JJ-> SendEmail: to: "+to);
+            System.out.println("JJ-> SendEmail: subject: "+subject);
+            System.out.println("JJ-> SendEmail: body: "+body);
             
                 //seccion para version local
                 /*props.put("mail.smtp.auth", "true");
@@ -78,10 +83,16 @@ public class Email {
                  message.setContent(body, "text/html");
 
                 //send the message  
+                 System.out.println("JJ-> SendEmail: message: "+message);
                  Transport.send(message);  
                  System.out.println("message sent successfully...");  
 
-            } catch (MessagingException e) {e.printStackTrace(); return false;}
+            } catch (MessagingException e) {
+                System.out.println("Entrando al Catch de SendEmail.");
+                //e.printStackTrace(); 
+                System.out.println("Error: SendEmail: "+e.getMessage());
+                return false;
+            }
             return true;
     }
 }

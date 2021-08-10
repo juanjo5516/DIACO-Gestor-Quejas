@@ -221,6 +221,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 				this.SetSecTimerUpdate();
 				this.flagMainUpdate=true;
 				this.GetFormData(this.data.NoQueja);
+				this.BorrarInput();
 			}else{
 				console.log('Rest service response ERROR.');
 				this.flagDBError=true;
@@ -283,6 +284,14 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		localresp.changes = this.flagMainUpdate;
 		this.dialogRef.close(localresp);
 	}	
+
+	BorrarInput(){
+		this.estatusCtrl.setValue('');
+		this.observacionesCtrl.setValue('');
+		this.viaCtrl.setValue('');
+		this.estatusCtrl.errors.required=false;	
+		this.viaCtrl.errors.required=false;
+	}
   
 	SetSecTimerUpdate(){
 		const source = timer(5000);

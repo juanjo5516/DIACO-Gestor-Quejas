@@ -293,9 +293,9 @@ public class TipoRepository {
     }
 
     public TipoQueja findByIdQueja(Integer idqueja) {
-        System.out.println("Entrando a findByIdQueja (idqueja): "+idqueja);
         this.em.getEntityManagerFactory().getCache().evict(TipoEstadoQueja.class);
         this.em.getEntityManagerFactory().getCache().evict(TipoQueja.class);
+        System.out.println("Entrando a findByIdQueja (idqueja): "+idqueja);
         return em.find(TipoQueja.class, idqueja);
     }
 
