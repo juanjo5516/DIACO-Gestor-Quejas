@@ -157,6 +157,7 @@
 					<div class="row">
 						<div class="col-lg-1">
 							&nbsp;
+							<span class="spinner-border text-primary" role="status" *ngIf="showSpinner"></span>
 						</div>
 					</div>
 				</div>
@@ -174,7 +175,7 @@
 										<th scope="col" width="25%">Estatus</th>
 										<th scope="col" width="25%">Observaciones</th>
 										<th scope="col" width="15%">Vía</th>
-										<th scope="col" width="15%">Vía</th>
+										<th scope="col" width="15%">Fecha</th>
 										<th scope="col" width="15%">Acción</th>
 									</tr>
 								</thead>
@@ -197,10 +198,11 @@
 												<td>{{thisItem.fecha_ingreso}}</td>
 												<td>
 												<ng-container *ngIf="flagEditable">
-															<button title="Imprimir" class="btn btn-primary btn-image imprimir"
-																type="button" (click)="GenerarRegistroIndividual(thisItem.id_comunicacion_consumidor)"></button>
-																&nbsp;
-													</ng-container>
+													<button title="Imprimir" class="btn btn-primary btn-image imprimir" type="button" (click)="GenerarRegistroIndividual(thisItem.id_comunicacion_consumidor)">
+
+													</button>
+												</ng-container>
+													
 												</td>
 											</tr>
 										</ng-container>

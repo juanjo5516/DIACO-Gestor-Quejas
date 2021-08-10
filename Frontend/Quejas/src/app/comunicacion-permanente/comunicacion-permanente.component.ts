@@ -51,6 +51,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
   flagRegError:boolean;
   btnvisible:boolean;
   loc_pagina;
+  showSpinner: boolean = false;  
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any, private _catalogoservice:CatalogoService, private _compermservice:CompermanenteService, public dialogRef: MatDialogRef<ComunicacionPermanenteComponent>, private _registrosservice:RegistrosService, private _quejaService: QuejaService, private _seguridadService:SeguridadService ) { 
 		this.flagDBError = false;
@@ -63,6 +64,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		this.flagRegError=false;
 		this.btnvisible=true;
 		this.loc_pagina=0;
+		this.showSpinner=false;
   }
 
   ngOnInit() {
@@ -312,6 +314,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	SetSecTimerRegistro(){
 		const source = timer(5000);
 		const subscribe = source.subscribe(val => this.flagRegError=false);
+		this.showSpinner=false;
 	}
 	SetSecTimerForm(){
 		const source = timer(15000);
@@ -371,6 +374,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	}
 
 	GenerarRegistroIndividual(id_comunicacion_consumidor){
+		this.showSpinner=true;
 		var approved=false;
 		if(this.linkdescription != ''){
 			approved=true;
@@ -387,7 +391,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 				}else{
 					console.log('Rest service response ERROR.');
 					this.flagRegError=true;
-					this.SetSecTimerRegistro();
+					this.SetSecTimerRegistro();					
 				}				
 			},(error)=>{
 				console.log(error);
@@ -417,15 +421,18 @@ export class ComunicacionPermanenteComponent implements OnInit {
 					this.linkdescription='';
 				}
 				this.flagformvisible++;
+				this.showSpinner=false;
 			}else{
 				console.log('Rest service response ERROR.');
 				this.flagDBError=true;
 				this.SetSecTimerInfoError();
+				this.showSpinner=false;
 			}		
 		},(error)=>{
 			console.log(error);
 			this.flagDBError=true;
 			this.SetSecTimerInfoError();
+			this.showSpinner=false;
 		});
   }
 
