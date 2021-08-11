@@ -145,9 +145,12 @@
 				</div>
 			</div>
 		<div class="row">	
-			<div class="col-lg-12">	
-				<div *ngIf="flagAccionPendiente" class="alert alert-warning col-lg-12" >
-					Tiene Acciones Pendientes de Confirmar, <a (click)="openConfirmarAccion()" [routerLink]="" class="formlink">Por favor siga este Link</a>
+			<div class="col-lg-12 mt-3">	
+				<div *ngIf="flagAccionPendiente" class="alert alert-danger col-lg-12">
+					<span class="badge badge-danger mx-3">Importante </span>
+					<strong>Tiene Acciones Pendientes de Confirmar,</strong>
+					<a (click)="openConfirmarAccion()" [routerLink]="" class="formlink mx-2">Por
+						favor siga este Link</a>
 				</div>
 			</div>
 		</div>	
