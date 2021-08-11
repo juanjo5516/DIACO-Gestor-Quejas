@@ -256,6 +256,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 		console.log('entro a openRegisto');
 			this._registrosservice.FileDownLoadChoose(Data,1);
 			this.flagRegError=false;
+			this.showSpinner=false;
 		},(error)=>{
 			console.log(error);
 			this.flagRegError=true;
@@ -302,6 +303,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	SetSecTimerInfoError(){
 		const source = timer(5000);
 		const subscribe = source.subscribe(val => this.flagDBError=false);
+		this.showSpinner=false;
 	}
 	ClickAfter3sec(){
 		const source = timer(3000);
@@ -310,6 +312,7 @@ export class ComunicacionPermanenteComponent implements OnInit {
 	ClickAfterHalfsec(){
 		const source = timer(500);
 		const subscribe = source.subscribe(val => this.replink.nativeElement.click());
+		
 	}
 	SetSecTimerRegistro(){
 		const source = timer(5000);
@@ -392,12 +395,13 @@ export class ComunicacionPermanenteComponent implements OnInit {
 					console.log('Rest service response ERROR.');
 					this.flagRegError=true;
 					this.SetSecTimerRegistro();					
-				}				
-			},(error)=>{
+				}			
+			}
+			,(error)=>{
 				console.log(error);
 				this.flagRegError=true;
 				this.SetSecTimerRegistro();
-			});  
+			});
 		}
 	}
 	
@@ -419,9 +423,9 @@ export class ComunicacionPermanenteComponent implements OnInit {
 				}else{
 					this.routerlink='';
 					this.linkdescription='';
+					this.showSpinner=false;
 				}
 				this.flagformvisible++;
-				this.showSpinner=false;
 			}else{
 				console.log('Rest service response ERROR.');
 				this.flagDBError=true;

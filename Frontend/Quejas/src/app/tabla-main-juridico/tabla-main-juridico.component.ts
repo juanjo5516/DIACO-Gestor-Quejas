@@ -476,7 +476,7 @@ export class TablaMainJuridicoComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '500px';
+    dialogConfig.height = '1000px';
     dialogConfig.width = '1200px';
     dialogConfig.data = {
       NoQueja: NoQueja,
