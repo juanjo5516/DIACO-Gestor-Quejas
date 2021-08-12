@@ -44,6 +44,13 @@
 			  (click)="RenderDataTableProveedor()"
               >Buscar proveedor</button>
 			</div>
+			<div>
+				<p> 
+					<strong>NOTA:</strong>
+					 
+					Si no encuentra el proveedor, cerrar esta ventana y llenar los campos de NIT, Ubicación y factura ó Contrato.
+				</p>
+			</div>
 </div></div></div></div>
 <div class="example-header mat-elevation-z8">
   <mat-form-field>
@@ -61,23 +68,36 @@
     </ng-container>
 
     <!-- Columna Documento -->
-    <ng-container matColumnDef="Documento">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Documento </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nitProveedor}} </mat-cell>
-    </ng-container>
+    <ng-container matColumnDef="Nit">
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Nit </mat-header-cell>
+		<mat-cell *matCellDef="let row"> {{row.nitProveedor}} </mat-cell>
+	  </ng-container>
 
     <!-- Columna Nombre-->
     <ng-container matColumnDef="Nombre">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
     </ng-container>
+
+	<!-- Columna Nombre Empresa-->
+    <ng-container matColumnDef="Nombre Empresa">
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Empresa </mat-header-cell>
+		<mat-cell *matCellDef="let row"> {{row.nombreEmpresa}} </mat-cell>
+	  </ng-container>
+	  
+
+	<!-- Columna Razón Social-->
+    <ng-container matColumnDef="Razón Social">
+		<mat-header-cell *matHeaderCellDef mat-sort-header> Razón Social </mat-header-cell>
+		<mat-cell *matCellDef="let row"> {{row.razonSocial}} </mat-cell>
+	  </ng-container>
 	
 	<!-- Name Column -->
     <ng-container matColumnDef="Seleccionar">
   <mat-header-cell  *matHeaderCellDef > Seleccionar </mat-header-cell>
   <mat-cell *matCellDef="let row" >
        <!--button mat-button (click)="seleccionar(row.idProveedor,row.nombre)">Seleccionar</button-->
-	   <button [mat-dialog-close]="proveedorToInsert" style="margin-left: 5%" type="button" (click)="seleccionar(row.idProveedor,row.nombre,row.nitProveedor)">Seleccionar</button>
+	   <button [mat-dialog-close]="proveedorToInsert" style="margin-left: 5%" type="button" (click)="seleccionar(row, row.idProveedor,row.nombre,row.nitProveedor)">Seleccionar</button>
   </mat-cell>
 </ng-container>
 

@@ -83,6 +83,10 @@ export class QuejasIniService {
     return this.http.get<ResponseRs>(BASE_URL_REST_FILE + 'quejasini/quejacon/'+dato+'/'+id);
   }
 
+  fetchDataFact(proveedor: string) {
+		return this.http.get<ResponseRs>(BASE_URL_REST_FILE + 'quejasini?proveedor='+ proveedor);
+	}
+
 
   private handleError<T> (operation = 'operation', result?: T) {
 		return (error: any): Observable<T> => {

@@ -70,7 +70,6 @@ export class BuscaprovComponent implements OnInit {
         this.dataSource = new MatTableDataSource();  
         this.dataSource.data = res['value'];  
 		//console.log("RenderDataTableProveedor",this.dataSource.data);
-		
         this.dataSource.sort = this.sort; 
         this.dataSource.paginator = this.paginator;
       },  

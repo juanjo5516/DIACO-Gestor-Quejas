@@ -14,4 +14,5 @@ export class Quejaini {
 	anio: number;
 	secuencia: number;
 	idFuente: string;
+	facturaNumero: string;
 }

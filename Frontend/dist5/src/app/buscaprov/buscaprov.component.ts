@@ -15,11 +15,12 @@ import { Proveedor } from '../shared/proveedor.model';
 })
 export class BuscaprovComponent implements OnInit {
   proveedorForm: FormGroup;	
-  displayedColumns = ['Id', 'Documento', 'Nombre', 'Seleccionar' ];
+  displayedColumns = ['Id', 'Nit', 'Nombre', 'Nombre Empresa','Razón Social', 'Seleccionar' ];
   dataSource: any;
   private proveedorToInsert: Proveedor;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  habilitado : string = "0";
 
   
   constructor(private dataService: ApiUsuariosService,  private dialogRef: MatDialogRef<BuscaprovComponent>) {
@@ -41,6 +42,7 @@ export class BuscaprovComponent implements OnInit {
     this.proveedorToInsert.idProveedor = 0;
     this.proveedorToInsert.nombre = "";
 	this.proveedorToInsert.nitProveedor = "";
+  this.proveedorToInsert.habilitadoConciliacionPrevia = "0";
   }
 
   RenderDataTable() {  
@@ -83,7 +85,7 @@ export class BuscaprovComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   
-  seleccionar(valor: number, nombre: string, nit: string) {
+  seleccionar(row: any, valor: number, nombre: string, nit: string) {
 	  this.proveedorToInsert.idProveedor = valor;
 	this.proveedorToInsert.nombre = nombre;
 	this.proveedorToInsert.nitProveedor = nit;

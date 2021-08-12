@@ -24,7 +24,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { ResponseRs } from '../shared/response-rs.model';
 import { isUndefined } from 'util';
 
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-quejaext',
@@ -35,6 +35,8 @@ import swal from 'sweetalert2';
 
 export class QuejaextComponent implements OnInit {
 	public nproveedor: string = "";
+	public idproveedor: string = "";
+	public conciliacion: string = "";
 	public vanio: number = 0
 	public vsecanio: number = 0;
 	public vsecuencia2: string = "";
@@ -47,6 +49,8 @@ export class QuejaextComponent implements OnInit {
 	public vact: number = -1;
 
 	//public vid: string = "";
+	private contador = 0
+	private contador1 = 0
 
 	customDialogForm: FormGroup;
 
@@ -76,6 +80,12 @@ export class QuejaextComponent implements OnInit {
 
 	operation = new Subject<Quejaini>();
 
+	factRepetida: boolean = false;
+	factNoRepetida: boolean =false;
+	conteoRepetido: number =0;
+	serieNumeroFactura: string = "";
+	mostrarCamposProveedor: boolean = false;
+
 	//constructor() { }
 	constructor(private router: Router,
 		private dialog: MatDialog,
@@ -88,6 +98,13 @@ export class QuejaextComponent implements OnInit {
 	) {
 		//console.info(this._route.snapshot.paramMap.get('id'));
 
+	}
+
+	onKey(event){
+		this.contador = event.target.value.length
+	}
+	onKey1(event){
+		this.contador1 = event.target.value.length
 	}
 
 	ngOnDestroy() {
@@ -103,6 +120,7 @@ export class QuejaextComponent implements OnInit {
 				this.success = true;
 				this.successFile = true;
 				this.nproveedor = "";
+				this.conciliacion = "";
 			}
 		);
 		/*
@@ -137,10 +155,12 @@ export class QuejaextComponent implements OnInit {
 			'correo': new FormControl('', Validators.required),
 			'detalleQueja': new FormControl('', Validators.required),
 			'solicitaQue': new FormControl('', Validators.required),
+			'serieNumeroFactura': new FormControl('', Validators.required),
 			'nitProveedor': new FormControl(''),
 			'ubicacion': new FormControl('')
 		});
 		this.nproveedor = "";
+		this.conciliacion = "";
 		this.dpiIndex = -1;
 		this.facturaIndex = -1;
 		////console.log("inicializa");
@@ -231,6 +251,7 @@ export class QuejaextComponent implements OnInit {
 		queja.anio = 0;
 		queja.secuencia = 0;
 		queja.idFuente = "Web user";
+		queja.facturaNumero = this.quejaForm.value.serieNumeroFactura;
 		if (this.existingModeConsumidor) {
 			queja.idConsumidor = this.existingConsumidor.idConsumidor;
 		} else {
@@ -266,6 +287,7 @@ export class QuejaextComponent implements OnInit {
 		//queja = this.quejasService.createQueja(queja, this.uploader).susbribe;
 		this.quejasService.saveData(queja, '').subscribe(
 			(retvalue) => {
+				this.showSpinner = true;
 
 				if (retvalue) {
 					var tempstr = retvalue['value'];
@@ -274,7 +296,7 @@ export class QuejaextComponent implements OnInit {
 						this.vanio = tempstr.anio;
 						this.vsecanio = tempstr.secuencia;
 						this.vidqueja = tempstr.idQueja;
-						swal.fire('Registro exitoso...', `Su número de Queja es: <h1 class="display-1">${this.vsecanio}-${this.vanio}</h1>`, 'success');
+						Swal.fire('Registro exitoso...', `Su número de Queja es: <h1 class="display-1">${this.vsecanio}-${this.vanio}</h1>`, 'success');
 
 
 
@@ -322,6 +344,7 @@ export class QuejaextComponent implements OnInit {
 							this.uploader.onCompleteAll = () => {
 								// finalizo la carga de todos los archivos
 								this.operation.next(retvalue.value);
+								this.showSpinner = false;
 								//console.info(this.uploader.nativeElement.value);
 							};
 							this.uploader.onCompleteItem = (item, uploadResponse, status, headers) => {
@@ -388,6 +411,7 @@ export class QuejaextComponent implements OnInit {
 				'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 				'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
 				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor),
+				'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 				'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 
 			});
@@ -405,6 +429,7 @@ export class QuejaextComponent implements OnInit {
 				'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 				'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
 				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor),
+				'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 				'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 
 			});
@@ -433,6 +458,7 @@ export class QuejaextComponent implements OnInit {
 			'nombreEmpresa': new FormControl(proveedor ? proveedor.nombreEmpresa : ''),
 			'razonSocial': new FormControl(proveedor ? proveedor.razonSocial : ''),
 			*/
+			'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 			'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 		});
 		//////console.log("inicializa consumidor");
@@ -465,6 +491,7 @@ export class QuejaextComponent implements OnInit {
 
 
 		const dialogConfig = new MatDialogConfig();
+		this.mostrarCamposProveedor = true;
 
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
@@ -480,11 +507,14 @@ export class QuejaextComponent implements OnInit {
 					this.existingProveedor = data;
 					this.initProveedor(data.nitProveedor);
 					this.nproveedor = data.nombre;
+					this.idproveedor = data.idProveedor;
+					this.conciliacion = data.habilitadoConciliacionPrevia;
 
 				} else {
 					this.existingModeProveedor = false;
 					this.existingProveedor = null;
 					this.nproveedor = "";
+					this.conciliacion = "";
 				}
 
 
@@ -520,6 +550,72 @@ export class QuejaextComponent implements OnInit {
 		////console.info('initNoQueja|');
 		////console.info(this.vanio);
 		////console.info(this.vsecanio);
+	}
+
+	public onFacturaChanged(){
+		console.log('Factura Changed');
+		this.conteoRepetido=0;
+		this.factRepetida=false;
+		this.quejasService.fetchDataFact(this.idproveedor).subscribe(
+			(response) => {
+				if(response["reason"] == 'OK'){
+					var tempstr=response['value'];
+					if(tempstr != null && tempstr != '')	{
+						
+						console.log('Cantidad de Objetos en Array: '+ tempstr.length);
+
+						for (let i=0; i < tempstr.length; i++){
+							console.log('Valor de respuesta: '+ tempstr[i].idQueja);
+							console.log('Valor de serieNumeroFactura: '+ this.quejaForm.value.serieNumeroFactura);
+							
+							if (tempstr[i].facturaNumero == this.quejaForm.value.serieNumeroFactura) {
+								console.log('Es igual');
+								this.conteoRepetido++;
+							} else {
+								console.log('No es igual');
+							}
+
+							if (this.conteoRepetido>0) {
+								/* this.factRepetida=true; */
+								this.factNoRepetida=false;
+								Swal.fire({
+									title: 'Factura ó Contrato existente', 
+									text: `La serie y número de Factura ó contrato: ${this.quejaForm.value.serieNumeroFactura} ya se encuentra en base de datos.`, 
+									icon: 'error',
+									confirmButtonText: `Regresar`,
+									showConfirmButton: true,
+									
+								})/* .then((result) => {
+									
+									if (result.isConfirmed) {
+									  Swal.fire('Saved!', '', 'success')
+									}
+								}) */
+								
+								this.serieNumeroFactura=""
+
+								
+							}else{
+								this.factNoRepetida=true;
+							}
+						}
+
+						/* this.confacc_list=JSON.parse('['+retvalue["value"].slice(0, -1) +']');
+						this.addCheckboxes();
+						console.log(this.confacc_list);
+						this.btnvisible=true; */
+					}else{
+						/* this.confacc_list='';
+						this.tabledata=false; */
+					}
+					/* this.flagformvisible++; */
+				}else{
+					console.log('Rest service response ERROR.');
+					/* this.flagInfoError=true;
+					this.SetSecTimerInfoError(); */
+				}	
+			}
+		);
 	}
 
 	public findSecuenciaId() {
