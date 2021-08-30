@@ -326,6 +326,7 @@ public class ProveedoresServiceImp {
                 ConsultaSiafLocator cs = new ConsultaSiafLocator();
                 cs.setConsultasPublicasPortEndpointAddress(url);
                 String resp = cs.getConsultasPublicasPort().findContribuyenteByNitMFP(user, pass, nit.toUpperCase());
+                System.out.println("JJ BUSCANDO EN SAT: resp: "+resp);
                 System.out.println("url: " + url + "  data: " + resp);
                 if (!resp.isEmpty()) {
                     if (resp.contains("CODIGO_ERROR")) {
