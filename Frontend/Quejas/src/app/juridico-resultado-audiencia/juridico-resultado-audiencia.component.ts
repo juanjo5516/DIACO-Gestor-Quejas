@@ -11,6 +11,7 @@ import { RegistrosService } from '../shared/registros.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { DatePipe } from '@angular/common';
 import { SeguridadService } from "../shared/seguridad.service";
+//import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-juridico-resultado-audiencia',
@@ -173,6 +174,24 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 		});
   }
 
+  SaveEstadoResolver(){
+	let tempstr='';
+	this._quejaService.saveEstadoResolver(this.data.NoQueja,this.clickMessage).subscribe((retvalue)=>{
+		  if(retvalue["reason"] == 'PROBANDO saveEstadoResolver'){
+			  console.log('Grabado');
+			  		
+		  }else{
+			  console.log('Rest service response ERROR.');
+			  this.flagInfoError=true;
+			  this.SetSecTimerInfoError();
+		  }		
+	  },(error)=>{
+		  console.log(error);
+		  this.flagInfoError=true;
+		  this.SetSecTimerInfoError();
+	  });
+  }
+
 
 	GetQuejaList(){
 	  let tempstr='';
@@ -231,8 +250,10 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 	onClickMe() {
 		if(this.clickMessage == 0){
 			this.clickMessage=1;
+			this.SaveEstadoResolver();
 		}else{
 			this.clickMessage=0;
+			this.SaveEstadoResolver();
 		}
 	  }
 

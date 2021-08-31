@@ -39,6 +39,7 @@ gt\gob\mineco\diaco\rs\TipoTelefonoRs.class
 gt\gob\mineco\diaco\util\FormReg_ComPerm.class
 gt\gob\mineco\diaco\service\NotificacionCorreoImp.class
 gt\gob\mineco\diaco\model\TipoProveedorAprobar.class
+gt\gob\mineco\diaco\util\FormEstadoResolver.class
 gt\gob\mineco\diaco\util\FormImagenSubmit.class
 gt\gob\mineco\diaco\model\TipoProveedorComun.class
 gt\gob\mineco\diaco\util\Constants.class

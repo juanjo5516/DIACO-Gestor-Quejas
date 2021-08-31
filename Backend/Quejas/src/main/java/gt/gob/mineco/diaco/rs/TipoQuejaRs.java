@@ -16,6 +16,7 @@ import gt.gob.mineco.diaco.util.ResponseRs;
 import gt.gob.mineco.diaco.service.TipoAreaComunService;
 import gt.gob.mineco.diaco.util.FormViewMainQueja2;
 import gt.gob.mineco.diaco.util.FormSimple;
+import gt.gob.mineco.diaco.util.FormEstadoResolver;
 
 @Path("/tipos-queja")
 @RequestScoped
@@ -79,5 +80,12 @@ public class TipoQuejaRs {
 	public ResponseRs getTipoEstadoQueja(@PathParam("token") String token) {
 		return tipoQuejaService.getEstadosQueja(token);
 	}
+        
+        @POST
+        @Path("/est_resolver")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseRs saveEstadoResolver(FormEstadoResolver formestadoresolver) {
+		return tipoQuejaService.saveEstadoResolver(formestadoresolver);
+	}  
         
 }
