@@ -260,6 +260,17 @@
 	</div>
 
 </ng-container>
+
+<ng-container>
+	<div class="container">
+		<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" (click)="onClickMe()">
+		<label class="form-check-label" for="defaultCheck1">
+		  En estado de Resolver.
+		  {{clickMessage}}
+		</label>
+	</div>
+</ng-container>
+
 <ng-template #NoForm>
 	<div class="container" *ngIf="!loaderror">	
 		<div class="row">

@@ -56,6 +56,7 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 	currentEditid;
 	linkgrid;
 	editresuadiencia; lbl_tipostr;
+	clickMessage = 0;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _audienciaService:AudienciaService, private _quejaService: QuejaService, private _catalogoService: CatalogoService, public dialogRef: MatDialogRef<JuridicoResultadoAudienciaComponent>, private _registrosservice:RegistrosService, private datePipe: DatePipe, private _seguridadService:SeguridadService) { 
 		this.flagInsertInfo=false;
@@ -226,6 +227,14 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 		var temp=this.datePipe.transform(date,"yyyy-MM-dd")+'T'+hour+":"+min+":00";
 		return temp;  
 	}*/
+
+	onClickMe() {
+		if(this.clickMessage == 0){
+			this.clickMessage=1;
+		}else{
+			this.clickMessage=0;
+		}
+	  }
 
 	SaveEdit(){
 		if(this.flagEdit){
