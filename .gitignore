@@ -64,3 +64,5 @@ e2e/*.map
 target/
 
 # End of https://www.toptal.com/developers/gitignore/api/java-web,angular
+/Backend/Quejas Ini y App - old/target-old/
+/Backend/Quejas Ini y App - old/target llamado web-quej/
