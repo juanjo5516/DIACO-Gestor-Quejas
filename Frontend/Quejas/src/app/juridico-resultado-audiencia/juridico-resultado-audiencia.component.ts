@@ -58,6 +58,7 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 	linkgrid;
 	editresuadiencia; lbl_tipostr;
 	clickMessage = 0;
+	resulta: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _audienciaService:AudienciaService, private _quejaService: QuejaService, private _catalogoService: CatalogoService, public dialogRef: MatDialogRef<JuridicoResultadoAudienciaComponent>, private _registrosservice:RegistrosService, private datePipe: DatePipe, private _seguridadService:SeguridadService) { 
 		this.flagInsertInfo=false;
@@ -200,7 +201,16 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 				tempstr=retvalue['value'];
 				if(tempstr != null)	{
 					this.lst_queja=JSON.parse('['+retvalue["value"].slice(0, -1) +']');
-					console.log(this.lst_queja);
+					console.log('Imprimiendo lst_queja'+this.lst_queja[0]['is_est_resolver']);
+
+					if (this.lst_queja[0]['is_est_resolver'] == 0) {
+						this.resulta=false;	
+						this.clickMessage=0;					
+					} else {
+						this.resulta=true;
+						this.clickMessage=1;	
+					}
+
 					this.flagformvisible++;
 					if(this._seguridadService.EditableporFlujo(2,this.lst_queja[0]['id_estado_queja']))
 						//si es rol 3 administrador, puede editar
