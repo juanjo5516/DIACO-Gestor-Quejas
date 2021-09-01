@@ -129,6 +129,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -11227,6 +11228,10 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             int corrInt = (corrArr.length >= 1 ? Integer.parseInt(corrArr[1]) : 0);
 
             nResAudiencia.setCorrelativo(corrInt);
+            
+            nResAudiencia.setMotivo_archivo(formResAudiencia.getValor2());
+            nResAudiencia.setMonto_recuperado(formResAudiencia.getValor3());
+
             //nResAudiencia.setCorr_notif_cons(getNextCorrelativoRegistroPrefijo(Constants.REG_DIACO_REGISTRO_RESOLUCION_FINAL_ARCHIVO_JURIDICO));
             //nResAudiencia.setCorr_notif_prov(getNextCorrelativoRegistroPrefijo(Constants.REG_DIACO_REGISTRO_RESOLUCION_FINAL_ARCHIVO_JURIDICO));
             nResAudiencia.setCorr_notif_cons(corrInt);

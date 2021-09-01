@@ -106,10 +106,10 @@ export class AudienciaService {
 		);
 	}
 
-	saveResFinal(tipo, no_queja) {
+	saveResFinal(tipo, no_queja, motivo, monto) {
 		var LocalURL = this.baseUrl + '/res_final/add';
 		console.log(LocalURL);
-		var frmData = this.ObjaJSON_ResFinal(tipo, no_queja);
+		var frmData = this.ObjaJSON_ResFinal(tipo, no_queja, motivo, monto);
 		console.log(frmData);
 		return this._http.post<any>(LocalURL, frmData, this.httpOptions).pipe(
 			tap((item) => console.log('Registro Guardado')),
@@ -216,8 +216,8 @@ export class AudienciaService {
 		return JSON.stringify(locarray);
 	}
 
-	ObjaJSON_ResFinal(tipo, no_queja) {
-		var locarray = { valor: tipo, id_queja: no_queja, usuario: this._submitFormService.Get_userid(), token: this._submitFormService.Get_token() };
+	ObjaJSON_ResFinal(tipo, no_queja, motivo, monto) {
+		var locarray = { valor: tipo, id_queja: no_queja, valor2: motivo, valor3: monto, usuario: this._submitFormService.Get_userid(), token: this._submitFormService.Get_token() };
 		return JSON.stringify(locarray);
 	}
 

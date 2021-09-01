@@ -47,7 +47,14 @@ public class TipoResFinal implements Serializable {
         private Integer id_imagen_acta;
         @JoinColumn(name = "id_queja_paso", referencedColumnName = "id_queja_paso")
         @OneToOne
-        private TipoPasoQueja tipopasoqueja;   
+        private TipoPasoQueja tipopasoqueja;
+        
+        @Column(name="motivo_archivo")
+        private Integer motivo_archivo;
+        @Column(name="monto")
+        private Integer monto;
+        @Column(name="monto_recuperado")
+        private float monto_recuperado;
         
         public TipoResFinal() {
 	}
@@ -170,6 +177,48 @@ public class TipoResFinal implements Serializable {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
+    }
+
+    /**
+     * @return the motivo_archivo
+     */
+    public Integer getMotivo_archivo() {
+        return motivo_archivo;
+    }
+
+    /**
+     * @param motivo_archivo the motivo_archivo to set
+     */
+    public void setMotivo_archivo(Integer motivo_archivo) {
+        this.motivo_archivo = motivo_archivo;
+    }
+
+    /**
+     * @return the monto
+     */
+    public Integer getMonto() {
+        return monto;
+    }
+
+    /**
+     * @param monto the monto to set
+     */
+    public void setMonto(Integer monto) {
+        this.monto = monto;
+    }
+
+    /**
+     * @return the monto_recuperado
+     */
+    public float getMonto_recuperado() {
+        return monto_recuperado;
+    }
+
+    /**
+     * @param monto_recuperado the monto_recuperado to set
+     */
+    public void setMonto_recuperado(float monto_recuperado) {
+        this.monto_recuperado = monto_recuperado;
     }
         
 }
