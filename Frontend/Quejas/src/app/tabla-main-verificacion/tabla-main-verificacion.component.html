@@ -86,15 +86,15 @@
 				 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
 						<button title="Asignación de Cola Inicial" class="btn btn-apgreen btn-image Inbox" (click)="clickStopper($event);openAsignaCola(value, row.quejanumero);"></button>&nbsp;
 						<button title="Comunicación Permanente" [ngClass]="SetBtnClass(row.tipoflujoguia.atcon_com_permanente,'ComPermanente')" (click)="clickStopper($event);openComPermanente(value, row.quejanumero,3);"></button>&nbsp;
-						<button title="Informe Final" [ngClass]="SetBtnClass(row.tipoflujoguia.vyv_informe_final,'Clipboard')" (click)="clickStopper($event);openInforme(value, row.quejanumero);"></button>&nbsp;
+						<button title="Generar Acta" class="btn btn-primary btn-image List" (click)="clickStopper($event);openActa(value, row.quejanumero);"></button>&nbsp;
+						<button title="Visita de Campo" class="btn btn-primary btn-image Visita" (click)="clickStopper($event);openVisitaCampo(value, row.quejanumero,3);" ></button>&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="hoverbtns" style="display:none">
 						<p style="font-size:25%"></p>
-						<button title="Visita de Campo" class="btn btn-primary btn-image Visita" (click)="clickStopper($event);openVisitaCampo(value, row.quejanumero,3);" ></button>&nbsp;
+						<button title="Informe Final" [ngClass]="SetBtnClass(row.tipoflujoguia.vyv_informe_final,'Clipboard')" (click)="clickStopper($event);openInforme(value, row.quejanumero);"></button>&nbsp;
+						<button title="Archivar Queja" class="btn btn-primary btn-image File" (click)="clickStopper($event);openArchivar(value, row.quejanumero);"></button>&nbsp;
 						<button title="Verificación de Datos" class="btn btn-primary btn-image Verify" (click)="clickStopper($event);openVerifDatos(value, row.quejanumero,3);"></button>&nbsp;
 						<button title="Movimiento de Expendiente" class="btn btn-primary btn-image Move" (click)="clickStopper($event);openMovimientoExpediente(value, row.quejanumero);"></button>&nbsp;
-						<button title="Generar Acta" class="btn btn-primary btn-image List" (click)="clickStopper($event);openActa(value, row.quejanumero);"></button>&nbsp;
-						<button title="Archivar Queja" class="btn btn-primary btn-image File" (click)="clickStopper($event);openArchivar(value, row.quejanumero);"></button>&nbsp;
 						<button title="Listado de Archivos" class="btn btn-primary btn-image Clip" (click)="clickStopper($event);openListadoArchivos(value, row.quejanumero, 3);"></button>&nbsp;
 						<button title="Bit&aacute;cora" class="btn btn-primary btn-image Log" (click)="clickStopper($event);openBitacora(value, row.quejanumero, 3);"></button>
 						</div>

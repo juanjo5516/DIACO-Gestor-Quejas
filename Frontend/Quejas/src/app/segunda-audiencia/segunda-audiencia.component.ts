@@ -148,7 +148,7 @@ export class SegundaAudienciaComponent implements OnInit {
 					icon: 'info',
 					html:
 						'Queja: <b>' + info.event.extendedProps.description + '</b>, ' +
-						'Usuario: <b>' + info.event.extendedProps.user + '</b> ',
+						'Auxiliar: <b>' + info.event.extendedProps.user + '</b> ',
 					title: '<strong>Proveedor <u>' + info.event.title + '</u></strong>',
 					showConfirmButton: true
 					//timer: 1500
