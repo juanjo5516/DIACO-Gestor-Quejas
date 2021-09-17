@@ -515,7 +515,9 @@ public class QuejaRepository {
                     + "  q.detalle_queja description,\n"
                     + "  '#007bff' AS color,\n"
                     + "  p.nombre title,\n"
-                    + "  u.nombre usuario\n"
+                    + "  u.nombre usuario,\n"
+                    + "  q.no_queja no_queja,\n"
+                    + "  q.anio año\n"
                     + "FROM\n"
                     + "  dbo.diaco_programa_audiencia pa,\n"
                     + "  diaco_audiencia a,\n"
@@ -541,7 +543,9 @@ public class QuejaRepository {
                     + "  q.detalle_queja description,\n"
                     + "  '#006600' AS color,\n"
                     + "  p.nombre title,\n"
-                    + "  u.nombre usuario\n"
+                    + "  u.nombre usuario,\n"
+                    + "  q.no_queja no_queja,\n"
+                    + "  q.anio año\n"
                     + "FROM\n"
                     + "  dbo.diaco_programa_audiencia pa,\n"
                     + "  diaco_audiencia a,\n"
@@ -595,6 +599,8 @@ public class QuejaRepository {
                 detalleAudiencia.setColor((String) ((item[4] != null) ? item[4].toString() : ""));
                 detalleAudiencia.setTitle((String) ((item[5] != null) ? item[5].toString() : ""));
                 detalleAudiencia.setUser((String) ((item[6] != null) ? item[6].toString() : ""));
+                detalleAudiencia.setNo_queja((String) ((item[7] != null) ? item[7].toString() : ""));
+                detalleAudiencia.setAño((String) ((item[8] != null) ? item[8].toString() : ""));
 
                 listaResultados.add(detalleAudiencia);
             }

@@ -130,6 +130,11 @@ export class SegundaAudienciaComponent implements OnInit {
 
 		this.options = {
 			plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+			eventTimeFormat: { // like '14:30:00'
+				hour: '2-digit',
+				minute: '2-digit',
+				meridiem: false
+			  },
 			locale: esLocale,
 			defaultDate: new Date(),
 			header: {
@@ -138,7 +143,7 @@ export class SegundaAudienciaComponent implements OnInit {
 				right: 'month,agendaWeek,agendaDay'
 			},
 			dateClick: (e) => {
-				console.log(e)
+				console.log('dateclick: '+e)
 
 			},
 			eventClick: function (info) {
@@ -147,7 +152,8 @@ export class SegundaAudienciaComponent implements OnInit {
 				swal.fire({
 					icon: 'info',
 					html:
-						'Queja: <b>' + info.event.extendedProps.description + '</b>, ' +
+						'No. Queja: <b>' + info.event.extendedProps.no_queja +'-'+info.event.extendedProps.año+ '</b>, ' +
+						'Descripción de Queja: <b>' + info.event.extendedProps.description + '</b>, ' +
 						'Auxiliar: <b>' + info.event.extendedProps.user + '</b> ',
 					title: '<strong>Proveedor <u>' + info.event.title + '</u></strong>',
 					showConfirmButton: true
@@ -267,7 +273,7 @@ export class SegundaAudienciaComponent implements OnInit {
 				}else{
 					this.cmb_resultado=[];
 				}
-				console.log(this.cmb_resultado);
+				console.log('cmb_resultado'+this.cmb_resultado);
 				this.flagInfoError=false;
 			}else{
 				console.log('Rest service response ERROR.');
