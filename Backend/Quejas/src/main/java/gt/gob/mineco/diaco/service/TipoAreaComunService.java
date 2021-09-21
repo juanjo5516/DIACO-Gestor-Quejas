@@ -152,6 +152,8 @@ public interface TipoAreaComunService {
     public ResponseRs getReg_ComPermanentexIdQueja(Integer idqueja, String token);
 
     public ResponseRs saveReg_ComPermanente(FormRegistro formReg_ComPerm);
+    
+    public ResponseRs getUltimaAceptacion(FormRegistro formReg_ComPerm);
     //sede
 
     public ResponseRs listSedeExcOne(Integer id, String token);

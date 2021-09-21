@@ -1900,6 +1900,36 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         }
         return response;
     }
+    
+    @Override
+    public ResponseRs getUltimaAceptacion(FormRegistro formReg_ComPerm) {
+        ResponseRs response = new ResponseRs();
+        TipoConfirmarAccion confaccion = new TipoConfirmarAccion();
+        UserTransaction transaction = null;
+        try {
+            tipoDao.TokenCheck(formReg_ComPerm.getToken());
+            transaction = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
+            transaction.begin();
+            Date fecha_asignacion = tipoDao.findConfAccionReciente(formReg_ComPerm.getCreado_por(), formReg_ComPerm.getId_queja());
+            confaccion.setFecha_creacion(fecha_asignacion);
+            System.out.println("fecha_asignacion: "+fecha_asignacion);
+            System.out.println("LLEGANDO A getUltimaAceptacion");
+            response.setCode(0L);
+            response.setReason("OK");
+            response.setValue(confaccion);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(1L);
+            response.setReason("ERROR");
+            try {
+                transaction.rollback();
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
+        }
+        return response;
+    }
 
     private String CommaSeparatedEmailsCons(Integer id_consumidor) {
         List<TipoEmail> vTipoEmail = tipoDao.findAllTiposEmail(id_consumidor, "C");

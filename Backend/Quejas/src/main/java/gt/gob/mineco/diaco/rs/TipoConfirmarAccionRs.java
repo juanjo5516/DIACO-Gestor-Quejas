@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import gt.gob.mineco.diaco.model.TipoEmail;
 import gt.gob.mineco.diaco.util.ResponseRs;
 import gt.gob.mineco.diaco.service.TipoAreaComunService;
+import gt.gob.mineco.diaco.util.FormRegistro;
 import gt.gob.mineco.diaco.util.FormSimple;
 
 
@@ -35,6 +36,13 @@ public class TipoConfirmarAccionRs {
 	public ResponseRs addTipoComConsumidor(FormSimple formsimple) {
 		return tipoService.UpdateConfirmarAccion(formsimple);
 	}
+        
+        @POST
+        @Path("/ultima_aceptacion")
+        @Produces(MediaType.APPLICATION_JSON)
+        public ResponseRs addTipoComConsumidor(FormRegistro formReg_ComPerm) {
+            return tipoService.getUltimaAceptacion(formReg_ComPerm);
+        }
 
 //	@GET
 //        @Path("/asignaAtCon/{id_queja}")
