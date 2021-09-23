@@ -22,7 +22,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 import {timer} from 'rxjs';
 import {SubmitFormService} from '../shared/submit-form.service';
 import {SeguridadService} from '../shared/seguridad.service';
-import { Accordion } from 'primeng';
+//import { Accordion } from 'primeng';
 
 @Component({
   selector: 'app-tabla-main-verificacion',
