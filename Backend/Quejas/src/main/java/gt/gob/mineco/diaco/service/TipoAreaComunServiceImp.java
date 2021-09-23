@@ -2112,21 +2112,25 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
 
             //buscar informacion CONSUMIDOR
             TipoConsumidor vTipoConsumidor = tipoDao.findByIdConsumidor(vTipoQueja.getId_consumidor());
+            System.out.println("vTipoConsumidor: "+vTipoConsumidor);
             if (vTipoConsumidor != null) {
                 vTipoReg_FichaQueja.setNombre_consumidor(vTipoConsumidor.getNombreCompleto());
             }
             //buscar informacion PROVEEDOR
             TipoProveedor vTipoProveedor = tipoDao.findByIdProveedor(vTipoQueja.getId_proveedor());
+            System.out.println("vTipoProveedor: "+vTipoProveedor);
             if (vTipoProveedor != null) {
                 vTipoReg_FichaQueja.setNombre_proveedor(vTipoProveedor.getNombre());
             }
             //buscar informacion comunicacion permanente
             TipoComConsumidor vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoComConsumidor: "+vTipoComConsumidor);
             if (vTipoComConsumidor != null) {
                 vTipoReg_FichaQueja.setFecha_comunicacion(vTipoComConsumidor.getTipopasoqueja().getFecha_operacion());
             }
             //buscar informacion visita de campo
             TipoVisitaCampo vTipoVisitaCampo = tipoDao.findLastTipoVisitaCampo(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoVisitaCampo: "+vTipoVisitaCampo);
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             if (vTipoVisitaCampo != null) {
                 vTipoReg_FichaQueja.setVisita_campo(dateFormat.format(vTipoVisitaCampo.getFecha_visita()));
@@ -2136,6 +2140,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
 
             //AUDIENCIA DE CONCILIACION
             List<TipoProgramaAudiencia> vTipoProgramaAudiencia = tipoDao.findAllTiposProgramaAudienciaxIdQueja(formReg_FichaQueja.getId_queja(), 1);
+            System.out.println("vTipoProgramaAudiencia: "+vTipoProgramaAudiencia.toString());
             if (vTipoProgramaAudiencia != null) {
                 for (TipoProgramaAudiencia tipoProgramaAudiencia : vTipoProgramaAudiencia) {
                     audienciasConciliacion = audienciasConciliacion + dateFormat.format(tipoProgramaAudiencia.getFecha_programada()) + ", ";
@@ -2144,20 +2149,28 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             }
             if (audienciasConciliacion.isEmpty()) {
                 vTipoReg_FichaQueja.setAudiencia_conciliacion("N/A");
+                System.out.println("if: "+vTipoReg_FichaQueja.getAudiencia_conciliacion());
             } else {
                 vTipoReg_FichaQueja.setAudiencia_conciliacion(audienciasConciliacion.substring(0, audienciasConciliacion.length() - 2));
+                System.out.println("else: "+vTipoReg_FichaQueja.getAudiencia_conciliacion());
             }
 
             //tomando fechas de reprogramaciones de la citacion registro
             TipoReg_CedCitacionPro vTipoReg_CedCitacionPro = tipoDao.findTipoReg_CedCitacionProByIdQueja(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoReg_CedCitacionPro: "+vTipoReg_CedCitacionPro);
+            if (vTipoReg_CedCitacionPro != null){
             if (vTipoReg_CedCitacionPro.getHist_fecha_citas() != null) {
                 vTipoReg_FichaQueja.setCitacion(vTipoReg_CedCitacionPro.getHist_fecha_citas());
+                System.out.println("vTipoReg_CedCitacionPro: "+vTipoReg_CedCitacionPro);
             } else {
                 vTipoReg_FichaQueja.setCitacion("N/A");
+                System.out.println("vTipoReg_CedCitacionPro: "+vTipoReg_CedCitacionPro);
+            }
             }
 
             //CONCLUSION Y OBSERVACIONES
             TipoQuejaFinalizada vTipoQuejaFinalizada = tipoDao.getTipoQuejaFinxIdQueja(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoQuejaFinalizada: "+vTipoQuejaFinalizada);
             vTipoReg_FichaQueja.setConclusion(vTipoQuejaFinalizada.getConclusion());
             vTipoReg_FichaQueja.setComentarios(vTipoQuejaFinalizada.getComentario());
 
