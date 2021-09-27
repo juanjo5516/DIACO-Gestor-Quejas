@@ -2,7 +2,7 @@
 /* BASIC */
 
 nav.navbar{
-	background-color: #00284d !important;
+	background-color: #dbeeee !important;
 	padding-top:3px !important; 
 	padding-bottom:3px !important;
 	min-height:20px !important
@@ -49,14 +49,16 @@ height: auto;
 }
 
 html {
-  background-color: #56baed;
+  /* background-color: #dbeeee; */
+  background-color: #dbeeee;
+  height: 100vh;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
   /* background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#00284d)) fixed; */
-  background-color: #00284d;
+  background-color: #d9ebeb;
 /*   background-image: url("assets/img/login/fondo2.png");
   background-repeat: no-repeat;
   background-position: left bottom;
@@ -65,8 +67,12 @@ body {
 
 }
 
+.divjj{
+  height: 100vh;
+}
+
 a.underlineHover {
-  color: #e68a00;
+  color: #00284d;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -98,17 +104,17 @@ h2 {
 
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 60px 60px 60px 60px;
   background: #fff;
   padding: 30px;
   width: 90%;
   max-width: 450px;
   position: relative;
   padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  -webkit-box-shadow: 30px 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 30px 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
-  background-color: #00284d;
+  background-color: #ffffff;
 }
 
 #formFooter {
@@ -306,9 +312,6 @@ input[type=text]:placeholder {
   transition: width 0.2s;
 }
 
-.underlineHover:hover {
-  /*color: #1aa3ff;*/
-}
 
 .underlineHover:hover:after{
   width: 100%;
@@ -326,10 +329,6 @@ input[type=text]:placeholder {
   width:60%;
 }
 
-html, body {
-  height: 100%;
-}
-
 /*footer css*/
 
 #wrap {
@@ -342,7 +341,7 @@ html, body {
 }
 
 .page-footer {
-  background-color: #00284d;
+  background-color: #dbeeee;
   color:white;
 } 
 
@@ -351,12 +350,12 @@ html, body {
 }
 
 .footer-link{
-	color:white;
+	color:#00284d;
 	text-decoration: underline;
 }
 
 .footer-link:hover{
-	color:#e68a00;
+	color:#00a5e6;
 	text-decoration: underline;
 }
 
