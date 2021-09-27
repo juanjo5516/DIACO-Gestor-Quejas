@@ -104,6 +104,10 @@
 					  </div>
 				</div>
 			</ng-container>
+			<div *ngIf="flagRegErrorFicha" class="mt-2 alert alert-danger">
+				&nbsp;
+				No se pudo realizar el proceso debido a que la queja no ha sido finalizada.
+			</div>
 			<ng-container *ngIf="!flagValidadorRegistros">
 				<div class="row">
 				 <div class="col-lg-12">

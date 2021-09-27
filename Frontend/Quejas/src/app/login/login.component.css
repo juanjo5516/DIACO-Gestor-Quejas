@@ -369,7 +369,7 @@ input[type=text]:placeholder {
 }
 
 .highlight {
-  color: white;
+  color: #00284d;
   display:inline-block;
   text-decoration: none;
   font-weight: 400;
