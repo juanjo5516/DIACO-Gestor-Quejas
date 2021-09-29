@@ -89,7 +89,7 @@ public class Email {
 
             } catch (MessagingException e) {
                 System.out.println("Entrando al Catch de SendEmail.");
-                //e.printStackTrace(); 
+                e.printStackTrace(); 
                 System.out.println("Error: SendEmail: "+e.getMessage());
                 return false;
             }
