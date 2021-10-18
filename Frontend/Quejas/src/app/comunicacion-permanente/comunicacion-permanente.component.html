@@ -32,7 +32,7 @@
 							<ng-container *ngIf="flagEditable; else ReadOnly1">
 								<textarea rows='4' formControlName="estatus" ng-maxlength='100'
 									class="form-control" pattern="[A-Za-z
-									üÜáéíóúÁÉÍÓÚÑñ1234567890_+*.(),/:'\-\n]*"></textarea>
+									üÜáéíóúÁÉÍÓÚÑñ1234567890_ +*.(),/:'\-\n]*"></textarea>
 							</ng-container>
 							<ng-template #ReadOnly1>
 								{{estatusCtrl.value}}
@@ -62,7 +62,7 @@
 							<ng-container *ngIf="flagEditable; else ReadOnly2">
 								<textarea rows='4' formControlName="observaciones" ng-maxlength='100'
 									class="form-control" pattern="[A-Za-z
-									üÜáéíóúÁÉÍÓÚÑñ1234567890_+*.(),/:'\-\n]*"></textarea>
+									üÜáéíóúÁÉÍÓÚÑñ1234567890_ +*.(),/:'\-\n]*"></textarea>
 							</ng-container>
 							<ng-template #ReadOnly2>
 								{{observacionesCtrl.value}}

@@ -86,6 +86,9 @@ public class DiacoQueja {
 
     @Column(name = "id_diaco_sede")
     private Integer idDiacoSede;
+    
+    @Column(name = "id_motivo_queja")
+    private Integer idMotivoQueja;
 
     @Column(name = "anio")
     private Integer anio;
@@ -562,6 +565,20 @@ public class DiacoQueja {
 
     public void setCompleto30Datos(String completo30Datos) {
         this.completo30Datos = completo30Datos;
+    }
+
+    /**
+     * @return the idMotivoQueja
+     */
+    public Integer getIdMotivoQueja() {
+        return idMotivoQueja;
+    }
+
+    /**
+     * @param idMotivoQueja the idMotivoQueja to set
+     */
+    public void setIdMotivoQueja(Integer idMotivoQueja) {
+        this.idMotivoQueja = idMotivoQueja;
     }
 
 

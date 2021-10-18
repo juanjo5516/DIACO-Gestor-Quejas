@@ -126,7 +126,7 @@
 			   pattern="^[0-9]{8}$"
 			  required>
 			  <div *ngIf="quejaForm.get('telefono').errors && quejaForm.get('telefono').dirty">
-				<p *ngIf="quejaForm.get('telefono').hasError('pattern')" [ngStyle]="{color: 'red'}" >Error en numero de telefono, solo admite números</p>
+				<p *ngIf="quejaForm.get('telefono').hasError('pattern')" [ngStyle]="{color: 'red'}" >Error en número telefónico, deben ser 8 dígitos y sin guión.</p>
 			  </div>
           </div>
 		  
@@ -221,7 +221,7 @@
 					</div>
 					
 					<div class="form-group row" *ngIf="mostrarCamposProveedor">
-						<!-- <label for="et8" [ngStyle]="{color: 'red'}">(*)</label> -->
+						<label for="et8" [ngStyle]="{color: 'red'}">(*)</label>
 						<label for="nitProveedor" class="col-lg-1 col-form-label">NIT</label>
 						<div class="col-lg-2">
 							<input
@@ -237,7 +237,7 @@
 							pattern="^[0-9]+([0-9]|[K]|[k]){1}$"
 							>
 							<div *ngIf="quejaForm.get('nitProveedor').errors && quejaForm.get('nitProveedor').dirty">
-								<p *ngIf="quejaForm.get('nitProveedor').hasError('pattern')" [ngStyle]="{color: 'red'}">Error NIT incorrecto</p>
+								<p *ngIf="quejaForm.get('nitProveedor').hasError('pattern')" [ngStyle]="{color: 'red'}">Error NIT incorrecto, no debe llevar guión. </p>
 							</div>
 							
 						</div>
@@ -265,7 +265,7 @@
 					</div>
 
 					<div class="form-group row" *ngIf="mostrarCamposProveedor">
-						<!-- <label for="et8" [ngStyle]="{color: 'red'}">(*)</label> -->
+						<label for="et8" [ngStyle]="{color: 'red'}">(*)</label>
 						<label for="serieNumeroFactura" class="col-lg-4 col-form-label">Número de Factura o Contrato</label>
 						<div class="col-lg-4">
 							<input
