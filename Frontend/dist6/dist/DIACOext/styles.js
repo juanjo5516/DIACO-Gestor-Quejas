@@ -639,9 +639,15 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\Dell\Documents\Proyectos\DIACO\DIACO-Gestor-Quejas\Frontend\dist6\src\styles.css */"./src/styles.css");
 __webpack_require__(/*! C:\Users\Dell\Documents\Proyectos\DIACO\DIACO-Gestor-Quejas\Frontend\dist6\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
 module.exports = __webpack_require__(/*! C:\Users\Dell\Documents\Proyectos\DIACO\DIACO-Gestor-Quejas\Frontend\dist6\node_modules\ngx-bootstrap\datepicker\bs-datepicker.css */"./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
+=======
+__webpack_require__(/*! C:\Users\jjaguilal\Documents\Proyectos\DIACO\DIACO-Gestor-Quejas\Frontend\dist6\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! C:\Users\jjaguilal\Documents\Proyectos\DIACO\DIACO-Gestor-Quejas\Frontend\dist6\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+module.exports = __webpack_require__(/*! C:\Users\jjaguilal\Documents\Proyectos\DIACO\DIACO-Gestor-Quejas\Frontend\dist6\node_modules\ngx-bootstrap\datepicker\bs-datepicker.css */"./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css");
+>>>>>>> dev
 
 
 /***/ })

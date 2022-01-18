@@ -37,6 +37,7 @@ export class VyvAsignaColaComponent implements OnInit {
 	flagBoton:boolean;
 	flagEditable:boolean;
 	flagRegError:boolean;
+	flagRegErrorFicha:boolean;
 	myForm: FormGroup;
 	colaCtrl: FormControl;
 	routerlink; linkdescription; 
@@ -232,8 +233,8 @@ export class VyvAsignaColaComponent implements OnInit {
 					this.GetRegistro(true);
 				}else{
 					console.log('Rest service response ERROR.');
-					this.flagRegError=true;
-					this.SetSecTimerRegError();
+					this.flagRegErrorFicha=true;
+					this.SetSecTimerRegErrorFicha();
 				}				
 			},(error)=>{
 				console.log(error);
@@ -252,6 +253,7 @@ export class VyvAsignaColaComponent implements OnInit {
 					this.registrodata=JSON.parse('['+retvalue["value"].slice(0, -1) +']');
 					//this.routerlink='MuestraRegistro/2/'+this.registrodata[0]['id'];
 					this.routerlink=this.registrodata[0]['id'];
+					console.log('routerlink:'+this.routerlink);
 					this.linkdescription='Ficha Queja '+this.registrodata[0]['id_queja'];
 					console.log(this.registrodata);
 					if(click)
@@ -283,6 +285,10 @@ export class VyvAsignaColaComponent implements OnInit {
 	SetSecTimerRegError(){
 		const source = timer(5000);
 		const subscribe = source.subscribe(val => this.flagRegError=false);
+	}
+	SetSecTimerRegErrorFicha(){
+		const source = timer(5000);
+		const subscribe = source.subscribe(val => this.flagRegErrorFicha=false);
 	}
 	SetSecTimerBoton(){
 		const source = timer(500);
@@ -322,5 +328,15 @@ export class VyvAsignaColaComponent implements OnInit {
 	  }else{
 		  return null;
 	  }
+	}
+
+	openFichaQueja(){
+		console.log('entro a openFichaQueja');
+			this._registrosservice.getFichaQueja(this.routerlink,' ',' ').subscribe((Data)=>{
+				this._registrosservice.FileDownLoadChoose(Data,1);
+			},(error)=>{
+				console.log(error);
+			
+			});
 	}
 }

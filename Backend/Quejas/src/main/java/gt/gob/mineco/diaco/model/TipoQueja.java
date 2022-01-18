@@ -159,6 +159,9 @@ public class TipoQueja implements Serializable {
         @Column(name="id_municipio_proveedor")
         private Integer id_municipio_proveedor;
         
+        @Column(name="is_est_resolver")
+        private Integer is_est_resolver;
+        
         @OneToOne
         @JoinColumn(name = "id_departamento_proveedor", referencedColumnName = "codigo_departamento",updatable=false, insertable=false)
         private TipoDepartamento tipoDepartamentoProv;
@@ -462,6 +465,7 @@ public class TipoQueja implements Serializable {
         queja.addProperty("nombre_flujo",this.tipoEstadoQueja.getTipoflujo().getFlujo());
         queja.addProperty("id_diaco_sede",this.id_diaco_sede);
         queja.addProperty("nombre_sede",this.tipoSede.getNombre_sede());
+        queja.addProperty("is_est_resolver",this.getIs_est_resolver());
         if(tipoDepartamento!=null)
             queja.addProperty("nombre_departamento",this.tipoDepartamento.getNombre_departamento());
         if(tipoMunicipio!=null)
@@ -599,6 +603,20 @@ public class TipoQueja implements Serializable {
      */
     public void setId_municipio_proveedor(Integer id_municipio_proveedor) {
         this.id_municipio_proveedor = id_municipio_proveedor;
+    }
+
+    /**
+     * @return the is_est_resolver
+     */
+    public Integer getIs_est_resolver() {
+        return is_est_resolver;
+    }
+
+    /**
+     * @param is_est_resolver the is_est_resolver to set
+     */
+    public void setIs_est_resolver(Integer is_est_resolver) {
+        this.is_est_resolver = is_est_resolver;
     }
 
 }

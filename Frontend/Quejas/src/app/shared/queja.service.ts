@@ -36,6 +36,12 @@ export class QuejaService {
 	  console.log(localURL);
 	  return this._http.get(localURL,this.httpOptions).pipe(map(this.extractData));
   }
+
+  saveEstadoResolver(id, est_resolver){	  
+	var localURL=this.baseUrl+'/est_resolver';
+	console.log(localURL);
+	return this._http.post(localURL,this.ObjaJSON_DocumentarEstado(id, est_resolver),this.httpOptions).pipe(map(this.extractData));
+}
   
   getDataQuejaP(id){	  
 	  var localURL=this.baseUrl+'/'+id+'/P/'+this._submitFormService.Get_token();
@@ -87,6 +93,11 @@ export class QuejaService {
 	  var locarray = { id_queja:id_queja, valor:valor, usuario:this._submitFormService.Get_userid(), token: this._submitFormService.Get_token() };
 	  return JSON.stringify(locarray);
   }
+
+  ObjaJSON_DocumentarEstado(id_queja, estado_resolver){
+	var locarray = { id_queja:id_queja, estado_resolver:estado_resolver, usuario:this._submitFormService.Get_userid(), token: this._submitFormService.Get_token() };
+	return JSON.stringify(locarray);
+}  
   
   ObjaJSON_Reasignar(actualizaestado, id_queja, flujo, usuario_asignado){
 	  var locarray = { id_queja:id_queja, valor:usuario_asignado, usuario:this._submitFormService.Get_userid(), token: this._submitFormService.Get_token(), id_flujo: flujo, valor2: actualizaestado};

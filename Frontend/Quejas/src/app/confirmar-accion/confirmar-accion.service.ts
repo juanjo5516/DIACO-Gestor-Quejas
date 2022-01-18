@@ -26,6 +26,12 @@ export class ConfirmarAccionService {
 	  return this._http.get(localUrl,this.httpOptions).pipe(map(this.extractData));
   }
 
+  getFechaAceptacion(id_usuario, id_queja){	
+	let localUrl=this.baseUrl+'/ultima_aceptacion';
+	console.log(localUrl);
+	return this._http.post(localUrl,this.ObjaJSON_add2(id_usuario, id_queja),this.httpOptions).pipe(map(this.extractData));
+}
+
   private extractData(res: Response) {
 	  let body = res;
 	  return body || { };
@@ -51,6 +57,11 @@ export class ConfirmarAccionService {
 	  var locarray = { listado_quejas:queja_list, usuario: id_usuario, token: this._submitFormService.Get_token() };
 	  return JSON.stringify(locarray);
   }
+
+  ObjaJSON_add2(id_usuario, id_queja){
+	var locarray = { creado_por:id_usuario, id_queja: id_queja, token: this._submitFormService.Get_token() };
+	return JSON.stringify(locarray);
+}
 
   TrimandCut(string, maxlen){
 	  string = string.trim();

@@ -147,8 +147,9 @@ export class PrimeraAudienciaComponent implements OnInit {
 				swal.fire({
 					icon: 'info',
 					html:
-						'Queja: <b>' + info.event.extendedProps.description + '</b>, ' +
-						'Usuario: <b>' + info.event.extendedProps.user + '</b> ',
+					'No. Queja: <b>' + info.event.extendedProps.no_queja +'-'+info.event.extendedProps.año+ '</b>, ' +
+					'Descripción de Queja: <b>' + info.event.extendedProps.description + '</b>, ' +
+					'Auxiliar: <b>' + info.event.extendedProps.user + '</b> ',
 					title: '<strong>Proveedor <u>' + info.event.title + '</u></strong>',
 					showConfirmButton: true
 					//timer: 1500

@@ -60,6 +60,10 @@ public class DetalleCalendarioDto implements Serializable {
      * Usuario asociado.
      */
     private String user;
+    
+    private String no_queja;
+    
+    private String año;
 
     /**
      * Crea una nueva instancia de <code>DetalleCalendarioDto</code>.
@@ -129,6 +133,34 @@ public class DetalleCalendarioDto implements Serializable {
         return "DetalleCalendarioDto{" + "id=" + id + ", start="
                 + start + ", end=" + end + ", description=" + description
                 + ", color=" + color + ", title=" + title + ", user=" + user + '}';
+    }
+
+    /**
+     * @return the no_queja
+     */
+    public String getNo_queja() {
+        return no_queja;
+    }
+
+    /**
+     * @param no_queja the no_queja to set
+     */
+    public void setNo_queja(String no_queja) {
+        this.no_queja = no_queja;
+    }
+
+    /**
+     * @return the año
+     */
+    public String getAño() {
+        return año;
+    }
+
+    /**
+     * @param año the año to set
+     */
+    public void setAño(String año) {
+        this.año = año;
     }
 
 }

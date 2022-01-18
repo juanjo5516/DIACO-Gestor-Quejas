@@ -101,6 +101,7 @@ import gt.gob.mineco.diaco.util.FormConfColas;
 import gt.gob.mineco.diaco.util.FormConfGeneral;
 import gt.gob.mineco.diaco.util.FormConfUsuario;
 import gt.gob.mineco.diaco.util.FormConsumidor;
+import gt.gob.mineco.diaco.util.FormEstadoResolver;
 import gt.gob.mineco.diaco.util.FormMotivoQuejaFinalizacion;
 import gt.gob.mineco.diaco.util.FormMovimExp;
 import gt.gob.mineco.diaco.util.FormParamGeneral;
@@ -128,6 +129,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -212,8 +214,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
     @Override
     public ResponseRs getTipoQueja(Integer idqueja, String token) {
         ResponseRs response = new ResponseRs();
-        System.out.println("Entrando a getTipoQueja (idqueja): "+idqueja);
-        System.out.println("Entrando a getTipoQueja (token): "+token);
+        System.out.println("Entrando a getTipoQueja (idqueja): " + idqueja);
+        System.out.println("Entrando a getTipoQueja (token): " + token);
 
         try {
             tipoDao.TokenCheck(token);
@@ -787,27 +789,27 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                 newTipoPasoQueja.setOperacion("I");
             }
             tipoDao.savePasoQueja(newTipoPasoQueja);
-            
+
             System.out.println("LLEGO SIN ERROR");
 
             //validar campos y agregar nuevo registro
-                vTipoComConsumidor = new TipoComConsumidor();
-                if (formComConsumidor.getVia() != null) {
-                    vTipoComConsumidor.setVia(formComConsumidor.getVia());
-                }
-                if (formComConsumidor.getObservaciones() != null) {
-                    vTipoComConsumidor.setObservaciones(formComConsumidor.getObservaciones());
-                }
-                if (formComConsumidor.getEstatus() != null) {
-                    vTipoComConsumidor.setEstatus(formComConsumidor.getEstatus());
-                }
-                vTipoComConsumidor.setTipopasoqueja(newTipoPasoQueja);
-                vTipoComConsumidor.setId_flujo(formComConsumidor.getId_flujo());
-                vTipoComConsumidor.setId_tipo_registro(tipo_registro);
-                vTipoComConsumidor.setFecha_ingreso(new Date());
-                tipoDao.saveComConsumidor(vTipoComConsumidor);
-                response.setValue(vTipoComConsumidor);
-            
+            vTipoComConsumidor = new TipoComConsumidor();
+            if (formComConsumidor.getVia() != null) {
+                vTipoComConsumidor.setVia(formComConsumidor.getVia());
+            }
+            if (formComConsumidor.getObservaciones() != null) {
+                vTipoComConsumidor.setObservaciones(formComConsumidor.getObservaciones());
+            }
+            if (formComConsumidor.getEstatus() != null) {
+                vTipoComConsumidor.setEstatus(formComConsumidor.getEstatus());
+            }
+            vTipoComConsumidor.setTipopasoqueja(newTipoPasoQueja);
+            vTipoComConsumidor.setId_flujo(formComConsumidor.getId_flujo());
+            vTipoComConsumidor.setId_tipo_registro(tipo_registro);
+            vTipoComConsumidor.setFecha_ingreso(new Date());
+            tipoDao.saveComConsumidor(vTipoComConsumidor);
+            response.setValue(vTipoComConsumidor);
+
             //revisar si correo esta activo en parametros de sistema
             TipoEmailFuente efuente = tipoDao.findByIdEmailFuente(Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE);
             if (efuente != null) {
@@ -817,9 +819,9 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                             + "Estatus: " + LimpiaStringTildes(formComConsumidor.getEstatus()) + "<br>"
                             + "Observaciones: " + LimpiaStringTildes(formComConsumidor.getObservaciones());
                     String[] mailstring = GetEmailStringContribuyente(vTipoQueja.getId_consumidor());
-                    System.out.println("JJ: funcion saveEmailEnviar: parametros, mailstring:"+ mailstring +",cuerpo: "+cuerpo);
+                    System.out.println("JJ: funcion saveEmailEnviar: parametros, mailstring:" + mailstring + ",cuerpo: " + cuerpo);
                     boolean resp = saveEmailEnviar(mailstring, Constants.REG_DIACO_FUENTE_EMAIL_COM_PERMANENTE, cuerpo); // fuente de email 7 com perm
-                    System.out.println("Respuesta de saveEmailEnviar: "+resp);
+                    System.out.println("Respuesta de saveEmailEnviar: " + resp);
                 }
             }
             //bitacora auto log
@@ -828,13 +830,13 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             System.out.println("JJ: SIN ERROR, DESPUES DE BitacoraAutomatica");
             response.setCode(0L);
             response.setReason("OK");
-            System.out.println("JJ: antes DE BitacoraAutomatica, formComConsumidor.getId_queja(): "+formComConsumidor.getId_queja());
+            System.out.println("JJ: antes DE BitacoraAutomatica, formComConsumidor.getId_queja(): " + formComConsumidor.getId_queja());
             saveTiposFlujoGuia(formComConsumidor.getId_queja(), 3); //INDICA EL FLUJO EN EL QUE SE ENCUENTRA
             System.out.println("JJ: SIN ERROR, DESPUES DE saveTiposFlujoGuia");
             //TipoFlujoGuia vTipoFlujoGuia = tipoDao.findByIdTipoFlujoGuia(formComConsumidor.getId_queja());
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Error en addTipoComConsumidor: "+e.getMessage());
+            System.out.println("Error en addTipoComConsumidor: " + e.getMessage());
             e.printStackTrace();
             response.setCode(1L);
             response.setReason("ERROR 2");
@@ -1829,7 +1831,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             tipoDao.TokenCheck(formReg_ComPerm.getToken());
             transaction = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
             transaction.begin();
-            System.out.println("REVISOR JJ:  ANTES DEL IF" );
+            System.out.println("REVISOR JJ:  ANTES DEL IF");
             //verificar si es update o insert
             vTipoReg_ComPerm = tipoDao.findTiposReg_ComPermxIdQueja(formReg_ComPerm.getId_queja());
             System.out.println("REVISOR JJ:  ANTES DEL IF" + "VALOR DE vTipoReg_ComPerm" + vTipoReg_ComPerm);
@@ -1843,7 +1845,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             vTipoReg_ComPerm.setId_registro(Constants.REG_DIACO_REGISTRO_COMUNICACION_PERMANENTE); //registro 1-comunicacion con el consumidor
             vTipoReg_ComPerm.setId_tipo_registro(Constants.REG_TIPO_COMUNICACION_PERMANENTE); //Tipo Registro 3-Comunicación Permanente
             //buscar informacion de comunicación con consumidor
-            List<TipoComConsumidor> vTipoComConsumidor = tipoDao.findAllComConsumidorInd(formReg_ComPerm.getId_queja(),formReg_ComPerm.getId_comunicacion_consumidor());
+            List<TipoComConsumidor> vTipoComConsumidor = tipoDao.findAllComConsumidorInd(formReg_ComPerm.getId_queja(), formReg_ComPerm.getId_comunicacion_consumidor());
             System.out.println("REVISOR JJ:  " + "VALOR DE vTipoComConsumidor" + vTipoComConsumidor);
             if (vTipoComConsumidor != null) {
                 vTipoReg_ComPerm.setEstatus(vTipoComConsumidor.get(0).getEstatus());
@@ -1885,6 +1887,36 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             response.setReason("OK");
             response.setValue(vTipoReg_ComPerm);
             System.out.println("REVISOR JJ:  " + "VALOR DE vTipoReg_ComPerm) ANTES DE RESPONDER = " + vTipoReg_ComPerm);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(1L);
+            response.setReason("ERROR");
+            try {
+                transaction.rollback();
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
+        }
+        return response;
+    }
+    
+    @Override
+    public ResponseRs getUltimaAceptacion(FormRegistro formReg_ComPerm) {
+        ResponseRs response = new ResponseRs();
+        TipoConfirmarAccion confaccion = new TipoConfirmarAccion();
+        UserTransaction transaction = null;
+        try {
+            tipoDao.TokenCheck(formReg_ComPerm.getToken());
+            transaction = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
+            transaction.begin();
+            Date fecha_asignacion = tipoDao.findConfAccionReciente(formReg_ComPerm.getCreado_por(), formReg_ComPerm.getId_queja());
+            confaccion.setFecha_creacion(fecha_asignacion);
+            System.out.println("fecha_asignacion: "+fecha_asignacion);
+            System.out.println("LLEGANDO A getUltimaAceptacion");
+            response.setCode(0L);
+            response.setReason("OK");
+            response.setValue(confaccion);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -2080,21 +2112,25 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
 
             //buscar informacion CONSUMIDOR
             TipoConsumidor vTipoConsumidor = tipoDao.findByIdConsumidor(vTipoQueja.getId_consumidor());
+            System.out.println("vTipoConsumidor: "+vTipoConsumidor);
             if (vTipoConsumidor != null) {
                 vTipoReg_FichaQueja.setNombre_consumidor(vTipoConsumidor.getNombreCompleto());
             }
             //buscar informacion PROVEEDOR
             TipoProveedor vTipoProveedor = tipoDao.findByIdProveedor(vTipoQueja.getId_proveedor());
+            System.out.println("vTipoProveedor: "+vTipoProveedor);
             if (vTipoProveedor != null) {
                 vTipoReg_FichaQueja.setNombre_proveedor(vTipoProveedor.getNombre());
             }
             //buscar informacion comunicacion permanente
             TipoComConsumidor vTipoComConsumidor = tipoDao.findAllTiposComConsumidor(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoComConsumidor: "+vTipoComConsumidor);
             if (vTipoComConsumidor != null) {
                 vTipoReg_FichaQueja.setFecha_comunicacion(vTipoComConsumidor.getTipopasoqueja().getFecha_operacion());
             }
             //buscar informacion visita de campo
             TipoVisitaCampo vTipoVisitaCampo = tipoDao.findLastTipoVisitaCampo(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoVisitaCampo: "+vTipoVisitaCampo);
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             if (vTipoVisitaCampo != null) {
                 vTipoReg_FichaQueja.setVisita_campo(dateFormat.format(vTipoVisitaCampo.getFecha_visita()));
@@ -2104,6 +2140,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
 
             //AUDIENCIA DE CONCILIACION
             List<TipoProgramaAudiencia> vTipoProgramaAudiencia = tipoDao.findAllTiposProgramaAudienciaxIdQueja(formReg_FichaQueja.getId_queja(), 1);
+            System.out.println("vTipoProgramaAudiencia: "+vTipoProgramaAudiencia.toString());
             if (vTipoProgramaAudiencia != null) {
                 for (TipoProgramaAudiencia tipoProgramaAudiencia : vTipoProgramaAudiencia) {
                     audienciasConciliacion = audienciasConciliacion + dateFormat.format(tipoProgramaAudiencia.getFecha_programada()) + ", ";
@@ -2112,20 +2149,28 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             }
             if (audienciasConciliacion.isEmpty()) {
                 vTipoReg_FichaQueja.setAudiencia_conciliacion("N/A");
+                System.out.println("if: "+vTipoReg_FichaQueja.getAudiencia_conciliacion());
             } else {
                 vTipoReg_FichaQueja.setAudiencia_conciliacion(audienciasConciliacion.substring(0, audienciasConciliacion.length() - 2));
+                System.out.println("else: "+vTipoReg_FichaQueja.getAudiencia_conciliacion());
             }
 
             //tomando fechas de reprogramaciones de la citacion registro
             TipoReg_CedCitacionPro vTipoReg_CedCitacionPro = tipoDao.findTipoReg_CedCitacionProByIdQueja(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoReg_CedCitacionPro: "+vTipoReg_CedCitacionPro);
+            if (vTipoReg_CedCitacionPro != null){
             if (vTipoReg_CedCitacionPro.getHist_fecha_citas() != null) {
                 vTipoReg_FichaQueja.setCitacion(vTipoReg_CedCitacionPro.getHist_fecha_citas());
+                System.out.println("vTipoReg_CedCitacionPro: "+vTipoReg_CedCitacionPro);
             } else {
                 vTipoReg_FichaQueja.setCitacion("N/A");
+                System.out.println("vTipoReg_CedCitacionPro: "+vTipoReg_CedCitacionPro);
+            }
             }
 
             //CONCLUSION Y OBSERVACIONES
             TipoQuejaFinalizada vTipoQuejaFinalizada = tipoDao.getTipoQuejaFinxIdQueja(formReg_FichaQueja.getId_queja());
+            System.out.println("vTipoQuejaFinalizada: "+vTipoQuejaFinalizada);
             vTipoReg_FichaQueja.setConclusion(vTipoQuejaFinalizada.getConclusion());
             vTipoReg_FichaQueja.setComentarios(vTipoQuejaFinalizada.getComentario());
 
@@ -2561,9 +2606,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             transaction.begin();
             Long correlativoCons = tipoDao.getSecuenciaCitasNotisJur();
             Long correlativoProv = tipoDao.getSecuenciaCitasNotisJur();
-            System.out.println("REVISOR JJ: Valor de la Variable correlativoCons: "+ correlativoCons );
-            System.out.println("REVISOR JJ: Valor de la Variable correlativoProv: "+ correlativoProv );
-            
+            System.out.println("REVISOR JJ: Valor de la Variable correlativoCons: " + correlativoCons);
+            System.out.println("REVISOR JJ: Valor de la Variable correlativoProv: " + correlativoProv);
 
             response = save_Reg_CedulaNotificacionJuridico(formRegistro, correlativoCons, "C");
             if (response.getCode() == 1L) {
@@ -5832,13 +5876,12 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         vTipoEmailEnviar.setSubject(vTipoEmailFuente.getSubject());
         vTipoEmailEnviar.setFecha_creado(new Date());
         vTipoEmailEnviar.setId_fuente(idfuente);
-        System.out.println("LLEGÒ SIN ERROR, saveEmailEnviar, valor de id_queja: "+vTipoEmailEnviar.getId_queja());
+        System.out.println("LLEGÒ SIN ERROR, saveEmailEnviar, valor de id_queja: " + vTipoEmailEnviar.getId_queja());
         if (result) {
             vTipoEmailEnviar.setEstado("I");
             vTipoEmailEnviar.setFallos(0);
             vTipoEmailEnviar.setFecha_enviado(new Date());
-        } 
-        else {
+        } else {
             vTipoEmailEnviar.setEstado("A");
             vTipoEmailEnviar.setFallos(1);
             //System.out.println("else, valor de vTipoEmailEnviar: "+ vTipoEmailEnviar.toString());
@@ -6051,7 +6094,7 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
                     System.out.println("REVISOR JJ: Resultado de variable mailstring como Array: " + Arrays.toString(mailstring));
                     System.out.println("REVISOR JJ: Resultado de variable cuerpo: " + cuerpo);
                     boolean sendmail = saveEmailEnviar(mailstring, Constants.REG_DIACO_FUENTE_EMAIL_VERIF_DATOS_INFO_EXTRA, cuerpo); // fuente de email 2: verificacion de datos informacion adicional
-                    
+
                     if (!sendmail) {
                         response.setReason("EMAILFAIL");
                     } else {
@@ -8108,6 +8151,43 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             e.printStackTrace();
             response.setCode(1L);
             response.setReason("ERROR");
+        }
+        return response;
+    }
+
+    @Override
+    public ResponseRs saveEstadoResolver(FormEstadoResolver formestadoresolver) {
+        System.out.println("VAlor de id_queja: "+formestadoresolver.getId_queja()+" Valor de valor: "+formestadoresolver.getEstado_resolver());
+        ResponseRs response = new ResponseRs();
+        UserTransaction transaction = null;
+        try {
+            transaction = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
+            transaction.begin();
+            TipoQueja vTipoQueja = tipoDao.findByIdQueja(formestadoresolver.getId_queja());
+            System.out.println("Variable vTipoQueja: "+vTipoQueja.toString());
+            if (vTipoQueja != null) {
+
+                vTipoQueja.setIs_est_resolver(formestadoresolver.getEstado_resolver());
+
+                tipoDao.saveQueja(vTipoQueja);
+
+                response.setCode(0L);
+                response.setReason("PROBANDO saveEstadoResolver");
+                response.setValue(vTipoQueja);
+            } else {
+                response.setCode(1L);
+                response.setReason("ERROR");
+            }
+        transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setCode(1L);
+            response.setReason("ERRORjj");
+            try {
+                transaction.rollback();
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
         }
         return response;
     }
@@ -11191,6 +11271,10 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             int corrInt = (corrArr.length >= 1 ? Integer.parseInt(corrArr[1]) : 0);
 
             nResAudiencia.setCorrelativo(corrInt);
+            
+            nResAudiencia.setMotivo_archivo(formResAudiencia.getValor2());
+            nResAudiencia.setMonto_recuperado(formResAudiencia.getValor3());
+
             //nResAudiencia.setCorr_notif_cons(getNextCorrelativoRegistroPrefijo(Constants.REG_DIACO_REGISTRO_RESOLUCION_FINAL_ARCHIVO_JURIDICO));
             //nResAudiencia.setCorr_notif_prov(getNextCorrelativoRegistroPrefijo(Constants.REG_DIACO_REGISTRO_RESOLUCION_FINAL_ARCHIVO_JURIDICO));
             nResAudiencia.setCorr_notif_cons(corrInt);
@@ -12127,8 +12211,8 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
         }
         return response;
     }
-    
-        public ResponseRs findConsumidorByDpi(String dpi, String token) {
+
+    public ResponseRs findConsumidorByDpi(String dpi, String token) {
         ResponseRs response = new ResponseRs();
 
         try {
@@ -12895,15 +12979,15 @@ public class TipoAreaComunServiceImp implements TipoAreaComunService {
             System.out.println("Call: findByEmailUsuarioConf " + primerEmailProveedor);
             TipoUsuario_Conf valida_email;
             System.out.println("Verificando: getCorreo jj");
-            
+
             if (pProveedor.getId_usuario() != 0) {
                 valida_email = tipoDao.findByEmailExcUsuarioConf(primerEmailProveedor, pProveedor.getId_usuario());
-                System.out.println("(IF)Valor de valida_email: "+ valida_email);
+                System.out.println("(IF)Valor de valida_email: " + valida_email);
             } else {
                 valida_email = tipoDao.findByEmailUsuarioConf(primerEmailProveedor);
-                System.out.println("(ELSE)Valor de valida_email: "+ valida_email);
+                System.out.println("(ELSE)Valor de valida_email: " + valida_email);
             }
-            System.out.println("Valor de valida_email: "+ valida_email);
+            System.out.println("Valor de valida_email: " + valida_email);
             if (valida_email == null) {
                 System.out.println("Verificando: valida_email == NULL");
                 System.out.println("Correo no repetido.");

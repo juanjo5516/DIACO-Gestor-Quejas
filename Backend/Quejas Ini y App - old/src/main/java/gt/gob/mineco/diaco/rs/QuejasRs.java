@@ -54,6 +54,7 @@ public class QuejasRs {
         queja.setCompleto30Datos("1");
         DiacoConsumidor id = this.consumidorDao.findById(queja.getIdConsumidor());
         queja.setIdDiacoSede(id.getSedeDiacoCercana());
+        queja.setIdMotivoQueja(id.getIdMotivoQueja());
         queja = quejasService.saveQuejadq(queja);
         response.setValue(queja);
         return response;

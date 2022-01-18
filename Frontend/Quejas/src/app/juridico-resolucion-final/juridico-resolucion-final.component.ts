@@ -53,6 +53,8 @@ export class JuridicoResolucionFinalComponent implements OnInit {
   listcorrelativo;cmb_resultado;
   MyForm: FormGroup;
   tipoCtrl:FormControl;
+  motivoArchivoCtrl:FormControl;
+  montoArchivoCtrl:FormControl;
   flagNuevo:boolean;
   flagBoton:boolean;
   flagEdit:boolean;
@@ -106,8 +108,12 @@ export class JuridicoResolucionFinalComponent implements OnInit {
 		//this.LoadCorrelativoResol();
 		this.LoadCmb();
 		this.tipoCtrl =  new FormControl('',Validators.required);
+		this.motivoArchivoCtrl =  new FormControl();
+		this.montoArchivoCtrl =  new FormControl('0.00');
 		this.MyForm = new FormGroup({
 			tipo: this.tipoCtrl,
+			motivo_archivo: this.motivoArchivoCtrl,
+			monto: this.montoArchivoCtrl
 		});
 		this.ValidadorRegistros();
   }
@@ -412,7 +418,7 @@ export class JuridicoResolucionFinalComponent implements OnInit {
 		let tempstr='';
 	  if (this.MyForm.valid) {	
 			this.flagBoton=false;
-			this._audienciaService.saveResFinal(this.tipoCtrl.value,this.data.NoQueja).subscribe((retvalue)=>{
+			this._audienciaService.saveResFinal(this.tipoCtrl.value,this.data.NoQueja,this.motivoArchivoCtrl.value,this.montoArchivoCtrl.value).subscribe((retvalue)=>{
 				if(retvalue["reason"] == 'OK'){
 					console.log(retvalue);
 					this.flagInsertInfo=true;

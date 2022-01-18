@@ -39,6 +39,7 @@ export class ArchivarQuejaComponent implements OnInit {
 	flagEditable:boolean;
 	flagFinalizada:boolean;
 	flagRegError:boolean;
+	flagRegErrorFicha:boolean;
 	myForm: FormGroup;
 	motivo_poaCtrl: FormControl;
 	razon_finCtrl: FormControl;
@@ -65,6 +66,7 @@ export class ArchivarQuejaComponent implements OnInit {
 		this.lbl_numqueja='';
 		this.flagValidadorRegistros=false;
 		this.msg_deshabilitado=MSG_REGISTRO_DESHABILITADO;
+		this.flagRegErrorFicha=false;
   }
 
 	ngOnInit() {
@@ -341,7 +343,7 @@ export class ArchivarQuejaComponent implements OnInit {
 					this.GetRegistro(true);
 				}else{
 					console.log('Rest service response ERROR.');
-					this.flagRegError=true;
+					this.flagRegErrorFicha=true;
 					this.SetSecTimerRegError();
 				}				
 			},(error)=>{

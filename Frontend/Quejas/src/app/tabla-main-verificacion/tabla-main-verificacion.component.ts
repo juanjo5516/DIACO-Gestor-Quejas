@@ -13,6 +13,7 @@ import {MovimientoVerificacionComponent} from '../movimiento-verificacion/movimi
 import {VyvAsignaColaComponent} from '../vyv-asigna-cola/vyv-asigna-cola.component';
 import {ViewEncapsulation} from '@angular/core';
 import {MainTableService} from '../tabla-main-at-con/main-table.service';
+import {ConfirmarAccionService} from '../confirmar-accion/confirmar-accion.service';
 import {Subject} from 'rxjs';
 //import { DataTableDirective } from 'angular-datatables';
 declare var $: any;
@@ -21,6 +22,7 @@ import {trigger, state, style, animate, transition} from '@angular/animations';
 import {timer} from 'rxjs';
 import {SubmitFormService} from '../shared/submit-form.service';
 import {SeguridadService} from '../shared/seguridad.service';
+//import { Accordion } from 'primeng';
 
 @Component({
   selector: 'app-tabla-main-verificacion',
@@ -70,7 +72,7 @@ export class TablaMainVerificacionComponent implements OnInit {
   //jsonoriginal;
   //titleArray=[];
 
-  constructor(private dialog: MatDialog, private _maintableservice: MainTableService, private _submitFormService: SubmitFormService, private _seguridadService: SeguridadService) {
+  constructor(private dialog: MatDialog, private _maintableservice: MainTableService, private _submitFormService: SubmitFormService, private _seguridadService: SeguridadService, private _confirmarAccion: ConfirmarAccionService) {
 
     this.columns = [
       {prop: 'quejanumero', width: 100},
@@ -369,10 +371,11 @@ export class TablaMainVerificacionComponent implements OnInit {
     this._maintableservice.getVyV(frmmainloc).subscribe((Data) => {
       if (Data['reason'] == 'OK') {
         tempstr = Data['value'];
-        console.log(Data);
+        console.log('tempstr:'+tempstr);
         //console.log(tempstr);
         if (tempstr != null && tempstr != '') {
           this.FrmMainListFD = JSON.parse('[' + tempstr.slice(0, -1) + ']');
+          console.log('FrmMainListFD:'+this.FrmMainListFD.length);
           if (this.FrmMainListFD.length >= 2000) {
             this.flaglimitError = true;
             this.SetSecTimerLimitError();
@@ -383,12 +386,25 @@ export class TablaMainVerificacionComponent implements OnInit {
         this.rows = this.FrmMainListFD;
         this.data = this.rows;
         this.filteredData = this.rows;
-        console.log(Data);
+        console.log('this.rows 0 : '+this.rows[0].id_queja);
         this.flagDBError = false;
       } else {
         console.log('Rest Service Error');
         this.flagDBError = true;
         this.SetSecTimerDBError();
+      }
+    }, (error) => {
+      console.log(error);
+      this.flagDBError = true;
+      this.SetSecTimerDBError();
+    });
+    this._confirmarAccion.getFechaAceptacion(3046,1887).subscribe((Data) => {
+      if (Data['reason'] == 'OK') {
+
+
+      } else {
+        console.log('Rest Service Error');
+
       }
     }, (error) => {
       console.log(error);

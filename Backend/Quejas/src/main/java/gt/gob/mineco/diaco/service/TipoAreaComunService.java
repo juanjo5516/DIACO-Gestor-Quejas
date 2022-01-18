@@ -28,6 +28,7 @@ import gt.gob.mineco.diaco.util.FormViewMainQueja1;
 import gt.gob.mineco.diaco.util.FormViewMainQueja2;
 import gt.gob.mineco.diaco.util.FormVisitaCampo;
 import gt.gob.mineco.diaco.util.ResponseRs;
+import gt.gob.mineco.diaco.util.FormEstadoResolver;
 import java.util.Date;
 
 public interface TipoAreaComunService {
@@ -151,6 +152,8 @@ public interface TipoAreaComunService {
     public ResponseRs getReg_ComPermanentexIdQueja(Integer idqueja, String token);
 
     public ResponseRs saveReg_ComPermanente(FormRegistro formReg_ComPerm);
+    
+    public ResponseRs getUltimaAceptacion(FormRegistro formReg_ComPerm);
     //sede
 
     public ResponseRs listSedeExcOne(Integer id, String token);
@@ -365,7 +368,9 @@ public interface TipoAreaComunService {
 
     public ResponseRs ReasignarQuejaSave(FormSimple formSimple);
     //configuracion: parametros generales
-
+    
+    public ResponseRs saveEstadoResolver(FormEstadoResolver formestadoresolver);
+    //form para estado de resolver
     public ResponseRs getParamGenerales(String token);
 
     public ResponseRs saveParamGenerales(FormParamGeneral formParamGeneral);

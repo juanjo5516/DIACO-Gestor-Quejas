@@ -3407,6 +3407,28 @@ public class TipoRepository {
 
     }
 
+    
+    @SuppressWarnings("unchecked")
+    public Date findConfAccionReciente(Integer id_usuario, Integer id_queja) {
+        this.em.getEntityManagerFactory().getCache().evict(TipoConfirmarAccion.class);
+
+        Query query = em.createNativeQuery("select max(fecha_aceptacion) from diaco_confirmar_accion t where t.id_queja=? and t.id_usuario=? AND t.estado='I'");
+        query.setParameter(1, id_queja);
+        query.setParameter(2, id_usuario);
+
+        Timestamp fechaTimeStamp;
+        fechaTimeStamp = (Timestamp) query.getResultList().get(0);
+        Date fecha_asignacion = new Date(fechaTimeStamp.getTime());
+        /*for (Object[] objects : rawResultList) {
+               if(objects[0]!=null)
+               {
+                  fecha_asignacion= (Date) objects[0];
+               }
+           }*/
+        return fecha_asignacion;
+
+    }
+
     public Long getSecuenciaCitasNotis() {
         Query query = em.createNativeQuery("SELECT (NEXT VALUE FOR dbo.citaciones_notificaciones_at_seq)");
         return (Long) query.getSingleResult();

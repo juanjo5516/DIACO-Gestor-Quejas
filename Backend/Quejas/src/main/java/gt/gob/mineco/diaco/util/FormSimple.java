@@ -13,6 +13,7 @@ public class FormSimple implements Serializable {
         private Integer id_flujo;
         private Integer valor;
         private Integer valor2;
+        private float valor3;
         
         public FormSimple() {
         }
@@ -87,6 +88,20 @@ public class FormSimple implements Serializable {
 
     public void setUsuario(Integer usuario) {
         this.usuario = usuario;
+    }
+
+    /**
+     * @return the valor3
+     */
+    public float getValor3() {
+        return valor3;
+    }
+
+    /**
+     * @param valor3 the valor3 to set
+     */
+    public void setValor3(float valor3) {
+        this.valor3 = valor3;
     }
         
 }

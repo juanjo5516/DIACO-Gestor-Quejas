@@ -227,8 +227,8 @@ export class TablaMainCalendarioComponent implements OnInit {
 	  const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
-		dialogConfig.height = '700px';
-		dialogConfig.width = '1000px';
+		dialogConfig.height = '80%';
+		dialogConfig.width = '90%';
 		dialogConfig.data = {NoQueja: NoQueja, quejanumero: strQueja, Rol: this._submitFormService.Get_Atencion_Consumidor(), Usuario: this._submitFormService.Get_userid()};
 		
     this.MtDialogRefPrimAud = this.dialog.open(PrimeraAudienciaComponent,dialogConfig);

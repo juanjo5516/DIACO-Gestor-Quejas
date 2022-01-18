@@ -181,7 +181,7 @@ export class PquejainiComponent implements OnInit {
 			'detalleQueja': new FormControl('', Validators.required),
 			'solicitaQue': new FormControl('', Validators.required),
 			'serieNumeroFactura': new FormControl('', Validators.required),
-			'nitProveedor': new FormControl(''),
+			'nitProveedor': new FormControl('', Validators.required),
 			'ubicacion': new FormControl('')
 			//,'ffactura': new FormControl('',Validators.required)
 			//,'fdpi': new FormControl('',Validators.required)
@@ -470,7 +470,7 @@ export class PquejainiComponent implements OnInit {
 				'dpiPasaporte': new FormControl(consumidor ? consumidor.documentoIdentificacion : '', Validators.required),
 				'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 				'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
-				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor),
+				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor, Validators.required),
 				'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 				'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 
@@ -488,7 +488,7 @@ export class PquejainiComponent implements OnInit {
 				'dpiPasaporte': new FormControl(this.quejaForm.value.dpiPasaporte, Validators.required),
 				'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 				'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
-				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor),
+				'nitProveedor': new FormControl(this.quejaForm.value.nitProveedor, Validators.required),
 				'serieNumeroFactura': new FormControl(this.quejaForm.value.serieNumeroFactura, Validators.required),
 				'ubicacion': new FormControl(this.quejaForm.value.ubicacion)
 
@@ -507,7 +507,7 @@ export class PquejainiComponent implements OnInit {
 			'dpiPasaporte': new FormControl(this.quejaForm.value.dpiPasaporte, Validators.required),
 			'detalleQueja': new FormControl(this.quejaForm.value.detalleQueja, Validators.required),
 			'solicitaQue': new FormControl(this.quejaForm.value.solicitaQue, Validators.required),
-			'nitProveedor': new FormControl(nit),
+			'nitProveedor': new FormControl(nit, Validators.required),
 			/*
 			'primerNombre': new FormControl(proveedor ? proveedor.primerNombre : ''),
 			'segundoNombre': new FormControl(proveedor ? proveedor.segundoNombre : ''),

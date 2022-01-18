@@ -11,6 +11,7 @@ import { RegistrosService } from '../shared/registros.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { DatePipe } from '@angular/common';
 import { SeguridadService } from "../shared/seguridad.service";
+//import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-juridico-resultado-audiencia',
@@ -56,6 +57,8 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 	currentEditid;
 	linkgrid;
 	editresuadiencia; lbl_tipostr;
+	clickMessage = 0;
+	resulta: boolean;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private _audienciaService:AudienciaService, private _quejaService: QuejaService, private _catalogoService: CatalogoService, public dialogRef: MatDialogRef<JuridicoResultadoAudienciaComponent>, private _registrosservice:RegistrosService, private datePipe: DatePipe, private _seguridadService:SeguridadService) { 
 		this.flagInsertInfo=false;
@@ -172,6 +175,24 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 		});
   }
 
+  SaveEstadoResolver(){
+	let tempstr='';
+	this._quejaService.saveEstadoResolver(this.data.NoQueja,this.clickMessage).subscribe((retvalue)=>{
+		  if(retvalue["reason"] == 'PROBANDO saveEstadoResolver'){
+			  console.log('Grabado');
+			  		
+		  }else{
+			  console.log('Rest service response ERROR.');
+			  this.flagInfoError=true;
+			  this.SetSecTimerInfoError();
+		  }		
+	  },(error)=>{
+		  console.log(error);
+		  this.flagInfoError=true;
+		  this.SetSecTimerInfoError();
+	  });
+  }
+
 
 	GetQuejaList(){
 	  let tempstr='';
@@ -180,7 +201,16 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 				tempstr=retvalue['value'];
 				if(tempstr != null)	{
 					this.lst_queja=JSON.parse('['+retvalue["value"].slice(0, -1) +']');
-					console.log(this.lst_queja);
+					console.log('Imprimiendo lst_queja'+this.lst_queja[0]['is_est_resolver']);
+
+					if (this.lst_queja[0]['is_est_resolver'] == 0) {
+						this.resulta=false;	
+						this.clickMessage=0;					
+					} else {
+						this.resulta=true;
+						this.clickMessage=1;	
+					}
+
 					this.flagformvisible++;
 					if(this._seguridadService.EditableporFlujo(2,this.lst_queja[0]['id_estado_queja']))
 						//si es rol 3 administrador, puede editar
@@ -226,6 +256,16 @@ export class JuridicoResultadoAudienciaComponent implements OnInit {
 		var temp=this.datePipe.transform(date,"yyyy-MM-dd")+'T'+hour+":"+min+":00";
 		return temp;  
 	}*/
+
+	onClickMe() {
+		if(this.clickMessage == 0){
+			this.clickMessage=1;
+			this.SaveEstadoResolver();
+		}else{
+			this.clickMessage=0;
+			this.SaveEstadoResolver();
+		}
+	  }
 
 	SaveEdit(){
 		if(this.flagEdit){
